@@ -3,7 +3,16 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function OrderPage() {
-  const [ingredients, setIngredients] = useState({
+  interface Ingredient {
+    comesWith: number;
+    count: number;
+    price: number;
+    max: number;
+    min: number;
+  }
+  const [ingredients, setIngredients] = useState<{
+    [key: string]: Ingredient;
+  }>({
     cheese: { comesWith: 1, count: 1, price: 0.5, max: 3, min: 0 },
     tomato: { comesWith: 1, count: 1, price: 0.5, max: 2, min: 0 },
     patty: { comesWith: 1, count: 1, price: 0.9, max: 3, min: 1 },
