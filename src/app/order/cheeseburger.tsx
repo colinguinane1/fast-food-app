@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-export default function OrderPage() {
+export default function OrderCheeseburger() {
   interface Ingredient {
     comesWith: number;
     count: number;
@@ -10,6 +10,7 @@ export default function OrderPage() {
     max: number;
     min: number;
   }
+
   const [ingredients, setIngredients] = useState<{
     [key: string]: Ingredient;
   }>({
@@ -70,7 +71,7 @@ export default function OrderPage() {
             >
               ${basePrice.toFixed(2)}
             </h2>{" "}
-            {/*TO FIXED MAKES IT ALWAYS 2 DECIMALS */}
+            {/*toFixed() MAKES IT ALWAYS 2 DECIMALS */}
           </div>{" "}
           <img
             className="w-45 h-40"
@@ -87,7 +88,11 @@ export default function OrderPage() {
             >
               <h1
                 className={`text-black capitalize ${
-                  count === 0 ? "text-gray-200 line-through" : ""
+                  count === 0
+                    ? "text-gray-200 line-through"
+                    : count > 1
+                    ? "text-green-500"
+                    : ""
                 }`}
               >
                 {ingredient}:{" "}
@@ -98,14 +103,14 @@ export default function OrderPage() {
                   : count === 1
                   ? "Regular"
                   : "None"}
-                <span className="text-gray-300 ml-10"></span>
+                <span className={`text-gray-300 ml-10`}></span>
               </h1>
               <div className="flex items-center">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => addIngredient(ingredient)}
-                  className={`border p-1 px-2 rounded-md mx-4  hover:bg-green-200 ${
+                  className={`border p-1 px-2 rounded-md mx-  hover:bg-green-200 ${
                     ingredients[ingredient].count ===
                     ingredients[ingredient].max
                       ? "cursor-not-allowed text-gray-400"
@@ -118,7 +123,7 @@ export default function OrderPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => decreaseIngredient(ingredient)}
-                  className={`border rounded-md p-1 px-2 mx-4 hover:bg-red-200 ${
+                  className={`border rounded-md p-1 px-2 mx-2 hover:bg-red-200 ${
                     ingredients[ingredient].count ===
                     ingredients[ingredient].min
                       ? "cursor-not-allowed text-gray-400"
@@ -131,7 +136,7 @@ export default function OrderPage() {
             </div>
           ))}
         </div>
-        <div className="fixed bottom-10 right-5 items-end">
+        <div className="fixed bottom-10 right-4 items-end">
           <button className="bg-green-500 hover:bg-green-600 text-white border p-2 rounded-md">
             Add To Cart <span>${basePrice.toFixed(2)}</span>
           </button>
