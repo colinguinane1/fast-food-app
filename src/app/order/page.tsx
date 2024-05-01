@@ -14,11 +14,9 @@ export default function OrderPage() {
     lettuce: { comesWith: 1, count: 1, price: 0.4, max: 2, min: 0 },
   });
   const itemData = { baseCost: 5.99, name: "Cheeseburger" };
-
   const [basePrice, setBasePrice] = useState(itemData.baseCost);
-  const [additionalIngredients, addAdditionalIngredients] = useState();
 
-  const updateIngredientCount = (ingredient, value) => {
+  const updateIngredientCount = (ingredient: string, value: number) => {
     setIngredients({
       ...ingredients,
       [ingredient]: { ...ingredients[ingredient], count: value },
@@ -27,7 +25,7 @@ export default function OrderPage() {
 
   const updatedPrice = "";
 
-  const addIngredient = (ingredient) => {
+  const addIngredient = (ingredient: string) => {
     if (ingredients[ingredient].count < ingredients[ingredient].max) {
       updateIngredientCount(ingredient, ingredients[ingredient].count + 1);
       if (
@@ -39,7 +37,7 @@ export default function OrderPage() {
     }
   };
 
-  const decreaseIngredient = (ingredient) => {
+  const decreaseIngredient = (ingredient: string) => {
     if (ingredients[ingredient].count > ingredients[ingredient].min) {
       updateIngredientCount(ingredient, ingredients[ingredient].count - 1);
       if (ingredients[ingredient].count > ingredients[ingredient].comesWith) {
