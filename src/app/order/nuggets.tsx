@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-export default function OrderCheeseburger() {
+export default function OrderNuggets() {
   interface Ingredient {
     comesWith: number;
     count: number;
@@ -23,7 +23,7 @@ export default function OrderCheeseburger() {
     mustard: { comesWith: 1, count: 1, price: 0.1, max: 3, min: 0 },
     lettuce: { comesWith: 1, count: 1, price: 0.4, max: 2, min: 0 },
   });
-  const itemData = { baseCost: 5.99, name: "Cheeseburger" };
+  const itemData = { baseCost: 5.99, name: "Chicken Nuggets" };
   const [basePrice, setBasePrice] = useState(itemData.baseCost);
 
   const updateIngredientCount = (ingredient: string, value: number) => {
@@ -75,7 +75,7 @@ export default function OrderCheeseburger() {
           </div>{" "}
           <img
             className="w-45 h-40"
-            src="https://th.bing.com/th/id/R.3b7b87e9c27c39045716ade889c4d533?rik=64l%2fkT1tiaI2yQ&riu=http%3a%2f%2fwww.pngmart.com%2ffiles%2f16%2fClassic-Cheese-Burger-Transparent-PNG.png&ehk=Tj7xPCvPYFFqA96s0sgdVjwWf29DPqDDEPQwKtMpWOo%3d&risl=&pid=ImgRaw&r=0"
+            src="https://s7d1.scene7.com/is/image/mcdonalds/mcdonalds-Chicken-McNuggets-6-pieces-2:1-3-product-tile-desktop?wid=829&hei=515&dpr=off"
             alt="burger"
           ></img>
         </div>
