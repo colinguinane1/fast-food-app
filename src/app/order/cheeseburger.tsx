@@ -1,30 +1,29 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 export default function OrderCheeseburger() {
-  interface Ingredient {
-    comesWith: number;
-    count: number;
-    price: number;
-    max: number;
-    min: number;
-  }
+  const [itemData, setItemData] = useState(null);
+  const [ingredients, setIngredients] = useState(null);
+  const [basePrice, setBasePrice] = useState(null);
 
-  const [ingredients, setIngredients] = useState<{
-    [key: string]: Ingredient;
-  }>({
-    cheese: { comesWith: 1, count: 1, price: 0.5, max: 3, min: 0 },
-    tomato: { comesWith: 1, count: 1, price: 0.5, max: 2, min: 0 },
-    patty: { comesWith: 1, count: 1, price: 0.9, max: 3, min: 1 },
-    onion: { comesWith: 1, count: 1, price: 0.3, max: 2, min: 0 },
-    pickles: { comesWith: 1, count: 1, price: 0.3, max: 2, min: 0 },
-    ketchup: { comesWith: 1, count: 1, price: 0.1, max: 3, min: 0 },
-    mustard: { comesWith: 1, count: 1, price: 0.1, max: 3, min: 0 },
-    lettuce: { comesWith: 1, count: 1, price: 0.4, max: 2, min: 0 },
-  });
-  const itemData = { baseCost: 5.99, name: "Cheeseburger" };
-  const [basePrice, setBasePrice] = useState(itemData.baseCost);
+  useEffect(() => {
+    async function fetchItemData() {
+      try {
+        // Replace 'your-bucket-url' and 'item-data.json' with your actual bucket URL and file name
+        const response = await fetch(
+          `https://storage.cloud.google.com/fast-food-app-58d04.appspot.com/menu/Burgers/${menuItem}/metadata.json`
+        );
+        const jsonData = await response.json();
+        setItemData(jsonData);
+        setIngredients(jsonData);
+        setBasePrice(jsonData.itemBasePrice);
+      } catch (error) {
+        console.error("Error fetching item data:", error);
+      }
+    }
+    fetchItemData();
+  }, []);
 
   const updateIngredientCount = (ingredient: string, value: number) => {
     setIngredients({

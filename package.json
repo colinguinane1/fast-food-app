@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google-cloud/storage": "^7.10.2",
     "framer-motion": "^11.1.7",
     "next": "^14.2.3",
     "react": "^18",
