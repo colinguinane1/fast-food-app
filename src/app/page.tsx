@@ -1,65 +1,43 @@
-"use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { collection, getDocs, DocumentData } from "firebase/firestore";
+import { db } from "./firebase/firebase";
 
-interface FolderItem {
-  type: string;
-  name: string;
-  // Add more properties as needed
+interface Category {
+  id: string;
+  // Add any other fields here according to your data structure
 }
 
-export default function MyComponent() {
-  const [folders, setFolders] = useState<string[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+async function fetchDataFromFirestore(): Promise<Category[]> {
+  const querySnapshot = await getDocs(collection(db, "categories"));
+  const data: Category[] = [];
+  querySnapshot.forEach((doc) => {
+    data.push({ id: doc.id, ...doc.data() } as Category);
+  });
+  return data;
+}
+
+const IndexPage: React.FC = () => {
+  const [categories, setCategories] = useState<Category[]>([]);
 
   useEffect(() => {
-    const fetchFolders = async () => {
-      try {
-        // Fetching folder listing directly from the public directory
-        const response = await fetch("/menuItems");
-        if (!response.ok) {
-          throw new Error("ERROR");
-        }
-        const data: { items: FolderItem[] } = await response.json();
+    async function fetchData() {
+      const data = await fetchDataFromFirestore();
+      setCategories(data);
+    }
 
-        const folderNames = data.items
-          .filter((item) => item.type === "directory")
-          .map((item) => item.name);
-
-        setFolders(folderNames);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching folders:", error);
-        setError(error.message);
-        setLoading(false);
-      }
-    };
-
-    fetchFolders();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
+    fetchData();
+  }, []); // Empty dependency array means this effect will only run once, similar to componentDidMount
 
   return (
-    <main>
-      <h1>HELLO</h1>
-      <div>
-        <img src="public/next.svg" alt="Next.js Logo" />
-        <h1>Menu Categories</h1>
-        <ul>
-          {folders.map((folder, index) => (
-            <li key={index}>
-              <button onClick={() => console.log(folder)}>{folder}</button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </main>
+    <div>
+      <h1>Categories</h1>
+      <ul>
+        {categories.map((category, index) => (
+          <li key={index}>{category.id}</li>
+        ))}
+      </ul>
+    </div>
   );
-}
+};
+
+export default IndexPage;
