@@ -1,9 +1,22 @@
 import Backdrop from "./Backdrop";
 
-const Modal = ({ itemData, toggleModal }) => {
+interface ItemData {
+  itemImageURL: string;
+  itemName: string;
+  itemDescription: string;
+  itemBasePrice: number;
+  // Add other properties as needed
+}
+
+interface ModalProps {
+  itemData: ItemData;
+  toggleModal: () => void;
+}
+
+const Modal: React.FC<ModalProps> = ({ itemData, toggleModal }) => {
   console.log("Modal itemData:", itemData); // Add this line
 
-  const handleClose = (e) => {
+  const handleClose = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (e.target === e.currentTarget) {
       toggleModal(); // Close the modal only if the click target is the backdrop
     }
@@ -12,7 +25,7 @@ const Modal = ({ itemData, toggleModal }) => {
   return (
     <main>
       <div onClick={handleClose}>
-        <Backdrop onClick={handleClose} />
+        <Backdrop />
       </div>
       <div className="fixed inset-0 max-w-[800px] mx-4 flex items-center justify-center">
         <div className="bg-white p-4 rounded-lg">
