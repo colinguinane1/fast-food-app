@@ -2,22 +2,28 @@
 import React, { useState, useEffect } from "react";
 import { collection, getDocs, DocumentData } from "firebase/firestore";
 import { db } from "./firebase/firebase";
-import { motion } from "framer-motion";
 import Backdrop from "./components/Backdrop";
 import Modal from "./components/Modal";
 
 interface Category {
   id: string;
-  // Add any other fields here according to your data structure
+}
+
+interface ItemData {
+  itemImageURL: string;
+  itemName: string;
+  itemDescription: string;
+  itemBasePrice: number;
+  // Add other properties as needed
 }
 
 const IndexPage: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedItems, setSelectedItems] = useState<DocumentData[]>([]);
   const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedItemData, setSelectedItemData] = useState<DocumentData | null>(
+  const [selectedItemData, setSelectedItemData] = useState<ItemData | null>(
     null
-  );
+  ); // Change DocumentData to ItemData
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
@@ -45,12 +51,17 @@ const IndexPage: React.FC = () => {
     querySnapshot.forEach((doc) => {
       items.push(doc.data());
     });
-    console.log("Selected Items:", items); // Log the selected items
+    console.log("Selected Items:", items);
     setSelectedItems(items);
   };
+
   const handleItemClick = (itemData: DocumentData) => {
-    setSelectedItemData(itemData); // Ensure itemData is correctly set
-    console.log(itemData); // Log the itemData to check if it's correct
+    setSelectedItemData({
+      itemImageURL: itemData.itemImageURL,
+      itemName: itemData.itemName,
+      itemDescription: itemData.itemDescription,
+      itemBasePrice: itemData.itemBasePrice,
+    });
     toggleModal();
   };
 
