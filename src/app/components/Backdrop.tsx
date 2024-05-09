@@ -1,6 +1,12 @@
-const Backdrop = ({}) => {
+import React from "react";
+
+interface BackdropProps {
+  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}
+
+const Backdrop: React.FC<BackdropProps> = ({ onClick }) => {
   return (
-    <div className="fixed top-0 left-0 w-full h-full bg-gray-600 bg-opacity-50"></div>
+    <div className="fixed inset-0 bg-black opacity-50" onClick={onClick}></div>
   );
 };
 
