@@ -15,6 +15,8 @@ interface ItemData {
   itemName: string;
   itemDescription: string;
   itemBasePrice: number;
+  itemCalories: number;
+  itemIngredients: string;
   // Add other properties as needed
 }
 
@@ -62,6 +64,8 @@ const IndexPage: React.FC = () => {
       itemName: itemData.itemName,
       itemDescription: itemData.itemDescription,
       itemBasePrice: itemData.itemBasePrice,
+      itemCalories: itemData.itemCalories,
+      itemIngredients: itemData.itemIngredients,
     });
     toggleModal();
   };
@@ -115,9 +119,11 @@ const IndexPage: React.FC = () => {
                   <h1 className="text-2xl font-extrabold">{item.itemName}</h1>
                   <p className="text-sm max-w-52">{item.itemDescription}</p>
                   <div className="flex items-center gap-4">
-                    <h1 className="font-extralight">${item.itemBasePrice}</h1>
-                    <h1 className="font-extralight">
-                      {item.itemCalories} calories
+                    <h1 className="font-extralight text-sm">
+                      ${item.itemBasePrice}
+                    </h1>
+                    <h1 className="font-extralight text-sm">
+                      {item.itemCalories} cals
                     </h1>
                   </div>
                 </div>
