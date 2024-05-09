@@ -16,7 +16,7 @@ interface ItemData {
   itemDescription: string;
   itemBasePrice: number;
   itemCalories: number;
-  itemIngredients: string;
+  itemIngredients: { [key: string]: { count: number; price: number } };
   // Add other properties as needed
 }
 
@@ -144,6 +144,7 @@ const IndexPage: React.FC = () => {
               initial={{ scale: 1, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ opacity: 0 }}
+              className="no_transition"
             >
               <Backdrop />
             </motion.div>
@@ -152,7 +153,7 @@ const IndexPage: React.FC = () => {
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
               transition={{ type: "spring", duration: 0.4 }}
-              className="absolute h-screen w-screen"
+              className="absolute h-screen w-screen no_transition"
             >
               <Modal itemData={selectedItemData} toggleModal={toggleModal} />
             </motion.div>
