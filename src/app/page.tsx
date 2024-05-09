@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Navbar from "./components/Navbar";
 import { collection, getDocs, DocumentData } from "firebase/firestore";
 import { db } from "./firebase/firebase";
 import Backdrop from "./components/Backdrop";
@@ -78,7 +79,9 @@ const IndexPage: React.FC = () => {
   };
 
   return (
-    <main className="flex">
+    <main className="flex mt-[58px]">
+      <Navbar />
+
       <div className="h-screen shaodw-lg bg-white flex flex-col justify-between">
         <ul className="flex flex-col ">
           {categories.map((category, index) => (
@@ -117,14 +120,15 @@ const IndexPage: React.FC = () => {
         <div className="">
           <ul className="z-10">
             {selectedItems.map((item, index) => (
-              <button
+              <motion.button
+                whileTap={{}}
                 key={index}
-                className="flex text-left w-screen border hover:bg-slate-100 bg-white p-2 rounded-md shadow-lg items-center"
+                className="flex hover:py-8 transition-all min-h-32  text-left w-screen border hover:bg-slate-100 bg-white p-2   items-center"
                 onClick={() => handleItemClick(item)}
               >
                 <div className="">
                   <h1 className="text-2xl font-extrabold">{item.itemName}</h1>
-                  <p className="text-sm max-w-52">{item.itemDescription}</p>
+                  <p className="text-sm max-w-80">{item.itemDescription}</p>
                   <div className="flex items-center gap-4">
                     <h1 className="font-extralight text-sm">
                       ${item.itemBasePrice}
@@ -139,7 +143,7 @@ const IndexPage: React.FC = () => {
                   src={item.itemImageURL}
                   alt={item.itemName}
                 />
-              </button>
+              </motion.button>
             ))}
           </ul>
         </div>
