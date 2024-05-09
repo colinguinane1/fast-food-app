@@ -16,8 +16,15 @@ interface ItemData {
   itemDescription: string;
   itemBasePrice: number;
   itemCalories: number;
-  itemIngredients: { [key: string]: { count: number; price: number } };
-  // Add other properties as needed
+  itemIngredients: {
+    [key: string]: {
+      count: number;
+      price: number;
+      comesWith: number;
+      max: number;
+      min: number;
+    };
+  };
 }
 
 const IndexPage: React.FC = () => {
