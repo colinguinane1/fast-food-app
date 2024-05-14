@@ -79,22 +79,22 @@ const IndexPage: React.FC = () => {
   };
 
   return (
-    <main className="flex mt-[58px]">
+    <main className="md:flex mt-[58px]">
       <Navbar />
 
-      <div className="h-screen shaodw-lg bg-white flex flex-col justify-between">
-        <ul className="flex flex-col ">
+      <div className="md:h-screen h-10  md:flex  shaodw-lg bg-white  flex-col justify-between">
+        <ul className="flex md:flex-col scroll">
           {categories.map((category, index) => (
             <li
               key={index}
-              className={`capitalize hover:underline hover:text-blue-500 px-6 py-2 border-b cursor-pointer`}
+              className={`capitalize  hover:underline hover:text-blue-500 px-6 py-2 border-b cursor-pointer`}
               onClick={() => handleCategoryClick(category.id)}
             >
               {category.id}
             </li>
           ))}
         </ul>
-        <button className="flex items-center max-h-12  justify-center gap-1 text-white hover:bg-green-700 bg-green-500 w-full h-full">
+        <button className="flex absolute items-center h-fit w-fit p-2 rounded-full bottom-2 px-4 right-2  justify-center gap-1 text-white hover:bg-green-700 bg-green-500 l">
           Cart
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -123,10 +123,10 @@ const IndexPage: React.FC = () => {
               <motion.button
                 whileTap={{}}
                 key={index}
-                className="flex hover:py-8 transition-all min-h-32  text-left w-screen border hover:bg-slate-100 bg-white p-2   items-center"
+                className="flex flex-col items-center hover:py-8 transition-all min-h-32  text-left w-screen border hover:bg-slate-100 bg-white p-2   items-center"
                 onClick={() => handleItemClick(item)}
               >
-                <div className="">
+                <div className="flex flex-col">
                   <h1 className="text-2xl font-extrabold">{item.itemName}</h1>
                   <p className="text-sm max-w-80">{item.itemDescription}</p>
                   <div className="flex items-center gap-4">
@@ -138,6 +138,7 @@ const IndexPage: React.FC = () => {
                     </h1>
                   </div>
                 </div>
+
                 <img
                   className="w-16 h-16 ml-2"
                   src={item.itemImageURL}

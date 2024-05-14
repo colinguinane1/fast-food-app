@@ -34,7 +34,15 @@ const Modal: React.FC<ModalProps> = ({ itemData, toggleModal }) => {
 
   const toggleCustomize = () => {
     setCustomize(!customize);
-  };
+  };    const handleClickOutside = (event: MouseEvent) => {
+      console.log("Clicked outside");
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        toggleModal();
+      }
+    };
 
   useEffect(() => {
     console.log("modalRef:", modalRef.current);
@@ -46,15 +54,7 @@ const Modal: React.FC<ModalProps> = ({ itemData, toggleModal }) => {
       };
     });
     setIngredients(initialIngredients);
-    const handleClickOutside = (event: MouseEvent) => {
-      console.log("Clicked outside");
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
-        toggleModal();
-      }
-    };
+
     // Attach event listener for clicks outside the modal
     document.addEventListener("click", handleClickOutside);
 
@@ -116,8 +116,9 @@ const Modal: React.FC<ModalProps> = ({ itemData, toggleModal }) => {
   return (
     <main>
       <div className="fixed inset-0 flex items-center justify-center">
-        <div ref={modalRef} className="bg-white p- w-full mx-8 p-4 rounded-lg">
+        <div ref={modalRef} className="bg-white p- w-full md:mx-8 h-full md:max-h-fit p-4 rounded-lg">
           <div className="border-b mb-2">
+            <button className="absolute right-4" onClick={toggleModal}>X</button>
             <h1 className="font-extrabold text-2xl">{itemData.itemName}</h1>
             <p className="text-sm">{itemData.itemDescription}</p>
             <div className="flex flex-col">
