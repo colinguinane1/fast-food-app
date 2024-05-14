@@ -35,6 +35,7 @@ const IndexPage: React.FC = () => {
   const [selectedItemData, setSelectedItemData] = useState<ItemData | null>(
     null
   );
+  const [cartValue, setCartValue] = useState<number>(0);
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
@@ -82,20 +83,23 @@ const IndexPage: React.FC = () => {
     <main className="md:flex mt-[58px]">
       <Navbar />
 
-      <div className="md:h-screen h-10  md:flex  shaodw-lg bg-white  flex-col justify-between">
-        <ul className="flex md:flex-col scroll">
+      <div className="md:h-screen h-10  md:flex  shaodw-lg  bg-white  flex-col justify-between">
+        <ul
+          className="flex md:flex-col overflow-x-auto
+        "
+        >
           {categories.map((category, index) => (
             <li
               key={index}
-              className={`capitalize  hover:underline hover:text-blue-500 px-6 py-2 border-b cursor-pointer`}
+              className={`capitalize font-extrabold hover:border-spacing-3  hover:text-blue-500 px-6 py-2 border-b cursor-pointer`}
               onClick={() => handleCategoryClick(category.id)}
             >
               {category.id}
             </li>
           ))}
         </ul>
-        <button className="flex absolute items-center h-fit w-fit p-2 rounded-full bottom-2 px-4 right-2  justify-center gap-1 text-white hover:bg-green-700 bg-green-500 l">
-          Cart
+        <button className="flex absolute items-center h-fit w-fit p-2 rounded-full bottom-2 px-4 right-2  justify-center gap-1 text-white hover:bg-green-700 bg-green-500">
+          Cart ${cartValue.toFixed(2)}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
@@ -123,7 +127,7 @@ const IndexPage: React.FC = () => {
               <motion.button
                 whileTap={{}}
                 key={index}
-                className="flex flex-col items-center hover:py-8 transition-all min-h-32  text-left w-screen border hover:bg-slate-100 bg-white p-2   items-center"
+                className="flex items-center px-4  hover:py-8 transition-all min-h-32  text-left w-screen border hover:bg-slate-100 bg-white p-2 "
                 onClick={() => handleItemClick(item)}
               >
                 <div className="flex flex-col">
@@ -165,9 +169,14 @@ const IndexPage: React.FC = () => {
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
               transition={{ type: "spring", duration: 0.4 }}
-              className="absolute h-screen w-screen no_transition"
+              className="absolute w-screen no_transition"
             >
-              <Modal itemData={selectedItemData} toggleModal={toggleModal} />
+              <Modal
+                itemData={selectedItemData}
+                toggleModal={toggleModal}
+                cartValue={cartValue}
+                setCartValue={setCartValue}
+              />
             </motion.div>
           </>
         )}

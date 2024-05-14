@@ -22,27 +22,35 @@ interface ItemData {
 interface ModalProps {
   itemData: ItemData;
   toggleModal: () => void;
+  cartValue: number;
+  setCartValue: any;
 }
 
-const Modal: React.FC<ModalProps> = ({ itemData, toggleModal }) => {
+const Modal: React.FC<ModalProps> = ({
+  itemData,
+  toggleModal,
+  setCartValue,
+  cartValue,
+}) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [customize, setCustomize] = useState<boolean>(false);
   const [ingredients, setIngredients] = useState<{
     [key: string]: { count: number };
   }>({});
   const [totalPrice, setTotalPrice] = useState<number>(itemData.itemBasePrice);
+  const handleClickOutside = (event: MouseEvent) => {
+    console.log("Clicked outside");
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      toggleModal();
+    }
+  };
+  const addToCart = () => {
+    setCartValue(cartValue + totalPrice);
+  };
 
   const toggleCustomize = () => {
     setCustomize(!customize);
-  };    const handleClickOutside = (event: MouseEvent) => {
-      console.log("Clicked outside");
-      if (
-        modalRef.current &&
-        !modalRef.current.contains(event.target as Node)
-      ) {
-        toggleModal();
-      }
-    };
+  };
 
   useEffect(() => {
     console.log("modalRef:", modalRef.current);
@@ -116,9 +124,14 @@ const Modal: React.FC<ModalProps> = ({ itemData, toggleModal }) => {
   return (
     <main>
       <div className="fixed inset-0 flex items-center justify-center">
-        <div ref={modalRef} className="bg-white p- w-full md:mx-8 h-full md:max-h-fit p-4 rounded-lg">
-          <div className="border-b mb-2">
-            <button className="absolute right-4" onClick={toggleModal}>X</button>
+        <div
+          ref={modalRef}
+          className="bg-white w-full md:mx-8 h-full md:max-h-fit p-4 rounded-lg"
+        >
+          <div className="border-b 2">
+            <button className="absolute right-4" onClick={toggleModal}>
+              X
+            </button>
             <h1 className="font-extrabold text-2xl">{itemData.itemName}</h1>
             <p className="text-sm">{itemData.itemDescription}</p>
             <div className="flex flex-col">
@@ -138,8 +151,15 @@ const Modal: React.FC<ModalProps> = ({ itemData, toggleModal }) => {
                 ([ingredientName, ingredient]) => (
                   <div
                     key={ingredientName}
-                    className="flex items-center border-b py-1 justify-between"
+                    className="flex flex-row py-4 justify-between"
                   >
+                    {" "}
+                    <button
+                      onClick={addToCart}
+                      className="bg-green-500 hover:bg-green-700 w-full py-4 rounded-lg fixed bottom-4 font-extrabold text-2xl text-white"
+                    >
+                      Add +${totalPrice.toFixed(2)}
+                    </button>
                     <p
                       className={`capitalize ${
                         ingredients[ingredientName]?.count >
@@ -173,10 +193,10 @@ const Modal: React.FC<ModalProps> = ({ itemData, toggleModal }) => {
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className={`icon icon-tabler icon-tabler-plus bg-green-500 stroke-white rounded-full w-6 h-6 ${
+                          className={`icon icon-tabler icon-tabler-plus  stroke-white rounded-lg w-10 h-6 ${
                             ingredients[ingredientName].count == ingredient.max
                               ? "bg-gray-200 stroke-slate-300 cursor-not-allowed"
-                              : ""
+                              : "bg-green-500"
                           }`}
                           viewBox="0 0 24 24"
                           strokeWidth="1.5"
@@ -196,12 +216,12 @@ const Modal: React.FC<ModalProps> = ({ itemData, toggleModal }) => {
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className={`icon icon-tabler icon-tabler-minus stroke-white bg-green-500 rounded-full w-6 h-6 
+                          className={`icon icon-tabler icon-tabler-minus stroke-white 0 rounded-lg w-10 h-6 
                             ${
                               ingredients[ingredientName].count ==
                               ingredient.min
                                 ? "bg-gray-200 stroke-slate-300 cursor-not-allowed"
-                                : ""
+                                : "bg-green-50"
                             }
                           `}
                           viewBox="0 0 24 24"
@@ -214,17 +234,15 @@ const Modal: React.FC<ModalProps> = ({ itemData, toggleModal }) => {
                           <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                           <path d="M5 12h14" />
                         </svg>
-                      </button>
-                    </div>
+                      </button>{" "}
+                    </div>{" "}
                   </div>
                 )
               )}
             </div>
           )}
-          <div className="flex gap-2 mt-4">
-            <button className="bg-green-500 hover:bg-green-700 rounded-full px-4 p-1 text-white">
-              Add +${totalPrice.toFixed(2)}
-            </button>{" "}
+          <div className="">
+            {" "}
             <button
               onClick={toggleCustomize}
               className="bg-green-500 flex items-center hover:bg-green-700 rounded-full px-3  text-white"
