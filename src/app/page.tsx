@@ -98,7 +98,7 @@ const IndexPage: React.FC = () => {
             </li>
           ))}
         </ul>
-        <button className="flex absolute items-center h-fit w-fit p-2 rounded-full bottom-2 px-4 right-2  justify-center gap-1 text-white hover:bg-green-700 bg-green-500">
+        <button className="flex absolute items-center h-fit w-fit p-2 rounded-lg bottom-2 px-4 right-2  justify-center gap-1 text-white hover:bg-green-700 bg-green-500">
           Cart ${cartValue.toFixed(2)}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -161,6 +161,7 @@ const IndexPage: React.FC = () => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ opacity: 0 }}
               className="no_transition"
+              onClick={toggleModal}
             >
               <Backdrop />
             </motion.div>
@@ -169,7 +170,7 @@ const IndexPage: React.FC = () => {
               animate={{ scale: 1 }}
               exit={{ scale: 0 }}
               transition={{ type: "spring", duration: 0.4 }}
-              className="absolute w-screen no_transition"
+              className="no_transition"
             >
               <Modal
                 itemData={selectedItemData}
