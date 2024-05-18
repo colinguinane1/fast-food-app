@@ -98,7 +98,7 @@ const IndexPage: React.FC = () => {
             </li>
           ))}
         </ul>
-        <button className="flex absolute items-center h-fit w-fit p-2 rounded-lg bottom-2 px-4 right-2  justify-center gap-1 text-white hover:bg-green-700 bg-green-500">
+        <button className="flex absolute items-center h-fit w-fit p-2 rounded-lg bottom-2 px-4 right-2 z-[1]  justify-center gap-1 text-white hover:bg-green-700 bg-green-500">
           <span className="font-extrabold">${cartValue.toFixed(2)}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
