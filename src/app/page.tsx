@@ -80,18 +80,18 @@ const IndexPage: React.FC = () => {
   };
 
   return (
-    <main className="md:flex mt-[58px]">
+    <main className="md:flex mt-[58px] ">
       <Navbar />
 
-      <div className="md:h-screen h-10  md:flex  shaodw-lg  bg-white  flex-col justify-between">
+      <div className="md:h-screen h-10  md:flex border-b md:border-r  shaodw-lg  bg-white  flex-col justify-between">
         <ul
-          className="flex md:flex-col overflow-x-auto
+          className="flex md:flex-col gap-2  overflow-x-auto
         "
         >
           {categories.map((category, index) => (
             <li
               key={index}
-              className={`capitalize font-extrabold hover:border-spacing-3  hover:text-blue-500 px-6 py-2 border-b cursor-pointer`}
+              className={`capitalize font-extrabold hover:border-spacing-3  hover:text-blue-500 px-4 py-2 border-b cursor-pointer`}
               onClick={() => handleCategoryClick(category.id)}
             >
               {category.id}
@@ -99,7 +99,7 @@ const IndexPage: React.FC = () => {
           ))}
         </ul>
         <button className="flex absolute items-center h-fit w-fit p-2 rounded-lg bottom-2 px-4 right-2  justify-center gap-1 text-white hover:bg-green-700 bg-green-500">
-          Cart ${cartValue.toFixed(2)}
+          <span className="font-extrabold">${cartValue.toFixed(2)}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
@@ -121,13 +121,13 @@ const IndexPage: React.FC = () => {
         </button>
       </div>
       {selectedItems.length > 0 && (
-        <div className="">
+        <div className="h-screen bg-slate-50">
           <ul className="z-10">
             {selectedItems.map((item, index) => (
               <motion.button
                 whileTap={{}}
                 key={index}
-                className="flex items-center px-4  hover:py-8 transition-all min-h-32  text-left w-screen border hover:bg-slate-100 bg-white p-2 "
+                className="flex items-center px-4  hover:py-8 transition-all min-h-32  text-left w-screen  border-b hover:bg-slate-100 bg-white p-2 "
                 onClick={() => handleItemClick(item)}
               >
                 <div className="flex flex-col">
@@ -155,31 +155,17 @@ const IndexPage: React.FC = () => {
       )}
       <AnimatePresence>
         {isModalOpen && selectedItemData && (
-          <>
-            <motion.div
-              initial={{ scale: 1, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="no_transition"
-              onClick={toggleModal}
-            >
+          <main className="absolute h-screen w-screen top-0">
+            <div>
               <Backdrop />
-            </motion.div>
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0 }}
-              transition={{ type: "spring", duration: 0.4 }}
-              className="no_transition"
-            >
-              <Modal
-                itemData={selectedItemData}
-                toggleModal={toggleModal}
-                cartValue={cartValue}
-                setCartValue={setCartValue}
-              />
-            </motion.div>
-          </>
+            </div>
+            <Modal
+              itemData={selectedItemData}
+              toggleModal={toggleModal}
+              cartValue={cartValue}
+              setCartValue={setCartValue}
+            />
+          </main>
         )}
       </AnimatePresence>
     </main>

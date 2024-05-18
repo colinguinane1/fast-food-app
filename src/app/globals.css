@@ -9,3 +9,7 @@
 .no_transition{
     transition: none;
 }
+
+.navbar_element{
+    @apply hidden md:block
+}

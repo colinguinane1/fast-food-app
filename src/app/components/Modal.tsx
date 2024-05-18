@@ -122,28 +122,37 @@ const Modal: React.FC<ModalProps> = ({
   };
 
   return (
-    <main className="">
-      <div className="fixed inset-0 flex items-center justify-center">
+    <motion.main
+      initial={{ y: 1000 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.3 }}
+      className="no_transition flex flex-col items-center justify-center md:h-fit md:w-fit h-screen w-screen bg-white"
+    >
+      <div className="fixed inset-0 flex  h-screen w-screen items-center  justify-center">
         <div
           ref={modalRef}
-          className="bg-white md:h-full w-full md:mx-8 h-full md:max-h-fit p-4 rounded-lg overflow-y-auto"
+          className="bg-white md:h-full w-full md:mx-8 h-full md:max-h-fit p-4 md:rounded-lg overflow-y-auto"
           style={{ maxHeight: "100vh" }}
         >
           <div className="border-b 2 mb-4">
             <button
-              className="absolute border rounded-full px-2 border-black right-4"
+              className=" border rounded-full px-2 border-black right-4"
               onClick={toggleModal}
             >
               X
             </button>
-            <img
-              src={itemData.itemImageURL}
-              className="w-full h-full"
-              alt={itemData.itemName}
-            />
-            <h1 className="font-extrabold text-2xl">{itemData.itemName}</h1>
-            <p className="text-sm">{itemData.itemDescription}</p>
-            <div className="flex flex-col">
+            <div className="flex flex-col items-center">
+              <img
+                src={itemData.itemImageURL}
+                className="w-full h-full max-w-[400px]"
+                alt={itemData.itemName}
+              />
+            </div>
+            <h1 className="font-extrabold text-2xl py-1">
+              {itemData.itemName}
+            </h1>
+            <p className="text-sm ">{itemData.itemDescription}</p>
+            <div className="flex items-center gap-2 py-1">
               <h1
                 className={`${
                   totalPrice !== itemData.itemBasePrice ? "text-green-500" : ""
@@ -151,17 +160,18 @@ const Modal: React.FC<ModalProps> = ({
               >
                 ${totalPrice.toFixed(2)}
               </h1>
+              <h1> - </h1>
               <h1 className="text-sm">{itemData.itemCalories} kcals</h1>
             </div>
           </div>
           <AnimatePresence>
             {customize && (
               <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0 }}
-                transition={{ type: "just" }}
-                className="grid grid-cols-1 no_transition  gap-4 border-b mb-4"
+                initial={{ y: 500 }}
+                animate={{ y: 0 }}
+                exit={{ y: 500 }}
+                transition={{ type: "spring", duration: 0.3 }}
+                className="grid grid-cols-1 no_transition  gap-4 border-b mb-10"
               >
                 {Object.entries(itemData.itemIngredients).map(
                   ([ingredientName, ingredient]) => (
@@ -293,7 +303,7 @@ const Modal: React.FC<ModalProps> = ({
           </div>{" "}
         </div>{" "}
       </div>
-    </main>
+    </motion.main>
   );
 };
 
