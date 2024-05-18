@@ -7,7 +7,7 @@ interface BackdropProps {
 const Backdrop: React.FC<BackdropProps> = ({ onClick }) => {
   return (
     <div
-      className="fixed inset-0 bg-black opacity-75 backdrop-blur-3xl z-10"
+      className="fixed inset-0 bg-black opacity-75 backdrop-blur-3xl"
       style={{ backdropFilter: "blur(20px)" }}
       onClick={onClick}
     ></div>

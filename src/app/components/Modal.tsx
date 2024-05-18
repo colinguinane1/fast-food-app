@@ -136,7 +136,7 @@ const Modal: React.FC<ModalProps> = ({
         >
           <div className="border-b 2 mb-4">
             <button
-              className=" border rounded-full px-2 border-black right-4"
+              className=" border mt-14 rounded-full px-2 border-black right-4"
               onClick={toggleModal}
             >
               X
@@ -171,7 +171,7 @@ const Modal: React.FC<ModalProps> = ({
                 animate={{ y: 0 }}
                 exit={{ y: 500 }}
                 transition={{ type: "spring", duration: 0.3 }}
-                className="grid grid-cols-1 no_transition  gap-4 border-b mb-10"
+                className="grid grid-cols-1 no_transition pb-8   gap-4 border-b mb-20"
               >
                 {Object.entries(itemData.itemIngredients).map(
                   ([ingredientName, ingredient]) => (
