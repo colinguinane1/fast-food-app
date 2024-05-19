@@ -8,8 +8,14 @@
 
 .no_transition{
     transition: none;
+
 }
 
 .navbar_element{
     @apply hidden md:block
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+    /* For Chrome, Safari, and Opera */
 }

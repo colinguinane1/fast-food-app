@@ -34,10 +34,17 @@ const Modal: React.FC<ModalProps> = ({
   cartValue,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  const [customize, setCustomize] = useState<boolean>(false);
+  const [customize, setCustomize] = useState<boolean>(true);
   const [ingredients, setIngredients] = useState<{
     [key: string]: { count: number };
-  }>({});
+  }>(
+    Object.fromEntries(
+      Object.entries(itemData.itemIngredients).map(([key, value]) => [
+        key,
+        { count: value.count },
+      ])
+    )
+  );
   const [totalPrice, setTotalPrice] = useState<number>(itemData.itemBasePrice);
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -56,21 +63,11 @@ const Modal: React.FC<ModalProps> = ({
   };
 
   useEffect(() => {
-    console.log("modalRef:", modalRef.current);
-    // Initialize ingredient counts from itemData
-    const initialIngredients: { [key: string]: { count: number } } = {};
-    Object.keys(itemData.itemIngredients).forEach((ingredientName) => {
-      initialIngredients[ingredientName] = {
-        count: itemData.itemIngredients[ingredientName].count,
-      };
-    });
-    setIngredients(initialIngredients);
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [itemData, toggleModal]);
+  }, []);
 
   const updateIngredientCount = (ingredientName: string, value: number) => {
     setIngredients((prevIngredients) => ({
@@ -81,8 +78,9 @@ const Modal: React.FC<ModalProps> = ({
 
   const addIngredient = (ingredientName: string) => {
     if (
+      ingredients[ingredientName] &&
       ingredients[ingredientName].count <
-      itemData.itemIngredients[ingredientName].max
+        itemData.itemIngredients[ingredientName].max
     ) {
       updateIngredientCount(
         ingredientName,
@@ -102,8 +100,9 @@ const Modal: React.FC<ModalProps> = ({
 
   const removeIngredient = (ingredientName: string) => {
     if (
+      ingredients[ingredientName] &&
       ingredients[ingredientName].count >
-      itemData.itemIngredients[ingredientName].min
+        itemData.itemIngredients[ingredientName].min
     ) {
       updateIngredientCount(
         ingredientName,
@@ -125,6 +124,7 @@ const Modal: React.FC<ModalProps> = ({
     <motion.main
       initial={{ y: 1000 }}
       animate={{ y: 0 }}
+      exit={{ y: 10000 }}
       transition={{ duration: 0.3 }}
       className="no_transition flex flex-col items-center justify-center md:h-fit md:w-fit h-screen w-screen bg-white"
     >
@@ -135,12 +135,28 @@ const Modal: React.FC<ModalProps> = ({
           style={{ maxHeight: "100vh" }}
         >
           <div className="border-b 2 mb-4">
-            <button
-              className=" border mt-14 rounded-full px-2 border-black right-4"
-              onClick={toggleModal}
-            >
-              X
-            </button>
+            <div className="flex flex-col items-center">
+              <button className="  mt-14  px-2 " onClick={toggleModal}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-arrow-bar-down"
+                  width="44"
+                  height="44"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M12 20l0 -10" />
+                  <path d="M12 20l4 -4" />
+                  <path d="M12 20l-4 -4" />
+                  <path d="M4 4l16 0" />
+                </svg>
+              </button>
+            </div>
             <div className="flex flex-col items-center">
               <img
                 src={itemData.itemImageURL}
@@ -216,7 +232,7 @@ const Modal: React.FC<ModalProps> = ({
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className={`icon icon-tabler icon-tabler-plus  stroke-white rounded-lg w-7 h-7 ${
-                              ingredients[ingredientName].count ===
+                              ingredients[ingredientName]?.count ===
                               ingredient.max
                                 ? "bg-gray-200 stroke-slate-300 cursor-not-allowed"
                                 : "bg-green-500"
@@ -243,7 +259,7 @@ const Modal: React.FC<ModalProps> = ({
                             xmlns="http://www.w3.org/2000/svg"
                             className={`icon icon-tabler icon-tabler-minus stroke-white 0 rounded-lg w-7 h-7 
                             ${
-                              ingredients[ingredientName].count ===
+                              ingredients[ingredientName]?.count ===
                               ingredient.min
                                 ? "bg-gray-200 stroke-slate-300 cursor-not-allowed"
                                 : "bg-green-500"

@@ -1,18 +1,35 @@
 import Image from "next/image";
 import Backdrop from "./Backdrop";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 const Navbar = () => {
   const [navMenu, setNavMenu] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const toggleMenu = () => {
     setNavMenu(!navMenu);
     console.log(navMenu);
   };
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 0;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
   return (
     <main>
-      <div className="top-0 fixed w-screen bg-green-500 py-4 z-[1000]">
-        <ul className="flex items-center font-extrabold text-white  justify-between mx-4 md:mr-40">
+      <div
+        className={`top-0 fixed bg-green-500 text-white w-screen py-4 z-[1000] ${
+          scrolled ? "text-white py-[8px] shadow-2xl" : ""
+        }`}
+      >
+        <ul className="flex items-center font-extrabold  justify-between mx-4 md:mr-40">
           <li className="">
             <Image
               src={"/burgerb-2-2-2.png"}
@@ -21,10 +38,18 @@ const Navbar = () => {
               height={70}
             />
           </li>
-          <li className="navbar_element">Home</li>
-          <li className="navbar_element">Order</li>
-          <li className="navbar_element">Careers</li>
-          <li className="navbar_element">Contact</li>
+          <li className="navbar_element">
+            <a href="#">Home</a>
+          </li>
+          <li className="navbar_element">
+            <a href="#">Order</a>
+          </li>
+          <li className="navbar_element">
+            <a href="#">Careers</a>
+          </li>
+          <li className="navbar_element">
+            <a href="#">Contact</a>
+          </li>
           <li className="flex flex-col items-center  md:hidden">
             <button onClick={toggleMenu}>
               <svg
@@ -57,7 +82,7 @@ const Navbar = () => {
             transition={{ type: "just" }}
             className="fixed  no_transition"
           >
-            <ul className=" p-4 flex text-6xl flex-col gap-10 font-extrabold text-white bg-black bg-opacity-80 backdrop-blur-2xl  w-screen h-screen">
+            <ul className=" p-4 flex text-6xl flex-col gap-10 -mt-6 font-extrabold text-white bg-black bg-opacity-80 backdrop-blur-2xl  w-screen h-screen">
               <li>HOME</li>
               <li>ORDER</li>
               <li>CAREERS</li>

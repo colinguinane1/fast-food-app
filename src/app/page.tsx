@@ -36,6 +36,9 @@ const IndexPage: React.FC = () => {
     null
   );
   const [cartValue, setCartValue] = useState<number>(0);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null); // Add state for selected category
+
+  const defaultCategoryId = "burgers"; // Set your default category ID here
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
@@ -50,6 +53,14 @@ const IndexPage: React.FC = () => {
         data.push({ id: doc.id, ...doc.data() } as Category);
       });
       setCategories(data);
+
+      // Check if the default category exists and fetch its items
+      const defaultCategory = data.find(
+        (category) => category.id === defaultCategoryId
+      );
+      if (defaultCategory) {
+        handleCategoryClick(defaultCategoryId);
+      }
     }
 
     fetchData();
@@ -65,6 +76,7 @@ const IndexPage: React.FC = () => {
     });
     console.log("Selected Items:", items);
     setSelectedItems(items);
+    setSelectedCategory(categoryId); // Set the selected category
   };
 
   const handleItemClick = (itemData: DocumentData) => {
@@ -80,74 +92,82 @@ const IndexPage: React.FC = () => {
   };
 
   return (
-    <main className="md:flex mt-[58px] ">
+    <main className="md:flex mt-[58px]">
       <Navbar />
 
-      <div className="md:h-screen h-10  md:flex border-b md:border-r  shaodw-lg  bg-white  flex-col justify-between">
-        <ul
-          className="flex md:flex-col gap-2  overflow-x-auto
-        "
-        >
+      <div className="md:h-screen h-10 hide-scrollbar sc md:flex md:border-r decoration shaodw-lg bg-gradient-to-b from-green-500 to-green-600 text-white flex-col justify-between">
+        <ul className="flex md:flex-col gap-2 overflow-x-auto">
           {categories.map((category, index) => (
-            <li
+            <motion.li
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               key={index}
-              className={`capitalize font-extrabold hover:border-spacing-3  hover:text-blue-500 px-4 py-2 border-b cursor-pointer`}
+              className={`capitalize no_transition font-extrabold px-4 py-2 cursor-pointer ${
+                selectedCategory === category.id
+                  ? "bg-blue-500 rounded-lg "
+                  : "hover:text-blue-500"
+              }`}
               onClick={() => handleCategoryClick(category.id)}
             >
               {category.id}
-            </li>
+            </motion.li>
           ))}
         </ul>
-        <button className="flex fixed items-center h-fit w-fit p-2 rounded-lg bottom-2 px-4 right-2 z-[1]  justify-center gap-1 text-white hover:bg-green-700 bg-green-500">
-          <span className="font-extrabold">${cartValue.toFixed(2)}</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="#000000"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-            <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-            <path d="M17 17h-11v-14h-2" />
-            <path d="M6 5l14 1l-1 7h-13" />
-          </svg>
-        </button>
+        <div className={`${cartValue != 0 ? "block" : "hidden"}`}>
+          <button className="flex fixed items-center h-fit w-fit p-2 rounded-lg bottom-3 px-4 right-2 z-[1] justify-center gap-1 text-white hover:bg-green-700 bg-green-500">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="#000000"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M17 17h-11v-14h-2" />
+              <path d="M6 5l14 1l-1 7h-13" />
+            </svg>
+            <span className="font-extrabold">${cartValue.toFixed(2)}</span>
+          </button>
+        </div>
       </div>
       {selectedItems.length > 0 && (
-        <div className="h-screen bg-slate-50">
+        <div className="h-screen bg-slate-200">
           <ul className="z-10">
             {selectedItems.map((item, index) => (
               <motion.button
                 whileTap={{}}
                 key={index}
-                className="flex items-center px-4  hover:py-8 transition-all min-h-32  text-left w-screen  border-b hover:bg-slate-100 bg-white p-2 "
+                className="flex justify-between items-center px-4 transition-all min-h-32 text-left w-screen border-b hover:bg-slate-100 bg-white p-2"
                 onClick={() => handleItemClick(item)}
               >
-                <div className="flex flex-col">
-                  <h1 className="text-2xl font-extrabold">{item.itemName}</h1>
-                  <p className="text-sm max-w-80">{item.itemDescription}</p>
-                  <div className="flex items-center gap-4">
-                    <h1 className="font-extralight text-sm">
-                      ${item.itemBasePrice}
-                    </h1>
-                    <h1 className="font-extralight text-sm">
-                      {item.itemCalories} cals
-                    </h1>
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <h1 className="text-2xl font-extrabold">{item.itemName}</h1>
+                    <p className="text-sm max-w-80">{item.itemDescription}</p>
+                    <div className="flex items-center gap-4">
+                      <h1 className="font-extralight text-sm">
+                        ${item.itemBasePrice}
+                      </h1>
+                      <h1 className="font-extralight text-sm">
+                        {item.itemCalories} cals
+                      </h1>
+                    </div>
                   </div>
                 </div>
-
-                <img
-                  className="w-16 h-16 ml-2"
-                  src={item.itemImageURL}
-                  alt={item.itemName}
-                />
+                <div>
+                  <img
+                    className="w-16 h-16 ml-2"
+                    src={item.itemImageURL}
+                    alt={item.itemName}
+                  />
+                </div>
               </motion.button>
             ))}
           </ul>
