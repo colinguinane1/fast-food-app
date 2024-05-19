@@ -126,22 +126,22 @@ const Modal: React.FC<ModalProps> = ({
       animate={{ y: 0 }}
       exit={{ y: 10000 }}
       transition={{ duration: 0.3 }}
-      className="no_transition flex flex-col items-center justify-center md:h-fit md:w-fit h-screen w-screen bg-white"
+      className="no_transition flex flex-col items-center justify-center md:h-fit md:w-fit h-screen w-screen z-[100]"
     >
       <div className="fixed inset-0 flex  h-screen w-screen items-center  justify-center">
         <div
           ref={modalRef}
-          className="bg-white md:h-full w-full md:mx-8 h-full md:max-h-fit p-4 md:rounded-lg overflow-y-auto"
-          style={{ maxHeight: "100vh" }}
+          className="bg-white md:h-full w-full md:mx-8 h-full pb-40 md:max-h-fit p-4 md:rounded-lg  overflow-y-auto"
+          style={{ maxHeight: "120vh" }}
         >
-          <div className="border-b 2 mb-4">
+          <div className="border-b mb-2  ">
             <div className="flex flex-col items-center">
               <button className="  mt-14  px-2 " onClick={toggleModal}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="icon icon-tabler icon-tabler-arrow-bar-down"
-                  width="44"
-                  height="44"
+                  width="30"
+                  height="30"
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
@@ -187,13 +187,13 @@ const Modal: React.FC<ModalProps> = ({
                 animate={{ y: 0 }}
                 exit={{ y: 500 }}
                 transition={{ type: "spring", duration: 0.3 }}
-                className="grid grid-cols-1 no_transition pb-8   gap-4 border-b mb-20"
+                className="grid grid-cols-1 no_transition border-b"
               >
                 {Object.entries(itemData.itemIngredients).map(
                   ([ingredientName, ingredient]) => (
                     <div
                       key={ingredientName}
-                      className="flex flex-row py-4 justify-between"
+                      className="flex flex-row py-3 items-center justify-between"
                     >
                       <p
                         className={`capitalize ${
@@ -283,17 +283,8 @@ const Modal: React.FC<ModalProps> = ({
               </motion.div>
             )}{" "}
           </AnimatePresence>
-          <div className="flex items-center gap-2 md:relative fixed bottom-4">
-            {" "}
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={addToCart}
-              className="bg-green-500 no_transition md:w-fit w-full hover:bg-green-700 z-[1000] rounded-lg px-4 py-2 text-white"
-            >
-              Add +${totalPrice.toFixed(2)}
-            </motion.button>
-            <motion.button
+
+          {/* <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={toggleCustomize}
@@ -315,8 +306,18 @@ const Modal: React.FC<ModalProps> = ({
                 <path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" />
                 <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
               </svg>
-            </motion.button>{" "}
-          </div>{" "}
+            </motion.button>{" "} */}
+        </div>{" "}
+        <div className="flex items-center gap-2 md:relative w-full fixed bottom-4">
+          {" "}
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={addToCart}
+            className="bg-green-500 no_transition md:w-fit w-full mx-4 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white"
+          >
+            Add +${totalPrice.toFixed(2)}
+          </motion.button>
         </div>{" "}
       </div>
     </motion.main>

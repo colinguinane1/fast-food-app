@@ -102,10 +102,10 @@ const IndexPage: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               key={index}
-              className={`capitalize no_transition font-extrabold px-4 py-2 cursor-pointer ${
+              className={`capitalize no_transition  font-extrabold hover:text-blue-500 px-4 py-2 cursor-pointer ${
                 selectedCategory === category.id
-                  ? "bg-blue-500 rounded-lg "
-                  : "hover:text-blue-500"
+                  ? "bg-blue-500 rounded-lg text-white hover:text-blue-500 "
+                  : "hover:text-blue-500 text-gray-300"
               }`}
               onClick={() => handleCategoryClick(category.id)}
             >
