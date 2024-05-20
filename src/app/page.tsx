@@ -104,8 +104,8 @@ const IndexPage: React.FC = () => {
               key={index}
               className={`capitalize no_transition  font-extrabold hover:text-blue-500 px-4 py-2 cursor-pointer ${
                 selectedCategory === category.id
-                  ? "bg-blue-500 rounded-lg text-white hover:text-blue-500 "
-                  : "hover:text-blue-500 text-gray-300"
+                  ? "bg-blue-500 rounded-lg bg-opacity-75 text-white hover:text-white"
+                  : "hover:text-blue-500 "
               }`}
               onClick={() => handleCategoryClick(category.id)}
             >

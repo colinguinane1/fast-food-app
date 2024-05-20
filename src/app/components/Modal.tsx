@@ -2,6 +2,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import Backdrop from "./Backdrop";
 import { AnimatePresence, motion } from "framer-motion";
+import { useMediaQuery } from "@react-hook/media-query";
 
 interface ItemData {
   itemImageURL: string;
@@ -35,6 +36,7 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [customize, setCustomize] = useState<boolean>(true);
+  const largeScreen = useMediaQuery("min-width: 768px");
   const [ingredients, setIngredients] = useState<{
     [key: string]: { count: number };
   }>(
@@ -126,13 +128,12 @@ const Modal: React.FC<ModalProps> = ({
       animate={{ y: 0 }}
       exit={{ y: 10000 }}
       transition={{ duration: 0.3 }}
-      className="no_transition flex flex-col items-center justify-center md:h-fit md:w-fit h-screen w-screen z-[100]"
+      className="no_transition flex flex-col items-center justify-center h-screen  z-[100]"
     >
-      <div className="fixed inset-0 flex  h-screen w-screen items-center  justify-center">
+      <div className="fixed flex  h-screen items-center  justify-center">
         <div
           ref={modalRef}
-          className="bg-white md:h-full w-full md:mx-8 h-full pb-40 md:max-h-fit p-4 md:rounded-lg  overflow-y-auto"
-          style={{ maxHeight: "120vh" }}
+          className="bg-white w-screen   h-full p-4  overflow-y-auto"
         >
           <div className="border-b mb-2  ">
             <div className="flex flex-col items-center">
@@ -283,7 +284,6 @@ const Modal: React.FC<ModalProps> = ({
               </motion.div>
             )}{" "}
           </AnimatePresence>
-
           {/* <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -307,18 +307,28 @@ const Modal: React.FC<ModalProps> = ({
                 <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
               </svg>
             </motion.button>{" "} */}
+          <div className="md:flex items-center gap-2 md:relative w-full fixed bottom-4">
+            {" "}
+            {largeScreen && (
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={addToCart}
+                className="bg-green-500 no_transition md:w-fit px-20 mx-4 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white"
+              >
+                Add +${totalPrice.toFixed(2)}
+              </motion.button>
+            )}
+          </div>{" "}
         </div>{" "}
-        <div className="flex items-center gap-2 md:relative w-full fixed bottom-4">
-          {" "}
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={addToCart}
-            className="bg-green-500 no_transition md:w-fit w-full mx-4 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white"
-          >
-            Add +${totalPrice.toFixed(2)}
-          </motion.button>
-        </div>{" "}
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={addToCart}
+          className="bg-green-500 w-full absolute bottom-2 no_transition md:w-fit mx-4 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white"
+        >
+          Add +${totalPrice.toFixed(2)}
+        </motion.button>
       </div>
     </motion.main>
   );
