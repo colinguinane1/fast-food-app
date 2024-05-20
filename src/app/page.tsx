@@ -104,7 +104,7 @@ const IndexPage: React.FC = () => {
               key={index}
               className={`capitalize no_transition  font-extrabold hover:text-blue-500 px-4 py-2 cursor-pointer ${
                 selectedCategory === category.id
-                  ? "bg-blue-500 rounded-lg bg-opacity-75 text-white hover:text-white"
+                  ? "bg-white rounded-lg  text-black hover:text-black"
                   : "hover:text-blue-500 "
               }`}
               onClick={() => handleCategoryClick(category.id)}
@@ -176,9 +176,13 @@ const IndexPage: React.FC = () => {
       <AnimatePresence>
         {isModalOpen && selectedItemData && (
           <main className="absolute h-screen w-screen top-0">
-            <div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
               <Backdrop />
-            </div>
+            </motion.div>
             <Modal
               itemData={selectedItemData}
               toggleModal={toggleModal}

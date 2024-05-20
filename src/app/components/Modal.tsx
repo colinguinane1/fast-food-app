@@ -124,10 +124,13 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <motion.main
-      initial={{ y: 1000 }}
-      animate={{ y: 0 }}
-      exit={{ y: 10000 }}
-      transition={{ duration: 0.3 }}
+      initial={{
+        scale: largeScreen ? 0 : 1,
+        y: largeScreen ? 0 : "100%",
+      }}
+      animate={{ scale: 1, y: largeScreen ? 0 : 0 }}
+      exit={{ scale: largeScreen ? 0 : 1, y: largeScreen ? 0 : "100%" }}
+      transition={{ type: "spring", duration: 0.4 }}
       className="no_transition flex flex-col items-center justify-center h-screen  z-[100]"
     >
       <div className="fixed flex  h-screen items-center  justify-center">
@@ -325,9 +328,9 @@ const Modal: React.FC<ModalProps> = ({
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={addToCart}
-          className="bg-green-500 w-full absolute bottom-2 no_transition md:w-fit mx-4 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white"
+          className="bg-green-500 fixed scale-95 w-full bottom-2 no_transition md:w-fit mx-4 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white"
         >
-          Add +${totalPrice.toFixed(2)}
+          Add +<span className="font-extrabold">${totalPrice.toFixed(2)}</span>
         </motion.button>
       </div>
     </motion.main>
