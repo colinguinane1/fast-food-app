@@ -95,7 +95,7 @@ const IndexPage: React.FC = () => {
     <main className="md:flex mt-[58px]">
       <Navbar />
 
-      <div className="md:h-screen h-10 hide-scrollbar sc md:flex md:border-r decoration shaodw-lg bg-gradient-to-b from-green-500 to-green-600 text-white flex-col justify-between">
+      <div className="md:h-screen h-10 hide-scrollbar sc md:flex decoration shaodw-lg bg-gradient-to-b from-green-500 to-green-600 text-white flex-col justify-between">
         <ul className="flex md:flex-col gap-2 overflow-x-auto">
           {categories.map((category, index) => (
             <motion.li
@@ -104,7 +104,7 @@ const IndexPage: React.FC = () => {
               key={index}
               className={`capitalize no_transition  font-extrabold hover:text-blue-500 px-4 py-2 cursor-pointer ${
                 selectedCategory === category.id
-                  ? "bg-white rounded-lg  text-black hover:text-black"
+                  ? "bg-white rounded-t-lg md:rounded-l-lg md:rounded-tr-none   text-black hover:text-black"
                   : "hover:text-blue-500 "
               }`}
               onClick={() => handleCategoryClick(category.id)}
@@ -114,7 +114,7 @@ const IndexPage: React.FC = () => {
           ))}
         </ul>
         <div className={`${cartValue != 0 ? "block" : "hidden"}`}>
-          <button className="flex fixed items-center h-fit w-fit p-2 rounded-lg bottom-3 px-4 right-2 z-[1] justify-center gap-1 text-white hover:bg-green-700 bg-green-500">
+          <button className="flex fixed items-center h-fit w-fit p-2 rounded-lg bottom-3 px-4 right-2  justify-center gap-1 text-white hover:bg-green-700 bg-green-500">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
@@ -163,7 +163,7 @@ const IndexPage: React.FC = () => {
                 </div>
                 <div>
                   <img
-                    className="w-16 h-16 ml-2"
+                    className="w-16 h-16"
                     src={item.itemImageURL}
                     alt={item.itemName}
                   />
@@ -180,6 +180,7 @@ const IndexPage: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              className="no_transition"
             >
               <Backdrop />
             </motion.div>

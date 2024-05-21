@@ -58,6 +58,7 @@ const Modal: React.FC<ModalProps> = ({
 
   const addToCart = () => {
     setCartValue(cartValue + totalPrice);
+    toggleModal();
   };
 
   const toggleCustomize = () => {
@@ -124,23 +125,20 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <motion.main
-      initial={{
-        scale: largeScreen ? 0 : 1,
-        y: largeScreen ? 0 : "100%",
-      }}
-      animate={{ scale: 1, y: largeScreen ? 0 : 0 }}
-      exit={{ scale: largeScreen ? 0 : 1, y: largeScreen ? 0 : "100%" }}
+      initial={largeScreen ? { y: 0, scale: 0 } : { y: 1000, scale: 1 }}
+      animate={largeScreen ? { y: 0, scale: 1 } : { y: 0, scale: 1 }}
+      exit={largeScreen ? { y: 0, scale: 0 } : { y: 1000, scale: 1 }}
       transition={{ type: "spring", duration: 0.4 }}
       className="no_transition flex flex-col items-center justify-center h-screen  z-[100]"
     >
       <div className="fixed flex  h-screen items-center  justify-center">
         <div
           ref={modalRef}
-          className="bg-white w-screen   h-full p-4  overflow-y-auto"
+          className="bg-white md:w-[70vw] w-screen md:h-[80vh] rounded-lg   h-full p-4  overflow-y-auto"
         >
           <div className="border-b mb-2  ">
             <div className="flex flex-col items-center">
-              <button className="  mt-14  px-2 " onClick={toggleModal}>
+              <button className="    px-2 " onClick={toggleModal}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="icon icon-tabler icon-tabler-arrow-bar-down"
@@ -226,12 +224,12 @@ const Modal: React.FC<ModalProps> = ({
                           +${ingredient.price.toFixed(2)}
                         </h1>
                       </div>
-                      <div className="flex gap-2 items-center">
+                      <div className="flex gap-2 items-center ">
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
                           onClick={() => addIngredient(ingredientName)}
-                          className=""
+                          className="no_transition"
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +254,7 @@ const Modal: React.FC<ModalProps> = ({
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
-                          className=""
+                          className="no_transition"
                           onClick={() => removeIngredient(ingredientName)}
                         >
                           <svg
@@ -312,26 +310,20 @@ const Modal: React.FC<ModalProps> = ({
             </motion.button>{" "} */}
           <div className="md:flex items-center gap-2 md:relative w-full fixed bottom-4">
             {" "}
-            {largeScreen && (
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={addToCart}
-                className="bg-green-500 no_transition md:w-fit px-20 mx-4 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white"
-              >
-                Add +${totalPrice.toFixed(2)}
-              </motion.button>
-            )}
           </div>{" "}
+          {!largeScreen && (
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={addToCart}
+              className={`bg-green-500 ${
+                largeScreen ? "fixed" : ""
+              } no_transition w-full px-20 my-4 md:mb-20 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white`}
+            >
+              Add +${totalPrice.toFixed(2)}
+            </motion.button>
+          )}
         </div>{" "}
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          onClick={addToCart}
-          className="bg-green-500 fixed scale-95 w-full bottom-2 no_transition md:w-fit mx-4 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white"
-        >
-          Add +<span className="font-extrabold">${totalPrice.toFixed(2)}</span>
-        </motion.button>
       </div>
     </motion.main>
   );
