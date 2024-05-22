@@ -26,6 +26,15 @@ interface ItemData {
       min: number;
     };
   };
+  itemExtraIngredients: {
+    [key: string]: {
+      count: number;
+      price: number;
+      comesWith: number;
+      max: number;
+      min: number;
+    };
+  };
 }
 
 const IndexPage: React.FC = () => {
@@ -87,6 +96,7 @@ const IndexPage: React.FC = () => {
       itemBasePrice: itemData.itemBasePrice,
       itemCalories: itemData.itemCalories,
       itemIngredients: itemData.itemIngredients,
+      itemExtraIngredients: itemData.itemExtraIngredients,
     });
     toggleModal();
   };
@@ -102,7 +112,7 @@ const IndexPage: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               key={index}
-              className={`capitalize no_transition  font-extrabold hover:text-blue-500 px-4 py-2 cursor-pointer ${
+              className={`capitalize no_transition  font-extrabold px-4 py-2 cursor-pointer ${
                 selectedCategory === category.id
                   ? "bg-white rounded-t-lg md:rounded-l-lg md:rounded-tr-none   text-black hover:text-black"
                   : "hover:text-blue-500 "
