@@ -459,7 +459,7 @@ const Modal: React.FC<ModalProps> = ({
               onClick={addToCart}
               className={`bg-green-500 ${
                 largeScreen ? "fixed" : ""
-              } no_transition w-full  mt-3 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white`}
+              } no_transition w-full  mt-3 mb-20 md:mb-0 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white`}
             >
               Add +${totalPrice.toFixed(2)}
             </motion.button>
