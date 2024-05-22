@@ -157,10 +157,10 @@ const IndexPage: React.FC = () => {
                 className="flex justify-between items-center px-4 transition-all min-h-32 text-left w-screen border-b hover:bg-slate-100 bg-white p-2"
                 onClick={() => handleItemClick(item)}
               >
-                <div className="flex flex-col justify-between">
+                <div className="flex flex-col justify-between min-w-fit">
                   <div>
                     <h1 className="text-2xl font-extrabold">{item.itemName}</h1>
-                    <p className="text-sm max-w-80">{item.itemDescription}</p>
+                    <p className="text-sm max-w-64">{item.itemDescription}</p>
                     <div className="flex items-center gap-4">
                       <h1 className="font-extralight text-sm">
                         ${item.itemBasePrice}
@@ -173,9 +173,9 @@ const IndexPage: React.FC = () => {
                 </div>
                 <div>
                   <img
-                    className="w-16 h-16"
+                    className="md:w-[20%]"
                     src={item.itemImageURL}
-                    alt={item.itemName}
+                    alt={"Image of " + item.itemName}
                   />
                 </div>
               </motion.button>
