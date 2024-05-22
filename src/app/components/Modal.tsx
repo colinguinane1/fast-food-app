@@ -197,12 +197,12 @@ const Modal: React.FC<ModalProps> = ({
       <div className="fixed flex  h-screen items-center  justify-center">
         <div
           ref={modalRef}
-          className="bg-white md:w-[70vw] w-screen md:h-[80vh] rounded-lg   h-full p-4  overflow-y-auto"
+          className="bg-white md:w-[70vw] w-screen md:min-h-[40vh] md:h-fit md:max-h-[80vh] rounded-lg   h-full p-4  overflow-y-auto"
         >
-          <div className="border-b mb-2  ">
+          <div className="border-b mb-3  ">
             <div className="flex flex-col items-center">
               <button
-                className="  mt-10 md:mt-0  py-6  px-2 "
+                className="  mt-10 md:-mt-6  py-6  px-2 "
                 onClick={toggleModal}
               >
                 <svg
@@ -459,7 +459,7 @@ const Modal: React.FC<ModalProps> = ({
               onClick={addToCart}
               className={`bg-green-500 ${
                 largeScreen ? "fixed" : ""
-              } no_transition w-full my-4 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white`}
+              } no_transition w-full  mt-3 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white`}
             >
               Add +${totalPrice.toFixed(2)}
             </motion.button>
