@@ -173,7 +173,7 @@ const IndexPage: React.FC = () => {
                 </div>
                 <div>
                   <img
-                    className="md:w-[20%]"
+                    className="md:w-[20%] md:max-w-90"
                     src={item.itemImageURL}
                     alt={"Image of " + item.itemName}
                   />
