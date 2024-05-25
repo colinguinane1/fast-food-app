@@ -88,7 +88,7 @@ const Navbar = () => {
                       <li className="flex gap-1 items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="icon icon-tabler icon-tabler-home-2 stroke-white"
+                          className="icon icon-tabler icon-tabler-home-2 stroke-white"
                           width="25"
                           height="25"
                           viewBox="0 0 24 24"
@@ -108,7 +108,7 @@ const Navbar = () => {
                       <li className="flex gap-1 items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="icon icon-tabler icon-tabler-truck-delivery stroke-white"
+                          className="icon icon-tabler icon-tabler-truck-delivery stroke-white"
                           width="25"
                           height="25"
                           viewBox="0 0 24 24"
@@ -129,7 +129,7 @@ const Navbar = () => {
                       <li className="flex gap-1 items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="icon icon-tabler icon-tabler-users stroke-white"
+                          className="icon icon-tabler icon-tabler-users stroke-white"
                           width="25"
                           height="25"
                           viewBox="0 0 24 24"
@@ -150,7 +150,7 @@ const Navbar = () => {
                       <li className="flex gap-1 items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          class="icon icon-tabler icon-tabler-address-book stroke-white"
+                          className="icon icon-tabler icon-tabler-address-book stroke-white"
                           width="25"
                           height="25"
                           viewBox="0 0 24 24"
