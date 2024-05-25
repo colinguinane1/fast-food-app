@@ -17,6 +17,16 @@ interface ItemData {
   itemDescription: string;
   itemBasePrice: number;
   itemCalories: number;
+  itemDip: {
+    maxDips: number;
+    availableDips: {
+      [key: string]: {
+        count: number;
+        max: number;
+        min: number;
+      };
+    };
+  };
   itemIngredients: {
     [key: string]: {
       count: number;
@@ -96,6 +106,7 @@ const IndexPage: React.FC = () => {
       itemBasePrice: itemData.itemBasePrice,
       itemCalories: itemData.itemCalories,
       itemIngredients: itemData.itemIngredients,
+      itemDip: itemData.itemDip,
       itemExtraIngredients: itemData.itemExtraIngredients,
     });
     toggleModal();
