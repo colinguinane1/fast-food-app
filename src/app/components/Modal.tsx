@@ -8,6 +8,9 @@ interface ItemData {
   itemCalories: number;
   itemDescription: string;
   itemBasePrice: number;
+  itemVegetarian: boolean;
+  itemSale: boolean;
+  itemSalePrice: number;
   itemDip: {
     maxDips: number;
     availableDips: {
@@ -277,9 +280,16 @@ const Modal: React.FC<ModalProps> = ({
                 alt={itemData.itemName}
               />
             </div>
-            <h1 className="font-extrabold text-2xl py-1">
-              {itemData.itemName}
-            </h1>
+            <div className="flex items-center gap-4">
+              <h1 className="font-extrabold text-2xl py-1">
+                {itemData.itemName}
+              </h1>
+              {itemData.itemVegetarian && (
+                <h1 className="bg-green-300 px-3 rounded-full border-green-500 border text-base text-green-600">
+                  Vegetarian
+                </h1>
+              )}
+            </div>
             <p className="text-sm">{itemData.itemDescription}</p>
             <div className="flex items-center gap-2 py-1">
               <h1

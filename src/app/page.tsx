@@ -17,6 +17,9 @@ interface ItemData {
   itemDescription: string;
   itemBasePrice: number;
   itemCalories: number;
+  itemSale: boolean;
+  itemSalePrice: number;
+  itemVegetarian: boolean;
   itemDip: {
     maxDips: number;
     availableDips: {
@@ -106,6 +109,9 @@ const IndexPage: React.FC = () => {
       itemBasePrice: itemData.itemBasePrice,
       itemCalories: itemData.itemCalories,
       itemIngredients: itemData.itemIngredients,
+      itemVegetarian: itemData.itemVegetarian,
+      itemSale: itemData.itemSale,
+      itemSalePrice: itemData.itemSalePrice,
       itemDip: itemData.itemDip,
       itemExtraIngredients: itemData.itemExtraIngredients,
     });
@@ -113,7 +119,7 @@ const IndexPage: React.FC = () => {
   };
 
   return (
-    <main className="md:flex mt-[58px]">
+    <main className="md:flex mt-[63px]">
       <Navbar />
 
       <div className="md:h-screen h-10 hide-scrollbar sc md:flex decoration shaodw-lg bg-gradient-to-b from-green-500 to-green-600 text-white flex-col justify-between">
@@ -126,7 +132,7 @@ const IndexPage: React.FC = () => {
               className={`capitalize no_transition  font-extrabold px-4 py-2 cursor-pointer ${
                 selectedCategory === category.id
                   ? "bg-white rounded-t-lg md:rounded-l-lg md:rounded-tr-none   text-black hover:text-black"
-                  : "hover:text-blue-500 "
+                  : "hover:text-green-100 "
               }`}
               onClick={() => handleCategoryClick(category.id)}
             >
@@ -168,13 +174,37 @@ const IndexPage: React.FC = () => {
                 className="flex justify-between items-center px-4 transition-all min-h-32 text-left w-screen border-b hover:bg-slate-100 bg-white p-2"
                 onClick={() => handleItemClick(item)}
               >
-                <div className="flex flex-col justify-between min-w-fit">
+                <div className="flex flex-col justify-between w-full">
                   <div>
-                    <h1 className="text-2xl font-extrabold">{item.itemName}</h1>
-                    <p className="text-sm max-w-64">{item.itemDescription}</p>
                     <div className="flex items-center gap-4">
-                      <h1 className="font-extralight text-sm">
-                        ${item.itemBasePrice}
+                      <h1 className="text-xl min-w-fit font-extrabold">
+                        {item.itemName}
+                      </h1>
+                      <div>
+                        {item.itemVegetarian && (
+                          <h1 className="bg-green-300 text-sm px-3 rounded-full border-green-500 border text-green-600">
+                            V
+                          </h1>
+                        )}
+                      </div>
+                    </div>
+                    <p className="text-sm max-w-80 min-w-fit">
+                      {item.itemDescription}
+                    </p>
+                    <div className="flex items-center gap-4">
+                      <h1 className="font-extralight flex gap-2 items-center text-sm">
+                        {item.itemSale ? (
+                          <>
+                            <h1 className="line-through text-gray-200">
+                              ${item.itemBasePrice}
+                            </h1>
+                            <h1 className="text-green-500">
+                              ${item.itemSalePrice}
+                            </h1>
+                          </>
+                        ) : (
+                          <h1>${item.itemBasePrice}</h1>
+                        )}
                       </h1>
                       <h1 className="font-extralight text-sm">
                         {item.itemCalories} cals
@@ -182,9 +212,9 @@ const IndexPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div>
+                <div className="md:mr-40">
                   <img
-                    className="md:w-[20%] md:max-w-90"
+                    className="w-40"
                     src={item.itemImageURL}
                     alt={"Image of " + item.itemName}
                   />

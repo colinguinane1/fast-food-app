@@ -51,12 +51,14 @@ const Navbar = () => {
             <a href="#">Contact</a>
           </li>
           <li className="flex flex-col items-center  md:hidden">
-            <button onClick={toggleMenu}>
+            <motion.button className="group" onClick={toggleMenu}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-menu-2 stroke-white"
-                width="24"
-                height="24"
+                className={`icon icon-tabler icon-tabler-menu-2 stroke-black   rounded-full  p-1 group:hover:stroke-black ${
+                  navMenu ? "bg-green-200" : "bg-white"
+                }`}
+                width="30"
+                height="30"
                 viewBox="0 0 24 24"
                 stroke-width="1.5"
                 stroke="#2c3e50"
@@ -68,29 +70,114 @@ const Navbar = () => {
                 <path d="M4 6l16 0" />
                 <path d="M4 12l16 0" />
                 <path d="M4 18l16 0" />
-              </svg>
-            </button>
+              </svg>{" "}
+              <AnimatePresence>
+                {navMenu && (
+                  <motion.div
+                    initial={{ x: 1000 }}
+                    animate={{ x: 0 }}
+                    exit={{ x: 1000 }}
+                    transition={{ type: "just" }}
+                    className="absolute right-0 top-14   no_transition"
+                  >
+                    <ul
+                      className={`p-4 flex  ${
+                        scrolled ? "" : ""
+                      }text-2xl flex-col gap-4 rounded- text-left shadow-2xl border-l border-t border-b rounded-l-lg    font-extrabold text-white bg-green-400  `}
+                    >
+                      <li className="flex gap-1 items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-home-2 stroke-white"
+                          width="25"
+                          height="25"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="#2c3e50"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                          <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                          <path d="M10 12h4v4h-4z" />
+                        </svg>
+                        Home
+                      </li>
+                      <li className="flex gap-1 items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-truck-delivery stroke-white"
+                          width="25"
+                          height="25"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="#2c3e50"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                          <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                          <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" />
+                          <path d="M3 9l4 0" />
+                        </svg>
+                        Order
+                      </li>
+                      <li className="flex gap-1 items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-users stroke-white"
+                          width="25"
+                          height="25"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="#2c3e50"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                          <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                          <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                          <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+                        </svg>
+                        Careers
+                      </li>
+                      <li className="flex gap-1 items-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-address-book stroke-white"
+                          width="25"
+                          height="25"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="#2c3e50"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M20 6v12a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2z" />
+                          <path d="M10 16h6" />
+                          <path d="M13 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                          <path d="M4 8h3" />
+                          <path d="M4 12h3" />
+                          <path d="M4 16h3" />
+                        </svg>
+                        Contact
+                      </li>
+                    </ul>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
           </li>
         </ul>
       </div>
-      <AnimatePresence>
-        {navMenu && (
-          <motion.div
-            initial={{ x: 1000 }}
-            animate={{ x: 0 }}
-            exit={{ x: 1000 }}
-            transition={{ type: "just" }}
-            className="fixed  no_transition"
-          >
-            <ul className=" p-4 flex text-6xl flex-col gap-10 -mt-6 font-extrabold text-white bg-black bg-opacity-80 backdrop-blur-2xl  w-screen h-screen">
-              <li>HOME</li>
-              <li>ORDER</li>
-              <li>CAREERS</li>
-              <li>CONTACT</li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </main>
   );
 };
