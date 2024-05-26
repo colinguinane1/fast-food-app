@@ -2,7 +2,11 @@ import Image from "next/image";
 import Backdrop from "./Backdrop";
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-const Navbar = () => {
+
+interface NavbarProps {
+  cartValue: number;
+}
+const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
   const [navMenu, setNavMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -29,7 +33,7 @@ const Navbar = () => {
           scrolled ? "text-white py-[8px] shadow-2xl" : ""
         }`}
       >
-        <ul className="flex items-center font-extrabold  justify-between mx-4 md:mr-40">
+        <ul className="flex items-center font-extrabold  justify-between mx-4 md:mr-10">
           <li className="">
             <Image
               src={"/burgerb-2-2-2.png"}
@@ -50,8 +54,36 @@ const Navbar = () => {
           <li className="navbar_element">
             <a href="#">Contact</a>
           </li>
+          <li>
+            <button className="flex  bg-white text-green-500  items-center h-fit w-fit p-1 rounded-lg  px-2 z-[1000]   justify-center gap-1  hover:bg-green-700 ">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-shopping-cart stroke-green-500"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#000000"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                <path d="M17 17h-11v-14h-2" />
+                <path d="M6 5l14 1l-1 7h-13" />
+              </svg>
+              <span className="font-extrabold">${cartValue.toFixed(2)}</span>
+            </button>
+          </li>
           <li className="flex flex-col items-center  md:hidden">
-            <motion.button className="group" onClick={toggleMenu}>
+            <motion.button
+              whileHover={navMenu ? { scale: 1.0 } : { scale: 1.1 }}
+              whileTap={navMenu ? { scale: 1.0 } : { scale: 0.9 }}
+              className="group no_transition"
+              onClick={toggleMenu}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={`icon icon-tabler icon-tabler-menu-2 stroke-black   rounded-full  p-1 group:hover:stroke-black ${

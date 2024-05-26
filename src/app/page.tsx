@@ -120,7 +120,7 @@ const IndexPage: React.FC = () => {
 
   return (
     <main className="md:flex mt-[63px]">
-      <Navbar />
+      <Navbar cartValue={cartValue} />
 
       <div className="md:h-screen h-10 hide-scrollbar sc md:flex decoration shaodw-lg bg-gradient-to-b from-green-500 to-green-600 text-white flex-col justify-between">
         <ul className="flex md:flex-col gap-2 overflow-x-auto">
@@ -140,29 +140,6 @@ const IndexPage: React.FC = () => {
             </motion.li>
           ))}
         </ul>
-        <div className={`${cartValue != 0 ? "block" : "hidden"}`}>
-          <button className="flex fixed items-center h-fit w-fit p-2 rounded-lg bottom-3 px-4 right-2  justify-center gap-1 text-white hover:bg-green-700 bg-green-500">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="#000000"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-              <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-              <path d="M17 17h-11v-14h-2" />
-              <path d="M6 5l14 1l-1 7h-13" />
-            </svg>
-            <span className="font-extrabold">${cartValue.toFixed(2)}</span>
-          </button>
-        </div>
       </div>
       {selectedItems.length > 0 && (
         <div className="h-screen bg-slate-200">
@@ -191,7 +168,7 @@ const IndexPage: React.FC = () => {
                     <p className="text-sm max-w-80 min-w-fit">
                       {item.itemDescription}
                     </p>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 pt-3">
                       <h1 className="font-extralight flex gap-2 items-center text-sm">
                         {item.itemSale ? (
                           <>
@@ -200,6 +177,29 @@ const IndexPage: React.FC = () => {
                             </h1>
                             <h1 className="text-green-500">
                               ${item.itemSalePrice}
+                            </h1>
+                            <h1 className="bg-green-500 flex items-center gap-1 px-1 rounded-full bg-opacity-30 border border-green-500 text-green-500">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="icon icon-tabler icon-tabler-tag stroke-green-500"
+                                width="15"
+                                height="15"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="#2c3e50"
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              >
+                                <path
+                                  stroke="none"
+                                  d="M0 0h24v24H0z"
+                                  fill="none"
+                                />
+                                <path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                                <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z" />
+                              </svg>
+                              Sale
                             </h1>
                           </>
                         ) : (

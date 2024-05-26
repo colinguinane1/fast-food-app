@@ -297,7 +297,37 @@ const Modal: React.FC<ModalProps> = ({
                   totalPrice !== itemData.itemBasePrice ? "text-green-500" : ""
                 }`}
               >
-                ${totalPrice.toFixed(2)}
+                {itemData.itemSale ? (
+                  <main className="flex gap-4 py-1">
+                    <h1 className="line-through text-gray-400">
+                      ${itemData.itemBasePrice}
+                    </h1>
+                    <h1 className="text-green-500">
+                      ${itemData.itemSalePrice}
+                    </h1>
+                    <h1 className="bg-green-500 flex items-center gap-1 px-1 rounded-full bg-opacity-30 border border-green-500 text-green-500">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon icon-tabler icon-tabler-tag stroke-green-500"
+                        width="15"
+                        height="15"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="#2c3e50"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                        <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z" />
+                      </svg>
+                      Sale
+                    </h1>
+                  </main>
+                ) : (
+                  "$" + itemData.itemBasePrice
+                )}
               </h1>
               <h1> - </h1>
               <h1 className="text-sm">{itemData.itemCalories} kcals</h1>
@@ -372,6 +402,10 @@ const Modal: React.FC<ModalProps> = ({
                             <path d="M5 12h14" />
                           </svg>
                         </motion.button>
+                        <h1 className="bg-gray-100 h-7 text-center w-7 rounded-full">
+                          {ingredients[ingredientName].count}
+                        </h1>
+
                         <motion.button
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
@@ -460,6 +494,9 @@ const Modal: React.FC<ModalProps> = ({
                                 <path d="M5 12h14" />
                               </svg>
                             </motion.button>
+                            <h1 className="bg-gray-100 h-7 text-center w-7 rounded-full">
+                              {extraIngredients[ingredientName].count}
+                            </h1>
                             <motion.button
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.9 }}
@@ -556,6 +593,9 @@ const Modal: React.FC<ModalProps> = ({
                                 <path d="M5 12h14" />
                               </svg>
                             </motion.button>
+                            <h1 className="bg-gray-100 h-7 text-center w-7 rounded-full">
+                              {dips[dipName].count}
+                            </h1>
                             <motion.button
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.9 }}
@@ -606,9 +646,14 @@ const Modal: React.FC<ModalProps> = ({
               onClick={addToCart}
               className={`bg-green-500 ${
                 largeScreen ? "fixed" : ""
-              } no_transition w-full mt-3 mb-20 md:mb-0 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white`}
+              } no_transition flex items-center justify-center w-full mt-3 mb-20 md:mb-0 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white`}
             >
-              Add +${totalPrice.toFixed(2)}
+              Add $
+              {itemData.itemSale ? (
+                <h1>{itemData.itemSalePrice}</h1>
+              ) : (
+                <h1>{itemData.itemBasePrice}</h1>
+              )}
             </motion.button>
           )}
         </div>
