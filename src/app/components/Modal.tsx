@@ -85,7 +85,9 @@ const Modal: React.FC<ModalProps> = ({
       ])
     )
   );
-  const [totalPrice, setTotalPrice] = useState<number>(itemData.itemBasePrice);
+  const [totalPrice, setTotalPrice] = useState<number>(
+    itemData.itemSale ? itemData.itemSalePrice : itemData.itemBasePrice
+  );
 
   const handleClickOutside = (event: MouseEvent) => {
     if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -285,7 +287,7 @@ const Modal: React.FC<ModalProps> = ({
                 {itemData.itemName}
               </h1>
               {itemData.itemVegetarian && (
-                <h1 className="bg-green-300 px-3 rounded-full border-green-500 border text-base text-green-600">
+                <h1 className="bg-yellow-300 px-3 rounded-full border-yellow-500 border text-base text-yellow-600">
                   Vegetarian
                 </h1>
               )}
@@ -299,13 +301,11 @@ const Modal: React.FC<ModalProps> = ({
               >
                 {itemData.itemSale ? (
                   <main className="flex gap-4 py-1">
-                    <h1 className="line-through text-gray-400">
-                      ${itemData.itemBasePrice}
-                    </h1>
+                    {" "}
                     <h1 className="text-green-500">
-                      ${itemData.itemSalePrice}
-                    </h1>
-                    <h1 className="bg-green-500 flex items-center gap-1 px-1 rounded-full bg-opacity-30 border border-green-500 text-green-500">
+                      ${totalPrice.toFixed(2)}
+                    </h1>{" "}
+                    <h1 className="bg-green-500 flex items-center gap-1 px-1 rounded-full bg-opacity-0 border border-green-500 text-green-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="icon icon-tabler icon-tabler-tag stroke-green-500"
@@ -324,9 +324,12 @@ const Modal: React.FC<ModalProps> = ({
                       </svg>
                       Sale
                     </h1>
+                    <h1 className="line-through text-gray-400">
+                      ${itemData.itemBasePrice}
+                    </h1>
                   </main>
                 ) : (
-                  "$" + itemData.itemBasePrice
+                  "$" + totalPrice
                 )}
               </h1>
               <h1> - </h1>
@@ -648,12 +651,7 @@ const Modal: React.FC<ModalProps> = ({
                 largeScreen ? "fixed" : ""
               } no_transition flex items-center justify-center w-full mt-3 mb-20 md:mb-0 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white`}
             >
-              Add $
-              {itemData.itemSale ? (
-                <h1>{itemData.itemSalePrice}</h1>
-              ) : (
-                <h1>{itemData.itemBasePrice}</h1>
-              )}
+              Add +${totalPrice.toFixed(2)}
             </motion.button>
           )}
         </div>

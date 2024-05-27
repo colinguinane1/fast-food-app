@@ -159,8 +159,32 @@ const IndexPage: React.FC = () => {
                       </h1>
                       <div>
                         {item.itemVegetarian && (
-                          <h1 className="bg-green-300 text-sm px-3 rounded-full border-green-500 border text-green-600">
+                          <h1 className="bg-yellow-300 text-sm px-3 rounded-full border-yellow-500 border text-yellow-600">
                             V
+                          </h1>
+                        )}{" "}
+                        {item.itemSale && (
+                          <h1 className="bg-green-500 flex items-center gap-1 p-1 rounded-full bg-opacity-30 border border-green-500 text-green-500">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="icon icon-tabler icon-tabler-tag stroke-green-500"
+                              width="15"
+                              height="15"
+                              viewBox="0 0 24 24"
+                              stroke-width="1.5"
+                              stroke="#2c3e50"
+                              fill="none"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                            >
+                              <path
+                                stroke="none"
+                                d="M0 0h24v24H0z"
+                                fill="none"
+                              />
+                              <path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                              <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z" />
+                            </svg>
                           </h1>
                         )}
                       </div>
@@ -168,38 +192,16 @@ const IndexPage: React.FC = () => {
                     <p className="text-sm max-w-80 min-w-fit">
                       {item.itemDescription}
                     </p>
-                    <div className="flex items-center gap-4 pt-3">
+                    <div className="flex items-center gap-4 md:pt-3">
                       <h1 className="font-extralight flex gap-2 items-center text-sm">
                         {item.itemSale ? (
                           <>
-                            <h1 className="line-through text-gray-200">
-                              ${item.itemBasePrice}
-                            </h1>
+                            {" "}
                             <h1 className="text-green-500">
                               ${item.itemSalePrice}
                             </h1>
-                            <h1 className="bg-green-500 flex items-center gap-1 px-1 rounded-full bg-opacity-30 border border-green-500 text-green-500">
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="icon icon-tabler icon-tabler-tag stroke-green-500"
-                                width="15"
-                                height="15"
-                                viewBox="0 0 24 24"
-                                stroke-width="1.5"
-                                stroke="#2c3e50"
-                                fill="none"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              >
-                                <path
-                                  stroke="none"
-                                  d="M0 0h24v24H0z"
-                                  fill="none"
-                                />
-                                <path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                                <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z" />
-                              </svg>
-                              Sale
+                            <h1 className="line-through text-gray-200">
+                              ${item.itemBasePrice}
                             </h1>
                           </>
                         ) : (

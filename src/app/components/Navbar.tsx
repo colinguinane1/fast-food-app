@@ -55,7 +55,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
             <a href="#">Contact</a>
           </li>
           <li>
-            <button className="flex  bg-white text-green-500  items-center h-fit w-fit p-1 rounded-lg  px-2 z-[1000]   justify-center gap-1  hover:bg-green-700 ">
+            <button className="flex mr-10  bg-white text-green-500  items-center h-fit w-fit p-1 rounded-lg  px-2 z-[1000]   justify-center gap-1  hover:bg-green-700 ">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="icon icon-tabler icon-tabler-shopping-cart stroke-green-500"
@@ -74,7 +74,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
                 <path d="M17 17h-11v-14h-2" />
                 <path d="M6 5l14 1l-1 7h-13" />
               </svg>
-              <span className="font-extrabold">${cartValue.toFixed(2)}</span>
+              <span className="font-bold">${cartValue.toFixed(2)}</span>
             </button>
           </li>
           <li className="flex flex-col items-center  md:hidden">
@@ -113,7 +113,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
                     className="absolute right-0 top-14   no_transition"
                   >
                     <ul
-                      className={`p-4 flex  ${
+                      className={`p-4 flex z-[10000]  ${
                         scrolled ? "" : ""
                       }text-2xl flex-col gap-4 rounded- text-left shadow-2xl border-l border-t border-b rounded-l-lg    font-extrabold text-white bg-green-400  `}
                     >

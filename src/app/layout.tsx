@@ -4,12 +4,15 @@ import "./globals.css";
 import { Poppins } from "next/font/google";
 import { Raleway } from "next/font/google";
 import { Manrope } from "next/font/google";
+import { Roboto } from "next/font/google";
+
 import Navbar from "./components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
-const poppins = Poppins({ subsets: ["latin"], weight: "500" });
+const poppins = Poppins({ subsets: ["latin"], weight: "300" });
 const raleway = Raleway({ subsets: ["latin"] });
 const manrope = Manrope({ subsets: ["latin"] });
+const roboto = Roboto({ subsets: ["latin"], weight: "700" });
 
 export const metadata: Metadata = {
   title: "Fast-Food Order",
