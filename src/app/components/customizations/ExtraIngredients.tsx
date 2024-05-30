@@ -33,7 +33,7 @@ const ExtraIngredients: React.FC<ComponentProps> = ({
         extraIngredients[ingredientName].count + 1
       );
       setTotalPrice(
-        (prevTotalPrice) =>
+        (prevTotalPrice: number) =>
           prevTotalPrice + itemData.itemExtraIngredients[ingredientName].price
       );
     }
@@ -50,7 +50,7 @@ const ExtraIngredients: React.FC<ComponentProps> = ({
         extraIngredients[ingredientName].count - 1
       );
       setTotalPrice(
-        (prevTotalPrice) =>
+        (prevTotalPrice: number) =>
           prevTotalPrice - itemData.itemExtraIngredients[ingredientName].price
       );
     }

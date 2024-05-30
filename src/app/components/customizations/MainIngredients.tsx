@@ -37,7 +37,7 @@ const MainIngredients: React.FC<ComponentProps> = ({
         itemData.itemIngredients[ingredientName].comesWith
       ) {
         setTotalPrice(
-          (prevTotalPrice) =>
+          (prevTotalPrice: number) =>
             prevTotalPrice + itemData.itemIngredients[ingredientName].price
         );
       }
@@ -66,7 +66,7 @@ const MainIngredients: React.FC<ComponentProps> = ({
         itemData.itemIngredients[ingredientName].comesWith
       ) {
         setTotalPrice(
-          (prevTotalPrice) =>
+          (prevTotalPrice: number) =>
             prevTotalPrice - itemData.itemIngredients[ingredientName].price
         );
       }

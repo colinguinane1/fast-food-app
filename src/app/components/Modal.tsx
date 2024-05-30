@@ -14,6 +14,34 @@ interface ItemData {
   itemVegetarian: boolean;
   itemSale: boolean;
   itemSalePrice: number;
+  itemDip: {
+    maxDips: number;
+    availableDips: {
+      [key: string]: {
+        count: number;
+        max: number;
+        min: number;
+      };
+    };
+  };
+  itemIngredients: {
+    [key: string]: {
+      count: number;
+      price: number;
+      comesWith: number;
+      max: number;
+      min: number;
+    };
+  };
+  itemExtraIngredients: {
+    [key: string]: {
+      count: number;
+      price: number;
+      comesWith: number;
+      max: number;
+      min: number;
+    };
+  };
 }
 
 interface ModalProps {
