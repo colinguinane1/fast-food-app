@@ -77,11 +77,15 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
               <span className="font-bold">${cartValue.toFixed(2)}</span>
             </button>
           </li>
-          <li className="flex flex-col items-center  md:hidden">
+          <li className="flex gap-2 items-center  md:hidden ">
+            {" "}
+            {/* <motion.button className="bg-white text-green-500 p-1 px-4 rounded-lg">
+              Login
+            </motion.button> */}
             <motion.button
               whileHover={navMenu ? { scale: 1.0 } : { scale: 1.1 }}
               whileTap={navMenu ? { scale: 1.0 } : { scale: 0.9 }}
-              className="group no_transition"
+              className="group no_transition flex items-center gap-4"
               onClick={toggleMenu}
             >
               <svg
