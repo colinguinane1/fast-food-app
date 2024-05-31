@@ -5,6 +5,8 @@ import { Poppins } from "next/font/google";
 import { Raleway } from "next/font/google";
 import { Manrope } from "next/font/google";
 import { Roboto } from "next/font/google";
+import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 
 import Navbar from "./components/Navbar";
 
@@ -25,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={raleway.className}>
+    <html lang="en" className={GeistSans.className}>
       <body className="bg-green-500">{children}</body>
     </html>
   );
