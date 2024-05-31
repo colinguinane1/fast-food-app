@@ -119,10 +119,10 @@ const IndexPage: React.FC = () => {
   };
 
   return (
-    <main className="md:flex mt-[63px]">
+    <main className="md:flex mt-[66px]">
       <Navbar cartValue={cartValue} />
 
-      <div className="md:h-screen h-10 hide-scrollbar sc md:flex decoration shaodw-lg bg-gradient-to-b from-green-500 to-green-600 text-white flex-col justify-between">
+      <div className="md:h-screen h-10 hide-scrollbar sc md:flex decoration shaodw-lg  from-green-500 to-green-600 text-white flex-col justify-between">
         <ul className="flex md:flex-col gap-2 overflow-x-auto">
           {categories.map((category, index) => (
             <motion.li
@@ -131,7 +131,7 @@ const IndexPage: React.FC = () => {
               key={index}
               className={`capitalize no_transition  font-extrabold px-4 py-2 cursor-pointer ${
                 selectedCategory === category.id
-                  ? "bg-white rounded-t-lg md:rounded-l-lg md:rounded-tr-none   text-black hover:text-black"
+                  ? "bg-white rounded-lg   text-black hover:text-black"
                   : "hover:text-green-100 "
               }`}
               onClick={() => handleCategoryClick(category.id)}
@@ -142,18 +142,18 @@ const IndexPage: React.FC = () => {
         </ul>
       </div>
       {selectedItems.length > 0 && (
-        <div className="h-screen bg-slate-200">
+        <div className="h-screen pt-1 bg-slate-200">
           <ul className="z-10">
             {selectedItems.map((item, index) => (
               <motion.button
                 whileTap={{}}
                 key={index}
-                className="flex justify-between items-center px-4 transition-all min-h-32 text-left w-screen border-b hover:bg-slate-100 bg-white p-2"
+                className="flex justify-between rounded-lg w-[96vw] items-center m-2 px-4 mr-10  transition-all min-h-32 text-left w-screen border-b hover:border-green-500 hover:shadow-xl hover:border bg-white p-2"
                 onClick={() => handleItemClick(item)}
               >
-                <div className="flex flex-col justify-between w-full">
-                  <div>
-                    <div className="flex items-center gap-4">
+                <div className="flex flex-col justify-between w-screen">
+                  <div className="">
+                    <div className="flex items-center py-1">
                       <h1 className="text-xl min-w-fit font-extrabold">
                         {item.itemName}
                       </h1>
@@ -162,6 +162,26 @@ const IndexPage: React.FC = () => {
                           <h1 className="bg-yellow-300 text-sm px-3 rounded-full border-yellow-500 border text-yellow-600">
                             V
                           </h1>
+                        )}{" "}
+                      </div>
+                    </div>
+                    <p className="text-sm max-w-80 py-1 min-w-fit">
+                      {item.itemDescription}
+                    </p>
+                    <div className="flex items-center justify-between gap-4">
+                      <h1 className="font-extralight py-1 flex gap-2 items-center text-sm">
+                        {item.itemSale ? (
+                          <>
+                            {" "}
+                            <h1 className="text-green-500">
+                              ${item.itemSalePrice}
+                            </h1>
+                            <h1 className="line-through text-gray-200">
+                              ${item.itemBasePrice}
+                            </h1>
+                          </>
+                        ) : (
+                          <h1>${item.itemBasePrice}</h1>
                         )}{" "}
                         {item.itemSale && (
                           <h1 className="bg-green-500 flex items-center gap-1 p-1 rounded-full bg-opacity-30 border border-green-500 text-green-500">
@@ -186,26 +206,6 @@ const IndexPage: React.FC = () => {
                               <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z" />
                             </svg>
                           </h1>
-                        )}
-                      </div>
-                    </div>
-                    <p className="text-sm max-w-80 min-w-fit">
-                      {item.itemDescription}
-                    </p>
-                    <div className="flex items-center gap-4 md:pt-3">
-                      <h1 className="font-extralight flex gap-2 items-center text-sm">
-                        {item.itemSale ? (
-                          <>
-                            {" "}
-                            <h1 className="text-green-500">
-                              ${item.itemSalePrice}
-                            </h1>
-                            <h1 className="line-through text-gray-200">
-                              ${item.itemBasePrice}
-                            </h1>
-                          </>
-                        ) : (
-                          <h1>${item.itemBasePrice}</h1>
                         )}
                       </h1>
                       <h1 className="font-extralight text-sm">
