@@ -55,27 +55,31 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
             <a href="#">Contact</a>
           </li>
           <li>
-            <button className="flex mr-10  bg-white text-green-500  items-center h-fit w-fit p-1 rounded-lg  px-2 z-[1000]   justify-center gap-1  hover:bg-green-700 ">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-shopping-cart stroke-green-500"
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="#000000"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                <path d="M17 17h-11v-14h-2" />
-                <path d="M6 5l14 1l-1 7h-13" />
-              </svg>
-              <span className="font-bold">${cartValue.toFixed(2)}</span>
-            </button>
+            {cartValue != 0 ? (
+              <button className="flex mr-10  bg-white text-green-500  items-center h-fit w-fit p-1 rounded-lg  px-2 z-[1000]   justify-center gap-1  hover:bg-green-700 ">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-shopping-cart stroke-green-500"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="#000000"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                  <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                  <path d="M17 17h-11v-14h-2" />
+                  <path d="M6 5l14 1l-1 7h-13" />
+                </svg>
+                <span className="font-bold">${cartValue.toFixed(2)}</span>
+              </button>
+            ) : (
+              ""
+            )}
           </li>
           <li className="flex gap-2 items-center  md:hidden ">
             {" "}
@@ -114,12 +118,12 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
                     animate={{ x: 0 }}
                     exit={{ x: 1000 }}
                     transition={{ type: "just" }}
-                    className="absolute right-0 top-14   no_transition"
+                    className="absolute right-4 top-14   no_transition"
                   >
                     <ul
                       className={`p-4 flex z-[10000]  ${
                         scrolled ? "" : ""
-                      }text-2xl flex-col gap-4 rounded- text-left shadow-2xl border-l border-t border-b rounded-l-lg    font-extrabold text-white bg-green-400  `}
+                      }text-2xl flex-col gap-4 rounded-lg text-left shadow-2xl border-2    font-extrabold text-white bg-green-400  `}
                     >
                       <li className="flex gap-1 items-center">
                         <svg

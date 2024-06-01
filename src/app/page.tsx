@@ -116,22 +116,27 @@ const IndexPage: React.FC = () => {
       itemExtraIngredients: itemData.itemExtraIngredients,
     });
     toggleModal();
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
   };
 
   return (
-    <main className="md:flex mt-[66px]">
+    <main className="md:flex mt-[57px]">
       <Navbar cartValue={cartValue} />
 
       <div className="md:h-screen h-10 hide-scrollbar sc md:flex decoration shaodw-lg  from-green-500 to-green-600 text-white flex-col justify-between">
-        <ul className="flex md:flex-col gap-2 overflow-x-auto">
+        <ul className="flex md:flex-col gap-2 ml-1 overflow-x-auto">
           {categories.map((category, index) => (
             <motion.li
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               key={index}
-              className={`capitalize no_transition  font-extrabold px-4 py-2 cursor-pointer ${
+              className={`capitalize mr-1 no_transition  font-extrabold px-4 py-1 cursor-pointer ${
                 selectedCategory === category.id
-                  ? "bg-white rounded-lg   text-black hover:text-black"
+                  ? "  border-green-400 border bg-green-400 rounded-lg"
                   : "hover:text-green-100 "
               }`}
               onClick={() => handleCategoryClick(category.id)}
@@ -142,18 +147,18 @@ const IndexPage: React.FC = () => {
         </ul>
       </div>
       {selectedItems.length > 0 && (
-        <div className="h-screen pt-1 bg-slate-200">
-          <ul className="z-10">
+        <div className="h-screen w-screen  p bg-slate-200">
+          <ul className="z-10 ">
             {selectedItems.map((item, index) => (
               <motion.button
                 whileTap={{}}
                 key={index}
-                className="flex justify-between rounded-lg w-[96vw] items-center m-2 px-4 mr-10  transition-all min-h-32 text-left w-screen border-b hover:border-green-500 hover:shadow-xl hover:border bg-white p-2"
+                className="flex py-4 justify-between px-4  w-screen   items-center transition-all min-h-32 text-left  border-b hover:border-green-500 hover:shadow-xl hover:border bg-white p-2"
                 onClick={() => handleItemClick(item)}
               >
-                <div className="flex flex-col justify-between w-screen">
+                <div className="flex flex-col  justify-between w-screen">
                   <div className="">
-                    <div className="flex items-center py-1">
+                    <div className="flex items-center gap-2 py-1">
                       <h1 className="text-xl min-w-fit font-extrabold">
                         {item.itemName}
                       </h1>
@@ -173,9 +178,33 @@ const IndexPage: React.FC = () => {
                         {item.itemSale ? (
                           <>
                             {" "}
+                            {item.itemSale && (
+                              <h1 className="bg-green-500 flex items-center gap-1 p-1 rounded-full bg-opacity-30 border border-green-500 text-green-500">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="icon icon-tabler icon-tabler-tag stroke-green-500"
+                                  width="15"
+                                  height="15"
+                                  viewBox="0 0 24 24"
+                                  stroke-width="1.5"
+                                  stroke="#2c3e50"
+                                  fill="none"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                >
+                                  <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none"
+                                  />
+                                  <path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+                                  <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z" />
+                                </svg>
+                              </h1>
+                            )}
                             <h1 className="text-green-500">
                               ${item.itemSalePrice}
-                            </h1>
+                            </h1>{" "}
                             <h1 className="line-through text-gray-200">
                               ${item.itemBasePrice}
                             </h1>
@@ -183,30 +212,6 @@ const IndexPage: React.FC = () => {
                         ) : (
                           <h1>${item.itemBasePrice}</h1>
                         )}{" "}
-                        {item.itemSale && (
-                          <h1 className="bg-green-500 flex items-center gap-1 p-1 rounded-full bg-opacity-30 border border-green-500 text-green-500">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="icon icon-tabler icon-tabler-tag stroke-green-500"
-                              width="15"
-                              height="15"
-                              viewBox="0 0 24 24"
-                              stroke-width="1.5"
-                              stroke="#2c3e50"
-                              fill="none"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            >
-                              <path
-                                stroke="none"
-                                d="M0 0h24v24H0z"
-                                fill="none"
-                              />
-                              <path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                              <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z" />
-                            </svg>
-                          </h1>
-                        )}
                       </h1>
                       <h1 className="font-extralight text-sm">
                         {item.itemCalories} cals
