@@ -28,7 +28,7 @@ const SizeCustomization: React.FC<ComponentProps> = ({
   };
 
   if (!itemData || !itemData.itemSizes) {
-    return <div>Loading...</div>; // or any other loading indicator
+    return <div></div>; // or any other loading indicator
   }
 
   return (
