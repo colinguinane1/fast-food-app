@@ -20,6 +20,11 @@ interface ItemData {
   itemSale: boolean;
   itemSalePrice: number;
   itemVegetarian: boolean;
+  itemSizes: {
+    [key: string]: {
+      price: number;
+    };
+  };
   itemDip: {
     maxDips: number;
     availableDips: {
@@ -115,6 +120,7 @@ const IndexPage: React.FC = () => {
       itemSalePrice: itemData.itemSalePrice,
       itemDip: itemData.itemDip,
       itemExtraIngredients: itemData.itemExtraIngredients,
+      itemSizes: itemData.itemSizes,
     });
     toggleModal();
 
@@ -180,7 +186,7 @@ const IndexPage: React.FC = () => {
                           <>
                             {" "}
                             {item.itemSale && (
-                              <h1 className="bg-green-500 flex items-center gap-1 p-1 rounded-full bg-opacity-30 border border-green-500 text-green-500">
+                              <h1 className="bg-green-500  min-w-fit flex items-center gap-1 p-1 rounded-full bg-opacity-30 border border-green-500 text-green-500">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   className="icon icon-tabler icon-tabler-tag stroke-green-500"
@@ -203,11 +209,11 @@ const IndexPage: React.FC = () => {
                                 </svg>
                               </h1>
                             )}
-                            <h1 className="text-green-500">
+                            <h1 className="text-green-500  min-w-fit">
                               ${item.itemSalePrice}
                               {currentCurrency}
                             </h1>{" "}
-                            <h1 className="line-through text-gray-200">
+                            <h1 className="line-through min-w-fit text-gray-200">
                               ${item.itemBasePrice} {currentCurrency}
                             </h1>
                           </>
@@ -217,7 +223,7 @@ const IndexPage: React.FC = () => {
                           </h1>
                         )}{" "}
                       </h1>
-                      <h1 className="font-extralight text-gray-500 text-sm">
+                      <h1 className="font-extralight min-w-fit text-gray-500 text-sm">
                         {item.itemCalories} kcals
                       </h1>
                     </div>

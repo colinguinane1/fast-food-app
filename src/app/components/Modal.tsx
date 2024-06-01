@@ -4,6 +4,7 @@ import { useMediaQuery } from "@react-hook/media-query";
 import ExtraIngredients from "./customizations/ExtraIngredients";
 import MainIngredients from "./customizations/MainIngredients";
 import DipIngredients from "./customizations/DipIngredients";
+import SizeCustomization from "./customizations/SizeCustomization";
 
 interface ItemData {
   itemImageURL: string;
@@ -14,6 +15,11 @@ interface ItemData {
   itemVegetarian: boolean;
   itemSale: boolean;
   itemSalePrice: number;
+  itemSizes: {
+    [key: string]: {
+      price: number;
+    };
+  };
   itemDip: {
     maxDips: number;
     availableDips: {
@@ -208,6 +214,10 @@ const Modal: React.FC<ModalProps> = ({
                   setTotalPrice={setTotalPrice}
                 />
                 <DipIngredients
+                  itemData={itemData}
+                  setTotalPrice={setTotalPrice}
+                />
+                <SizeCustomization
                   itemData={itemData}
                   setTotalPrice={setTotalPrice}
                 />
