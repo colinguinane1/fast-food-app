@@ -49,6 +49,7 @@ interface ModalProps {
   toggleModal: () => void;
   cartValue: number;
   setCartValue: any;
+  currentCurrency: string;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -56,6 +57,7 @@ const Modal: React.FC<ModalProps> = ({
   toggleModal,
   setCartValue,
   cartValue,
+  currentCurrency,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const [customize, setCustomize] = useState<boolean>(true);
@@ -92,12 +94,12 @@ const Modal: React.FC<ModalProps> = ({
       animate={largeScreen ? { y: 0, scale: 1 } : { y: 0, scale: 1 }}
       exit={largeScreen ? { y: 0, scale: 0 } : { y: 1000, scale: 1 }}
       transition={{ type: "spring", duration: 0.4 }}
-      className="no_transition flex flex-col items-center justify-center h-screen z-[100]"
+      className="no_transition flex flex-col items-center justify-center h-screen z-[100] overflow-hidden "
     >
-      <div className="fixed flex h-screen items-center justify-center">
+      <div className="fixed flex h-screen items-center justify-center overflow-hidden">
         <div
           ref={modalRef}
-          className="bg-white md:w-[70vw] w-screen md:min-h-[40vh] md:h-fit md:max-h-[80vh] rounded-lg h-full p-4 overflow-y-auto"
+          className="bg-white md:w-[70vw] w-screen md:min-h-[40vh] md:h-fit md:max-h-[80vh] rounded-lg h-full p-4 overflow-y-auto overflow-hidden"
         >
           <div className=" py-3 border-b mb-3">
             <div className="flex flex-col items-center">
@@ -150,10 +152,11 @@ const Modal: React.FC<ModalProps> = ({
                 }`}
               >
                 {itemData.itemSale ? (
-                  <main className="flex gap-4 py-1">
+                  <main className="flex items-center gap-4 py-1">
                     {" "}
                     <h1 className="text-green-500">
                       ${totalPrice.toFixed(2)}
+                      {currentCurrency}
                     </h1>{" "}
                     <h1 className="bg-green-500 flex items-center gap-1 px-1 rounded-full bg-opacity-0 border border-green-500 text-green-500">
                       <svg
@@ -176,10 +179,11 @@ const Modal: React.FC<ModalProps> = ({
                     </h1>
                     <h1 className="line-through text-gray-400">
                       ${itemData.itemBasePrice}
+                      {currentCurrency}
                     </h1>
                   </main>
                 ) : (
-                  "$" + totalPrice.toFixed(2)
+                  "$" + totalPrice.toFixed(2) + currentCurrency
                 )}
               </h1>
               <h1> - </h1>
@@ -221,6 +225,7 @@ const Modal: React.FC<ModalProps> = ({
               } no_transition flex items-center justify-center w-full mt-3 mb-20 md:mb-0 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white`}
             >
               Add +${totalPrice.toFixed(2)}
+              {currentCurrency}
             </motion.button>
           )}
         </div>

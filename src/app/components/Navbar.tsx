@@ -5,8 +5,9 @@ import { AnimatePresence, motion } from "framer-motion";
 
 interface NavbarProps {
   cartValue: number;
+  currentCurrency: string;
 }
-const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
+const Navbar: React.FC<NavbarProps> = ({ cartValue, currentCurrency }) => {
   const [navMenu, setNavMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -75,7 +76,10 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
                   <path d="M17 17h-11v-14h-2" />
                   <path d="M6 5l14 1l-1 7h-13" />
                 </svg>
-                <span className="font-bold">${cartValue.toFixed(2)}</span>
+                <span className="font-bold">
+                  ${cartValue.toFixed(2)}
+                  {currentCurrency}
+                </span>
               </button>
             ) : (
               ""

@@ -61,6 +61,7 @@ const IndexPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null); // Add state for selected category
 
   const defaultCategoryId = "burgers"; // Set your default category ID here
+  const [currentCurrency, setCurrentCurrency] = useState("CAD");
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
@@ -124,11 +125,11 @@ const IndexPage: React.FC = () => {
   };
 
   return (
-    <main className="md:flex mt-[57px]">
-      <Navbar cartValue={cartValue} />
+    <main className="md:flex mt-[70px] md:mt-[57px]">
+      <Navbar cartValue={cartValue} currentCurrency={currentCurrency} />
 
-      <div className="md:h-screen h-10 hide-scrollbar sc md:flex decoration shaodw-lg  from-green-500 to-green-600 text-white flex-col justify-between">
-        <ul className="flex md:flex-col gap-2 ml-1 overflow-x-auto">
+      <div className="md:h-screen h-10 hide-scrollbar sc md:flex decoration shaodw-lg bg-gradient-to-b  from-green-500 to-green-600 text-white flex-col justify-between">
+        <ul className="flex md:flex-col justify-between mx-2 md:gap-10 md:mt-2  overflow-x-auto">
           {categories.map((category, index) => (
             <motion.li
               whileHover={{ scale: 1.05 }}
@@ -147,19 +148,19 @@ const IndexPage: React.FC = () => {
         </ul>
       </div>
       {selectedItems.length > 0 && (
-        <div className="h-screen w-screen  p bg-slate-200">
-          <ul className="z-10 ">
+        <div className="h-screen w-screen   bg-green-600">
+          <ul className="z-10 flex flex-col pt-2  items-center mx-2  justify-center">
             {selectedItems.map((item, index) => (
               <motion.button
                 whileTap={{}}
                 key={index}
-                className="flex py-4 justify-between px-4  w-screen   items-center transition-all min-h-32 text-left  border-b hover:border-green-500 hover:shadow-xl hover:border bg-white p-2"
+                className="flex rounded-lg   justify-between hover:bg-gray-100  px-4 my-1 w-full  items-center transition-all min-h-32 text-left shadow-lg  hover:border-green-500 hover:shadow-xl hover:border-2 bg-white p-2"
                 onClick={() => handleItemClick(item)}
               >
                 <div className="flex flex-col  justify-between w-screen">
                   <div className="">
-                    <div className="flex items-center gap-2 py-1">
-                      <h1 className="text-xl min-w-fit font-extrabold">
+                    <div className="flex items-center gap-2">
+                      <h1 className=" min-w-fit font-extrabold">
                         {item.itemName}
                       </h1>
                       <div>
@@ -204,17 +205,20 @@ const IndexPage: React.FC = () => {
                             )}
                             <h1 className="text-green-500">
                               ${item.itemSalePrice}
+                              {currentCurrency}
                             </h1>{" "}
                             <h1 className="line-through text-gray-200">
-                              ${item.itemBasePrice}
+                              ${item.itemBasePrice} {currentCurrency}
                             </h1>
                           </>
                         ) : (
-                          <h1>${item.itemBasePrice}</h1>
+                          <h1>
+                            ${item.itemBasePrice} {currentCurrency}
+                          </h1>
                         )}{" "}
                       </h1>
-                      <h1 className="font-extralight text-sm">
-                        {item.itemCalories} cals
+                      <h1 className="font-extralight text-gray-500 text-sm">
+                        {item.itemCalories} kcals
                       </h1>
                     </div>
                   </div>
@@ -238,7 +242,7 @@ const IndexPage: React.FC = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="no_transition"
+              className="no_transition absolute h-screen w-screen top-0"
             >
               <Backdrop />
             </motion.div>
@@ -247,6 +251,7 @@ const IndexPage: React.FC = () => {
               toggleModal={toggleModal}
               cartValue={cartValue}
               setCartValue={setCartValue}
+              currentCurrency={currentCurrency}
             />
           </main>
         )}

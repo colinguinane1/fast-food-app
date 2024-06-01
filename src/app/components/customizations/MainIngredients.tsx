@@ -138,7 +138,7 @@ const MainIngredients: React.FC<ComponentProps> = ({
                   <path d="M5 12h14" />
                 </svg>
               </motion.button>
-              <h1 className="bg-gray-100 h-7 text-center w-7 rounded-full">
+              <h1 className="bg-gray-100 items-center  h-7 text-center w-7 rounded-full">
                 {ingredients[ingredientName].count}
               </h1>
 
