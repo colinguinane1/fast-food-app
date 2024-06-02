@@ -155,10 +155,10 @@ const IndexPage: React.FC = () => {
       </div>
       {selectedItems.length > 0 && (
         <div className="h-screen w-screen   bg-green-600">
-          <ul className="z-10 flex flex-col pt-2  items-center mx-2  justify-center">
+          <ul className="z-10 flex flex-col pt-1  items-center mx-2  justify-center">
             {selectedItems.map((item, index) => (
               <motion.button
-                whileTap={{}}
+                whileTap={{ scale: 0.9 }}
                 key={index}
                 className="flex rounded-lg   justify-between hover:bg-gray-100  px-4 my-1 w-full  items-center transition-all min-h-32 text-left shadow-lg  hover:border-green-500 hover:shadow-xl hover:border-2 bg-white p-2"
                 onClick={() => handleItemClick(item)}
@@ -180,7 +180,7 @@ const IndexPage: React.FC = () => {
                     <p className="text-sm max-w-80 py-1 min-w-fit">
                       {item.itemDescription}
                     </p>
-                    <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center justify-between gap-4 max-w-[450px]">
                       <h1 className="font-extralight py-1 flex gap-2 items-center text-sm">
                         {item.itemSale ? (
                           <>

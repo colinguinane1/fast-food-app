@@ -158,13 +158,9 @@ const Modal: React.FC<ModalProps> = ({
                 }`}
               >
                 {itemData.itemSale ? (
-                  <main className="flex items-center gap-4 py-1">
+                  <main className="flex items-center gap-3 py-1">
                     {" "}
-                    <h1 className="text-green-500">
-                      ${totalPrice.toFixed(2)}
-                      {currentCurrency}
-                    </h1>{" "}
-                    <h1 className="bg-green-500 flex items-center gap-1 px-1 rounded-full bg-opacity-0 border border-green-500 text-green-500">
+                    <h1 className="bg-green-500  min-w-fit flex items-center gap-1 px-1 rounded-full bg-opacity-30 border border-green-500 text-green-500">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="icon icon-tabler icon-tabler-tag stroke-green-500"
@@ -183,6 +179,10 @@ const Modal: React.FC<ModalProps> = ({
                       </svg>
                       Sale
                     </h1>
+                    <h1 className="text-green-500">
+                      ${totalPrice.toFixed(2)}
+                      {currentCurrency}
+                    </h1>{" "}
                     <h1 className="line-through text-gray-400">
                       ${itemData.itemBasePrice}
                       {currentCurrency}
