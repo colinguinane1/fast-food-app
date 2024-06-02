@@ -153,9 +153,7 @@ const Modal: React.FC<ModalProps> = ({
             <p className="text-sm">{itemData.itemDescription}</p>
             <div className="flex items-center gap-2 py-1">
               <h1
-                className={`${
-                  totalPrice !== itemData.itemBasePrice ? "text-green-500" : ""
-                }`}
+                className={`${totalPrice !== itemData.itemBasePrice ? "" : ""}`}
               >
                 {itemData.itemSale ? (
                   <main className="flex items-center gap-3 py-1">
@@ -189,7 +187,7 @@ const Modal: React.FC<ModalProps> = ({
                     </h1>
                   </main>
                 ) : (
-                  "$" + totalPrice.toFixed(2) + currentCurrency
+                  "$" + itemData.itemBasePrice.toFixed(2) + currentCurrency
                 )}
               </h1>
               <h1> - </h1>

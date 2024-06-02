@@ -3,13 +3,15 @@ import Backdrop from "./Backdrop";
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-interface NavbarProps {
-  cartValue: number;
-  currentCurrency: string;
-}
-const Navbar: React.FC<NavbarProps> = ({ cartValue, currentCurrency }) => {
+// interface NavbarProps {
+//   cartValue: number;
+//   currentCurrency: string;
+// }
+const Navbar = ({}) => {
   const [navMenu, setNavMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [currentCurrency, setCurrentCurrency] = useState("CAD");
+  const [cartValue, setCartValue] = useState<number>(0);
 
   const toggleMenu = () => {
     setNavMenu(!navMenu);
@@ -44,16 +46,16 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentCurrency }) => {
             />
           </li>
           <li className="navbar_element">
-            <a href="#">Home</a>
+            <a href="./home">Home</a>
           </li>
           <li className="navbar_element">
-            <a href="#">Order</a>
+            <a href="./order">Order</a>
           </li>
           <li className="navbar_element">
-            <a href="#">Careers</a>
+            <a href="./careers">Careers</a>
           </li>
           <li className="navbar_element">
-            <a href="#">Contact</a>
+            <a href="./contact">Contact</a>
           </li>
           <li>
             {cartValue != 0 ? (
@@ -147,7 +149,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentCurrency }) => {
                           <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
                           <path d="M10 12h4v4h-4z" />
                         </svg>
-                        Home
+                        <a href="./home">Home</a>
                       </li>
                       <li className="flex gap-1 items-center">
                         <svg
@@ -168,7 +170,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentCurrency }) => {
                           <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" />
                           <path d="M3 9l4 0" />
                         </svg>
-                        Order
+                        <a href="./order">Order</a>
                       </li>
                       <li className="flex gap-1 items-center">
                         <svg
@@ -189,7 +191,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentCurrency }) => {
                           <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                           <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
                         </svg>
-                        Careers
+                        <a href="./careers">Careers</a>
                       </li>
                       <li className="flex gap-1 items-center">
                         <svg
@@ -212,7 +214,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentCurrency }) => {
                           <path d="M4 12h3" />
                           <path d="M4 16h3" />
                         </svg>
-                        Contact
+                        <a href="./contact">Contact</a>
                       </li>
                     </ul>
                   </motion.div>
