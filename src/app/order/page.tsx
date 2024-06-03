@@ -213,8 +213,7 @@ const IndexPage: React.FC = () => {
                               </h1>
                             )}
                             <h1 className="text-green-500  min-w-fit">
-                              ${item.itemSalePrice}
-                              {currentCurrency}
+                              ${item.itemSalePrice} {currentCurrency}
                             </h1>{" "}
                             <h1 className="line-through min-w-fit text-gray-200">
                               ${item.itemBasePrice} {currentCurrency}
@@ -231,7 +230,7 @@ const IndexPage: React.FC = () => {
                 </div>
                 <div className="">
                   <img
-                    className="w-40 min-w-32"
+                    className="w-32 max-w-22"
                     src={item.itemImageURL}
                     alt={"Image of " + item.itemName}
                   />

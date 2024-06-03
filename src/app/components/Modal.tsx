@@ -96,10 +96,10 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <motion.main
-      initial={largeScreen ? { y: 0, scale: 0 } : { y: 1000, scale: 1 }}
+      initial={largeScreen ? { y: 0, scale: 0 } : { y: 2000, scale: 1 }}
       animate={largeScreen ? { y: 0, scale: 1 } : { y: 0, scale: 1 }}
-      exit={largeScreen ? { y: 0, scale: 0 } : { y: 1000, scale: 1 }}
-      transition={{ type: "spring", duration: 0.4 }}
+      exit={largeScreen ? { y: 0, scale: 0 } : { y: 2000, scale: 1 }}
+      transition={{ type: "spring", duration: 0.5 }}
       className="no_transition flex flex-col items-center justify-center h-screen z-[100] overflow-hidden "
     >
       <div className="fixed flex h-screen items-center justify-center overflow-hidden">

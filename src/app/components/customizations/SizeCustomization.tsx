@@ -42,7 +42,7 @@ const SizeCustomization: React.FC<ComponentProps> = ({
         >
           <div className="capitalize">{sizeName}</div>
           <div className="flex gap-1 items-center">
-            <div className="text-lg">${price}</div>
+            <div className="">${price}</div>
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
