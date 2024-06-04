@@ -12,10 +12,12 @@
 }
 
 .navbar_element{
-    @apply hidden md:block
+    @apply hidden md:block hover:bg-green-400 p-2 px-4 no_transition rounded-lg cursor-pointer transition-all duration-300
 }
 
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
     /* For Chrome, Safari, and Opera */
 }
+
+

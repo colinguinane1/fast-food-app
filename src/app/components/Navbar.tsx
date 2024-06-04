@@ -32,7 +32,7 @@ const Navbar = ({}) => {
   return (
     <main>
       <div
-        className={`top-0 fixed bg-green-500 text-white w-screen py-4 z-[1000] ${
+        className={`top-0 fixed bg-green-500 text-white w-screen py-2 z-[1000] ${
           scrolled ? "text-white py-[8px] shadow-2xl" : ""
         }`}
       >
