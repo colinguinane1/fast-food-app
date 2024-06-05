@@ -33,7 +33,7 @@ const Navbar = ({}) => {
     <main>
       <div
         className={`top-0 fixed bg-green-500 text-white w-screen py-2 z-[1000] ${
-          scrolled ? "text-white py-[8px] shadow-2xl" : ""
+          scrolled ? "text-white py-[4px] shadow-2xl" : ""
         }`}
       >
         <ul className="flex items-center font-extrabold  justify-between mx-4 md:mr-10">

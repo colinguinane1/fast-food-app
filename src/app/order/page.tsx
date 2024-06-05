@@ -6,7 +6,7 @@ import { db } from "../firebase/firebase";
 import Backdrop from "../components/Backdrop";
 import Modal from "../components/Modal";
 import { AnimatePresence, motion } from "framer-motion";
-
+import { useMediaQuery } from "@react-hook/media-query";
 interface Category {
   id: string;
 }
@@ -59,6 +59,7 @@ const IndexPage: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedItems, setSelectedItems] = useState<DocumentData[]>([]);
   const [isModalOpen, setModalOpen] = useState(false);
+  const largeScreen = useMediaQuery("min-width: 768px");
   const [selectedItemData, setSelectedItemData] = useState<ItemData | null>(
     null
   );

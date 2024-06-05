@@ -3,8 +3,10 @@ import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useMediaQuery } from "@react-hook/media-query";
 
 const HomePage = () => {
+  const largeScreen = useMediaQuery("min-width: 768px");
   return (
     <main>
       <div>
@@ -21,7 +23,7 @@ const HomePage = () => {
           />
         </div>
         <div className="bg-gradient-to-b from-white via-green-200 to-green-500 flex items-center flex-col w-full">
-          <h1 className="font-extrabold items-center text-center min-w-fit text-2xl py-4 text-black">
+          <h1 className="font-extrabold items-center text-center min-w-fit text-2xl py-12 text-black">
             The{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 to-yellow-500 text-5xl">
               NEW
@@ -80,10 +82,131 @@ const HomePage = () => {
               </motion.button>
             </a>
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <div className="bg-white w-full h-fit rounded-lg font-extrabold text-3xl p-4">
-              Earn Rewards
+          <div className="flex flex-col w-[90vw] items-center justify-center">
+            <div className="w-full">
+              <div className="bg-white bg-opacity-75 bg-gradient-to-b from-white to-green-200 shadow-2xl   h-full rounded-lg font-extrabold text-2xl p-4">
+                Earn FREE{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-500 ">
+                  Burger Blitz
+                </span>
+                <div className="text-sm font-normal py-1">
+                  <h1>Free is always better than not being free.</h1>
+                  <div className="flex items-center justify-between pt-4 text-2xl font-extrabold">
+                    <h1 className="text-red-500">10pts</h1>
+                    <h1 className="text-base text-left">FREE DRINK</h1>
+                  </div>
+                  <div className="flex items-center justify-between text-2xl font-extrabold">
+                    <h1 className="text-red-500">20pts</h1>
+                    <h1 className="text-base">FREE SMALL BURGER</h1>
+                  </div>
+                  <div className="flex items-center justify-between text-2xl font-extrabold">
+                    <h1 className="text-red-500">60pts</h1>
+                    <h1 className="text-base">FREE BIG BURGER</h1>
+                  </div>
+                  <div className="flex items-center justify-between text-2xl font-extrabold">
+                    <h1 className="text-red-500">100pts</h1>
+                    <h1 className="text-base">FREE COMBO</h1>
+                  </div>
+                  <div className="flex justify-between py-4 items-center">
+                    <div className="py-2 flex items-center gap-1">
+                      <h1>Your current points:</h1>
+                      <h1 className="text-2xl font-extrabold text-red-500">
+                        0
+                      </h1>
+                    </div>
+                    <div>
+                      <a href="order">
+                        <motion.button
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          className="flex items-center no_transition shadow-2xl border justify-center bg-gradient-to-r min-w-fit text-white from-green-500 from-10%  via-30% to-emerald-500 to-90% font-bold px-3 py-2  rounded-lg"
+                        >
+                          Claim Rewards
+                        </motion.button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>{" "}
+        </div>{" "}
+        <div className="py-10 items-center flex flex-col -mt-16">
+          <img
+            className=""
+            src="https://freeiconshop.com/wp-content/uploads/edd/app-store-badge.png"
+          ></img>
+          <img
+            className="w-auto h-[114px] -mt-24"
+            src="https://www.aps.edu/students-parents/images/downloadOnTheGooglePlayStoreBadge.png/image"
+          ></img>
+        </div>
+        <div className="grid md:grid-cols-2  grid-cols-1 gap-10 pb-20">
+          <div className="bg-white  shadow-2xl max-w-[90vw] md:max-w-[40vw]   rounded-lg font-extrabold text-3xl p-4">
+            <h1>Blitz Mondays</h1>
+            <p className="text-sm py-2 font-normal ">
+              We hate Mondays. You hate Mondays. How can we make Mondays better?
+              If we gave you free food that would make our Monday much worse.
+            </p>
+
+            <h1 className="text-base">
+              From 7AM-10AM enjoy:{" "}
+              <ul className="">
+                <li>
+                  {" "}
+                  <h1 className="text-2xl py-2 text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-500">
+                    50% off all breakfast meals
+                  </h1>
+                  <li>
+                    {" "}
+                    <h1 className="text-2xl py-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-amber-500">
+                      FREE Coffee
+                    </h1>
+                  </li>
+                  <li>
+                    {" "}
+                    <h1 className="text-2xl py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-700">
+                      2x Bonus Rewards Points
+                    </h1>
+                  </li>
+                </li>
+              </ul>
+              <div className="flex justify-between">
+                <a className="underline font-normal text-black py-2">
+                  Terms & Conditions
+                </a>
+                <a href="order">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="flex items-center no_transition shadow-2xl border justify-center bg-gradient-to-r min-w-fit text-white from-green-500 from-10%  via-30% to-emerald-500 to-90% font-bold px-3 py-2  rounded-lg"
+                  >
+                    Order
+                  </motion.button>
+                </a>
+              </div>
+            </h1>
+          </div>{" "}
+          <div className="bg-white max-h-fit shadow-2xl  max-w-[90vw] md:max-w-[40vw]  rounded-lg font-extrabold text-3xl p-4">
+            <h1>Try our new Shakes!</h1>
+            <div className="flex items-center justify-center">
+              <img
+                className="w-60 h-60"
+                src="https://png.pngtree.com/png-clipart/20231018/original/pngtree-3-cup-milkshake-png-image_13354288.png"
+              ></img>
+            </div>
+            <div className="flex justify-between">
+              <div></div>
+              <a href="order">
+                <motion.button
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="flex items-center no_transition shadow-2xl border justify-center bg-gradient-to-r min-w-fit text-white from-green-500 from-10%  via-30% to-emerald-500 to-90% font-bold px-3 py-2 text-base rounded-lg"
+                >
+                  Order
+                </motion.button>
+              </a>
+            </div>{" "}
           </div>
         </div>
       </div>
