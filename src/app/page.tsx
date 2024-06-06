@@ -196,7 +196,14 @@ const HomePage = () => {
               ></img>
             </div>
             <div className="flex justify-between">
-              <div></div>
+              <div>
+                <h2 className="text-base font-normal">
+                  Starting at{" "}
+                  <span className=" py-2 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-500">
+                    $2.49 CAD
+                  </span>
+                </h2>
+              </div>
               <a href="order">
                 <motion.button
                   whileHover={{ scale: 1.1 }}
