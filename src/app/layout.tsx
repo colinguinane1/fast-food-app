@@ -7,6 +7,7 @@ import { Manrope } from "next/font/google";
 import { Roboto } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
+import Footer from "./components/Footer";
 
 import Navbar from "./components/Navbar";
 

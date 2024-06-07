@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "@react-hook/media-query";
+import Footer from "./components/Footer";
 
 const HomePage = () => {
   const largeScreen = useMediaQuery("min-width: 768px");
@@ -141,12 +142,11 @@ const HomePage = () => {
             src="https://www.aps.edu/students-parents/images/downloadOnTheGooglePlayStoreBadge.png/image"
           ></img>
         </div>
-        <div className="grid md:grid-cols-2  grid-cols-1 gap-10 pb-20">
-          <div className="bg-white  shadow-2xl max-w-[90vw] md:max-w-[40vw]   rounded-lg font-extrabold text-3xl p-4">
-            <h1>Blitz Mondays</h1>
+        <div className="grid md:grid-cols-2 max-w-[90vw] min-w-[90vw]  grid-cols-1 gap-10 pb-20">
+          <div className="bg-white bg-gradient-to-br w-full from-green-100 to-white  shadow-2xl max-w-[90vw]    rounded-lg font-extrabold text-3xl p-4">
+            <h1 className="text-center text-yellow-500">BLITZ MONDAYS</h1>
             <p className="text-sm py-2 font-normal ">
               We hate Mondays. You hate Mondays. How can we make Mondays better?
-              If we gave you free food that would make our Monday much worse.
             </p>
 
             <h1 className="text-base">
@@ -155,8 +155,9 @@ const HomePage = () => {
                 <li>
                   {" "}
                   <h1 className="text-2xl py-2 text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-500">
-                    50% off all breakfast meals
+                    50% off breakfast meals
                   </h1>
+                  <li />
                   <li>
                     {" "}
                     <h1 className="text-2xl py-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-amber-500">
@@ -187,7 +188,7 @@ const HomePage = () => {
               </div>
             </h1>
           </div>{" "}
-          <div className="bg-white max-h-fit shadow-2xl  max-w-[90vw] md:max-w-[40vw]  rounded-lg font-extrabold text-3xl p-4">
+          <div className="bg-white bg-gradient-to-t from-green-200 to-transparent max-h-fit shadow-2xl  max-w-[90vw]  rounded-lg font-extrabold text-3xl p-4">
             <h1>Try our new Shakes!</h1>
             <div className="flex items-center justify-center">
               <img
@@ -217,6 +218,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </main>
   );
 };
