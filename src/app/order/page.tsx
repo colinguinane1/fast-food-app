@@ -145,8 +145,8 @@ const IndexPage: React.FC = () => {
       {loading && (
         <div className="w-screen h-screen absolute top-0 flex flex-col items-center justify-center">
           <Oval
-            height={80}
-            width={80}
+            height={120}
+            width={120}
             color="#ffffff"
             visible={true}
             ariaLabel="oval-loading"
@@ -154,7 +154,9 @@ const IndexPage: React.FC = () => {
             strokeWidth={2}
             strokeWidthSecondary={2}
           />
-          <h1 className="text-white font-extrabold">Loading...</h1>
+          <h1 className="text-white font-extrabold py-4 text-2xl">
+            Loading...
+          </h1>
         </div>
       )}
       {!loading && (
