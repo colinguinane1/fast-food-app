@@ -7,6 +7,7 @@ import DipIngredients from "./customizations/DipIngredients";
 import SizeCustomization from "./customizations/SizeCustomization";
 
 interface ItemData {
+  itemNewProduct: boolean;
   itemImageURL: string;
   itemName: string;
   itemCalories: number;
@@ -133,7 +134,7 @@ const Modal: React.FC<ModalProps> = ({
                 </svg>
               </button>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center py-4">
               <img
                 src={itemData.itemImageURL}
                 className="w-full h-full max-w-[400px]"
@@ -147,6 +148,11 @@ const Modal: React.FC<ModalProps> = ({
               {itemData.itemVegetarian && (
                 <h1 className="bg-yellow-300 px-3 rounded-full border-yellow-500 border text-base text-yellow-600">
                   Vegetarian
+                </h1>
+              )}
+              {itemData.itemNewProduct && (
+                <h1 className="bg-red-300 text-sm px-3 rounded-full border-red-500 border text-red-500">
+                  New
                 </h1>
               )}
             </div>

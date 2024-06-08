@@ -151,27 +151,43 @@ const HomePage = () => {
 
             <h1 className="text-base">
               From 7AM-10AM enjoy:{" "}
-              <ul className="">
-                <li>
-                  {" "}
-                  <h1 className="text-2xl py-2 text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-500">
-                    50% off breakfast meals
+              <div className="  py-4 grid items-center justify-center  gap-4  ">
+                {" "}
+                <div className="bg-green-200 rounded-full  h-40 w-40 flex items-center">
+                  <h1 className="text-xl py-2 max-w-40 text-center  text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-500">
+                    <span className="text-3xl">50% off</span> breakfast meals
                   </h1>
-                  <li />
-                  <li>
-                    {" "}
-                    <h1 className="text-2xl py-2 text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-amber-500">
-                      FREE Coffee
-                    </h1>
-                  </li>
-                  <li>
-                    {" "}
-                    <h1 className="text-2xl py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-700">
-                      2x Bonus Rewards Points
-                    </h1>
-                  </li>
-                </li>
-              </ul>
+                </div>{" "}
+                <div className="bg-amber-200 rounded-full h-40 w-40 justify-center flex items-center">
+                  <h1 className="text-xl text-center flex max-w-40 flex-col items-center  text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-amber-500">
+                    FREE Coffee
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-tabler icon-tabler-coffee stroke-amber-600"
+                      width="44"
+                      height="44"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="#2c3e50"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M3 14c.83 .642 2.077 1.017 3.5 1c1.423 .017 2.67 -.358 3.5 -1c.83 -.642 2.077 -1.017 3.5 -1c1.423 -.017 2.67 .358 3.5 1" />
+                      <path d="M8 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2" />
+                      <path d="M12 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2" />
+                      <path d="M3 10h14v5a6 6 0 0 1 -6 6h-2a6 6 0 0 1 -6 -6v-5z" />
+                      <path d="M16.746 16.726a3 3 0 1 0 .252 -5.555" />
+                    </svg>
+                  </h1>{" "}
+                </div>
+                <div className="bg-blue-200 rounded-full h-40 w-40 justify-center flex items-center">
+                  <h1 className="text-xl text-center py-2 max-w-40 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-700">
+                    <span className="text-5xl">2x</span> Bonus Points
+                  </h1>
+                </div>
+              </div>
               <div className="flex justify-between">
                 <a className="underline font-normal text-black py-2">
                   Terms & Conditions

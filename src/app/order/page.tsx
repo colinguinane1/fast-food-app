@@ -9,12 +9,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useMediaQuery } from "@react-hook/media-query";
 import { Oval } from "react-loader-spinner"; // Import the spinner
 import Footer from "../components/Footer";
+import LoadingSpinner from "../components/ui/LoadingSpinner";
 
 interface Category {
   id: string;
+  CategoryNewProduct: boolean;
 }
 
 interface ItemData {
+  itemNewProduct: boolean;
   itemImageURL: string;
   itemName: string;
   itemDescription: string;
@@ -102,7 +105,6 @@ const IndexPage: React.FC = () => {
   }, []);
 
   const handleCategoryClick = async (categoryId: string) => {
-    setLoading(true);
     const querySnapshot = await getDocs(
       collection(db, "categories", categoryId, "items")
     );
@@ -118,6 +120,7 @@ const IndexPage: React.FC = () => {
 
   const handleItemClick = (itemData: DocumentData) => {
     setSelectedItemData({
+      itemNewProduct: itemData.itemNewProduct,
       itemImageURL: itemData.itemImageURL,
       itemName: itemData.itemName,
       itemDescription: itemData.itemDescription,
@@ -142,23 +145,7 @@ const IndexPage: React.FC = () => {
   return (
     <main className="md:flex mt-[70px] md:mt-[57px]">
       <Navbar />
-      {loading && (
-        <div className="w-screen h-screen absolute top-0 flex flex-col items-center justify-center">
-          <Oval
-            height={120}
-            width={120}
-            color="#ffffff"
-            visible={true}
-            ariaLabel="oval-loading"
-            secondaryColor="#4fa94d"
-            strokeWidth={2}
-            strokeWidthSecondary={2}
-          />
-          <h1 className="text-white font-extrabold py-4 text-2xl">
-            Loading...
-          </h1>
-        </div>
-      )}
+      {loading && <LoadingSpinner />}
       {!loading && (
         <>
           <div className="md:h-screen h-10 hide-scrollbar sc md:flex decoration shaodw-lg bg-gradient-to-b from-green-500 to-green-600 text-white flex-col justify-between">
@@ -168,7 +155,7 @@ const IndexPage: React.FC = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   key={index}
-                  className={`capitalize mr-1 no_transition font-extrabold px-4 py-1 cursor-pointer ${
+                  className={`capitalize gap-2 items-center flex mr-1 no_transition font-extrabold px-4 py-1 cursor-pointer ${
                     selectedCategory === category.id
                       ? " border-green-400 border bg-green-400 rounded-lg"
                       : "hover:text-green-100"
@@ -176,6 +163,9 @@ const IndexPage: React.FC = () => {
                   onClick={() => handleCategoryClick(category.id)}
                 >
                   {category.id}
+                  {category.CategoryNewProduct && (
+                    <h1 className="h-3 w-3 rounded-full animate-pulse bg-red-500"></h1>
+                  )}
                 </motion.li>
               ))}
             </ul>
@@ -211,7 +201,7 @@ const IndexPage: React.FC = () => {
                           <p className="text-sm max-w-80 py-1 min-w-40">
                             {item.itemDescription}
                           </p>
-                          <div className="flex items-center justify-between gap-4 max-w-[450px]">
+                          <div className="flex items-center  gap-4 max-w-[450px]">
                             <h1 className="font-extralight py-1 flex gap-2 items-center text-sm">
                               {item.itemSale ? (
                                 <>
@@ -244,7 +234,7 @@ const IndexPage: React.FC = () => {
                                   </h1>{" "}
                                   <h1 className="line-through min-w-fit text-gray-200">
                                     ${item.itemBasePrice} {currentCurrency}
-                                  </h1>
+                                  </h1>{" "}
                                 </>
                               ) : (
                                 <h1>
@@ -252,7 +242,12 @@ const IndexPage: React.FC = () => {
                                 </h1>
                               )}
                             </h1>
-                          </div>
+                            {item.itemNewProduct && (
+                              <h1 className="bg-red-300 text-sm px-3 rounded-full border-red-500 border text-red-500">
+                                New
+                              </h1>
+                            )}
+                          </div>{" "}
                         </div>
                       </div>
                       <div className="">
