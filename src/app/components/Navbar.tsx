@@ -120,47 +120,74 @@ const Navbar = ({}) => {
               <AnimatePresence>
                 {navMenu && (
                   <motion.div
-                    initial={{ y: -500 }}
-                    animate={{ y: 0 }}
-                    exit={{ y: -500 }}
-                    transition={{ type: "spring", duration: 0.4 }}
-                    className="fixed h-screen w-screen top-12 right-0   no_transition"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="fixed h-screen w-screen top-0 right-0    no_transition"
                   >
                     <ul
-                      className={`p-4 flex z-[10000]  ${
+                      className={`py-4 px-2 flex z-[10000]  ${
                         scrolled ? "" : ""
-                      }text-2xl flex-col gap-4 rounded-lg shadow-2xl border-2    font-extrabold text-white bg-green-400  `}
+                      }text-2xl flex-col gap-4 rounded-lg h-screen shadow-2xl     font-extrabold text-white bg-green-400  `}
                     >
-                      <a href="./home">
-                        <li className="flex gap-1 items-center">
-                          <div className="flex hover:bg-green-300 rounded-lg py-1 w-full items-center ">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="icon icon-tabler icon-tabler-home-2 stroke-white hover:stroke-green-200"
-                              width="25"
-                              height="25"
-                              viewBox="0 0 24 24"
-                              stroke-width="1.5"
-                              stroke="#2c3e50"
-                              fill="none"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            >
-                              <path
-                                stroke="none"
-                                d="M0 0h24v24H0z"
+                      <div className="flex justify-between w-full  ">
+                        <a href="./home" className="w-full pr-4 ">
+                          <li className="flex gap-1 items-center w-full">
+                            <div className="flex hover:bg-green-300 rounded-lg py-1 w-full p-4 gap-2 items-center ">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="icon icon-tabler icon-tabler-home-2 stroke-white hover:stroke-green-200"
+                                width="25"
+                                height="25"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="#2c3e50"
                                 fill="none"
-                              />
-                              <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                              <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                              <path d="M10 12h4v4h-4z" />
-                            </svg>
-                            Home
-                          </div>
-                        </li>
-                      </a>
-                      <a href="./order">
-                        <li className="flex hover:bg-green-300 rounded-lg py-1 w-full items-center">
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              >
+                                <path
+                                  stroke="none"
+                                  d="M0 0h24v24H0z"
+                                  fill="none"
+                                />
+                                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                <path d="M10 12h4v4h-4z" />
+                              </svg>
+                              Home
+                            </div>
+                          </li>
+                        </a>
+                        <motion.button
+                          whileHover={navMenu ? { scale: 1.0 } : { scale: 1.1 }}
+                          whileTap={navMenu ? { scale: 1.0 } : { scale: 0.9 }}
+                          className="group no_transition flex items-center z-[1] gap-4"
+                          onClick={toggleMenu}
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className={`icon icon-tabler icon-tabler-menu-2 stroke-black   rounded-full  p-1 group:hover:stroke-black ${
+                              navMenu ? "bg-green-200" : "bg-white"
+                            }`}
+                            width="30"
+                            height="30"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="#2c3e50"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          >
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <path d="M4 6l16 0" />
+                            <path d="M4 12l16 0" />
+                            <path d="M4 18l16 0" />
+                          </svg>{" "}
+                        </motion.button>
+                      </div>
+                      <a href="./order" className="w-full">
+                        <li className="flex hover:bg-green-300 w-full rounded-lg py-1 w-full p-4 gap-2 items-center">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="icon icon-tabler icon-tabler-truck-delivery stroke-white"
@@ -182,7 +209,7 @@ const Navbar = ({}) => {
                           Order
                         </li>
                       </a>
-                      <li className="flex hover:bg-green-300 rounded-lg py-1 w-full items-center">
+                      <li className="flex hover:bg-green-300 rounded-lg py-1 p-4 gap-2 w-full items-center">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           className="icon icon-tabler icon-tabler-users stroke-white"
@@ -204,7 +231,7 @@ const Navbar = ({}) => {
                         <a href="./careers">Careers</a>
                       </li>
                       <a href="./contact">
-                        <li className="flex hover:bg-green-300 rounded-lg py-1 w-full items-center">
+                        <li className="flex hover:bg-green-300 rounded-lg py-1 p-4 gap-2 w-full items-center">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="icon icon-tabler icon-tabler-address-book stroke-white"

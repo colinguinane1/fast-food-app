@@ -16,7 +16,7 @@ const Footer = () => {
       <h3 className="flex gap-1">
         Visit my{" "}
         <a
-          href="https://colin-g.me"
+          href="https://c-g.dev"
           target="_blank"
           className="font-bold flex items-center"
         >

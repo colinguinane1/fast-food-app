@@ -153,12 +153,12 @@ const HomePage = () => {
               From 7AM-10AM enjoy:{" "}
               <div className="  py-4 grid items-center justify-center  gap-4  ">
                 {" "}
-                <div className="bg-green-200 rounded-full  h-40 w-40 flex items-center">
-                  <h1 className="text-xl py-2 max-w-40 text-center  text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-500">
+                <div className="bg-green-200 rounded-full shadow-2xl  h-40 w-40 flex items-center">
+                  <h1 className="text-xl py-2 max-w-40  text-center  text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-500">
                     <span className="text-3xl">50% off</span> breakfast meals
                   </h1>
                 </div>{" "}
-                <div className="bg-amber-200 rounded-full h-40 w-40 justify-center flex items-center">
+                <div className="bg-amber-200 shadow-2xl rounded-full h-40 w-40 justify-center flex items-center">
                   <h1 className="text-xl text-center flex max-w-40 flex-col items-center  text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-amber-500">
                     FREE Coffee
                     <svg
@@ -182,7 +182,7 @@ const HomePage = () => {
                     </svg>
                   </h1>{" "}
                 </div>
-                <div className="bg-blue-200 rounded-full h-40 w-40 justify-center flex items-center">
+                <div className="bg-blue-200 rounded-full shadow-2xl h-40 w-40 justify-center flex items-center">
                   <h1 className="text-xl text-center py-2 max-w-40 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-700">
                     <span className="text-5xl">2x</span> Bonus Points
                   </h1>

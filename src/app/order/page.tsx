@@ -164,7 +164,9 @@ const IndexPage: React.FC = () => {
                 >
                   {category.id}
                   {category.CategoryNewProduct && (
-                    <h1 className="h-3 w-3 rounded-full animate-pulse bg-red-500"></h1>
+                    <h1 className="text-xs   bg-red-300  px-3 rounded-full border-red-500 border text-red-500 ">
+                      New
+                    </h1>
                   )}
                 </motion.li>
               ))}
