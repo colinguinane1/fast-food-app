@@ -144,7 +144,7 @@ const IndexPage: React.FC = () => {
 
   return (
     <main className="md:flex mt-[70px] md:mt-[57px]">
-      <Navbar />
+      <Navbar cartValue={cartValue} />
       {loading && <LoadingSpinner />}
       {!loading && (
         <>

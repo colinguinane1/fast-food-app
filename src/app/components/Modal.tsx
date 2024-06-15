@@ -5,6 +5,7 @@ import ExtraIngredients from "./customizations/ExtraIngredients";
 import MainIngredients from "./customizations/MainIngredients";
 import DipIngredients from "./customizations/DipIngredients";
 import SizeCustomization from "./customizations/SizeCustomization";
+import Navbar from "./Navbar";
 
 interface ItemData {
   itemNewProduct: boolean;

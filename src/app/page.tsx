@@ -10,9 +10,7 @@ const HomePage = () => {
   const largeScreen = useMediaQuery("min-width: 768px");
   return (
     <main>
-      <div>
-        <Navbar />
-      </div>
+      <Navbar cartValue={0} />
       <div className="flex flex-col items-center justify-center mt-[40px]">
         {" "}
         <div className="w-screen items-center flex justify-center  bg-white">
