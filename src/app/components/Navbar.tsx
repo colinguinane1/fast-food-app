@@ -44,7 +44,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
       >
         <motion.ul
           layout
-          className="flex items-center font-extrabold md:py-2 py-4 justify-between mx-4 md:mr-10"
+          className=" items-center hidden md:flex font-extrabold md:py-2 py-4 justify-between mx-4 md:mr-10"
         >
           <li className="">
             <Image
@@ -98,7 +98,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
             ""
           )}
           <li>
-            <button onClick={toggleMenu}>
+            <motion.button onClick={toggleMenu}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className={`icon icon-tabler transition-all duration-500  icon-tabler-chevron-down block md:hidden ${
@@ -116,45 +116,136 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M6 9l6 6l6 -6" />
               </svg>
-            </button>
+            </motion.button>
           </li>
         </motion.ul>
         <AnimatePresence>
-          {navMenu && (
-            <>
-              <motion.div
-                initial={{ y: -150 }}
-                animate={{ y: 0 }}
-                exit={{ y: -150 }}
-                className="mt-4 block md:hidden w-full"
-                transition={{ type: "tween", duration: 0.2 }}
-                layout
-              >
-                <ul className="flex font-extrabold justify-between h-10 -mt-4 bg-green-600 px-6 items-center">
-                  <li>
-                    <a href="./home">Home</a>
-                  </li>
-                  <li>
-                    <a href="./order">Order</a>
-                  </li>
-                  <li>
-                    <a href="./careers">Careers</a>
-                  </li>
-                  <li>
-                    <a href="./contact">Contact</a>
-                  </li>
-                </ul>
-              </motion.div>
+          <>
+            <motion.div
+              initial={{ y: -150 }}
+              animate={{ y: 0 }}
+              exit={{ y: -150 }}
+              className="mt-4 fixed bottom-0 block md:hidden z-[10000] w-full"
+              transition={{ type: "tween", duration: 0.2 }}
+              layout
+            >
+              <ul className="flex text-xs font-extrabold justify-between h-fit py-2 -mt-4 bg-green-600 px-6 items-center">
+                <li>
+                  <a
+                    href="./home"
+                    className="flex items-center justify-center flex-col"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-tabler icon-tabler-home-2"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="#ffffff"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
+                      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                      <path d="M10 12h4v4h-4z" />
+                    </svg>
+                    <label>Home</label>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./order"
+                    className="flex items-center justify-center flex-col"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-tabler icon-tabler-truck-delivery"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="#ffffff"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                      <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                      <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" />
+                      <path d="M3 9l4 0" />
+                    </svg>
+                    <label>Order</label>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./careers"
+                    className="flex items-center justify-center flex-col"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-tabler icon-tabler-users"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="#ffffff"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+                      <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                      <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
+                    </svg>
+                    <label>Careers</label>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="./contact"
+                    className="flex items-center justify-center flex-col"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-tabler icon-tabler-address-book"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="#ffffff"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M20 6v12a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2z" />
+                      <path d="M10 16h6" />
+                      <path d="M13 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                      <path d="M4 8h3" />
+                      <path d="M4 12h3" />
+                      <path d="M4 16h3" />
+                    </svg>
+                    <label>Contact</label>
+                  </a>
+                </li>
+              </ul>{" "}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ type: "tween", duration: 0.2, delay: 0.28 }}
-              >
-                <div className="fixed block md:hidden h-full w-full bg-gradient-to-b from-black to-transparent  opacity-40"></div>
-              </motion.div>
-            </>
-          )}
+                transition={{ type: "tween", duration: 0.2 }}
+                className="h-full"
+                layout
+              ></motion.div>
+            </motion.div>
+          </>
         </AnimatePresence>
       </motion.div>
     </main>
