@@ -107,12 +107,12 @@ const Modal: React.FC<ModalProps> = ({
       <div className="fixed flex h-screen items-center justify-center overflow-hidden">
         <div
           ref={modalRef}
-          className="bg-white md:w-[70vw] w-screen md:min-h-[40vh] md:h-fit md:max-h-[80vh] rounded-lg h-full p-4 overflow-y-auto overflow-hidden"
+          className="bg-white md:w-[70vw] w-screen md:min-h-[40vh] pb-20 md:h-fit md:max-h-[80vh] md:rounded-lg h-full p-4 overflow-y-auto overflow-hidden"
         >
           <div className=" py-3 border-b mb-3">
             <div className="flex flex-col items-center">
               <button
-                className="block md:hidden mt-10 md:-mt-6 py-6 px-2"
+                className="block md:hidden  md:-mt-6 py-4 px-2"
                 onClick={toggleModal}
               >
                 <svg
