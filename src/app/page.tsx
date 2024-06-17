@@ -8,9 +8,10 @@ import Footer from "./components/Footer";
 
 const HomePage = () => {
   const largeScreen = useMediaQuery("min-width: 768px");
+  const currentPage = "Home";
   return (
     <main>
-      <Navbar cartValue={0} />
+      <Navbar cartValue={0} currentPage={currentPage} />
       <div className="flex flex-col items-center justify-center mt-[40px]">
         {" "}
         <div className="w-screen items-center flex justify-center  bg-white">

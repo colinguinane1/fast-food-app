@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import { useState } from "react";
 import { motion, spring } from "framer-motion";
 const Page = () => {
+  const currentPage = "Contact";
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -33,12 +34,12 @@ const Page = () => {
 
   return (
     <>
-      <Navbar cartValue={0} />
+      <Navbar cartValue={0} currentPage={currentPage} />
       <motion.div className="no_transition z-[0]">
         <div className="flex items-center h-fit dark:bg-transparent">
           <div className="container mx-auto my-auto mt-32">
             <div className="mx-auto pb-[40%] rounded-md shadow-sm">
-              <div className="text-center ">
+              <div className="text-center">
                 <h1 className="my-3 text-3xl font-semibold text-white ">
                   Contact
                 </h1>

@@ -5,9 +5,10 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const CareersPage = () => {
+  const currentPage = "Careers";
   return (
     <main>
-      <Navbar cartValue={0} />
+      <Navbar cartValue={0} currentPage={currentPage} />
       <div className="flex flex-col h-screen items-center mt-[70px]">
         <h2 className="text-white py-10">Current Available Positions:</h2>
         <div className="flex flex-col gap-10">

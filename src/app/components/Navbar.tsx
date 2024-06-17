@@ -5,9 +5,10 @@ import { AnimatePresence, motion } from "framer-motion";
 
 interface NavbarProps {
   cartValue: number;
+  currentPage: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
+const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
   const [navMenu, setNavMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentCurrency, setCurrentCurrency] = useState("CAD");
@@ -122,14 +123,19 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
         <AnimatePresence>
           <>
             <motion.div
-              initial={{ y: -150 }}
-              animate={{ y: 0 }}
-              exit={{ y: -150 }}
-              className="mt-4 fixed bottom-0 block md:hidden z-[10000] w-full"
+              className={`mt-4 fixed bottom-0 block transition-all duration-700 md:hidden z-[10000] w-full ${
+                scrolled ? "bottom-6 px-4 rounded-lg" : ""
+              }`}
               transition={{ type: "tween", duration: 0.2 }}
               layout
             >
-              <ul className="flex text-xs font-extrabold justify-between h-fit py-2 -mt-4 bg-green-600 px-6 items-center">
+              <ul
+                className={`flex text-xs transition-all duration-700 font-extrabold justify-between h-fit py-2 -mt-4  px-6 items-center ${
+                  scrolled
+                    ? "rounded-lg py-4 bg-black bg-opacity-50"
+                    : " bg-green-600"
+                }`}
+              >
                 <li>
                   <a
                     href="./home"
@@ -137,7 +143,9 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="icon icon-tabler icon-tabler-home-2"
+                      className={` ${
+                        currentPage === "Home" ? "border-b" : ""
+                      } icon icon-tabler icon-tabler-home-2`}
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
@@ -152,7 +160,9 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
                       <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
                       <path d="M10 12h4v4h-4z" />
                     </svg>
-                    <label>Home</label>
+                    <label className={`${scrolled ? "hidden" : ""}`}>
+                      Home
+                    </label>
                   </a>
                 </li>
                 <li>
@@ -162,7 +172,9 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="icon icon-tabler icon-tabler-truck-delivery"
+                      className={`icon icon-tabler icon-tabler-truck-delivery ${
+                        currentPage === "Order" ? "border-b" : ""
+                      } `}
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
@@ -178,7 +190,9 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
                       <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" />
                       <path d="M3 9l4 0" />
                     </svg>
-                    <label>Order</label>
+                    <label className={`${scrolled ? "hidden" : ""}`}>
+                      Order
+                    </label>
                   </a>
                 </li>
                 <li>
@@ -188,7 +202,9 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="icon icon-tabler icon-tabler-users"
+                      className={` ${
+                        currentPage === "Careers" ? "border-b" : ""
+                      } icon icon-tabler icon-tabler-users`}
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
@@ -204,17 +220,21 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
                       <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                       <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
                     </svg>
-                    <label>Careers</label>
+                    <label className={`${scrolled ? "hidden" : ""}`}>
+                      Careers
+                    </label>
                   </a>
                 </li>
-                <li>
+                <li className="">
                   <a
                     href="./contact"
-                    className="flex items-center justify-center flex-col"
+                    className="flex items-center justify-center flex-col "
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className="icon icon-tabler icon-tabler-address-book"
+                      className={`icon icon-tabler icon-tabler-address-book ${
+                        currentPage === "Contact" ? "border-b" : ""
+                      } `}
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
@@ -232,7 +252,9 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue }) => {
                       <path d="M4 12h3" />
                       <path d="M4 16h3" />
                     </svg>
-                    <label>Contact</label>
+                    <label className={`${scrolled ? "hidden" : ""}`}>
+                      Contact
+                    </label>
                   </a>
                 </li>
               </ul>{" "}
