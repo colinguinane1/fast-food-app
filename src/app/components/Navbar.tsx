@@ -39,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
     <main>
       <motion.div
         layout
-        className={`top-0 h-fit fixed bg-green-500 z-[10000] text-white w-screen ${
+        className={`top-0 fixed bg-green-500 z-[10000] text-white w-screen ${
           scrolled ? "text-white shadow-2xl" : ""
         }`}
       >
@@ -129,7 +129,8 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
               transition={{ type: "tween", duration: 0.2 }}
               layout
             >
-              <ul
+              <motion.ul
+                layout
                 className={`flex text-xs transition-all duration-700 font-extrabold justify-between h-fit py-2 -mt-4  px-6 items-center ${
                   scrolled
                     ? "rounded-lg py-4 bg-black bg-opacity-50"
@@ -144,7 +145,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className={` ${
-                        currentPage === "Home" ? "border-b" : ""
+                        currentPage === "Home" ? "fill-white" : ""
                       } icon icon-tabler icon-tabler-home-2`}
                       width="25"
                       height="25"
@@ -160,9 +161,17 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                       <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
                       <path d="M10 12h4v4h-4z" />
                     </svg>
-                    <label className={`${scrolled ? "hidden" : ""}`}>
-                      Home
-                    </label>
+                    <AnimatePresence>
+                      {!scrolled && (
+                        <motion.label
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          exit={{ scale: 0 }}
+                        >
+                          Home
+                        </motion.label>
+                      )}
+                    </AnimatePresence>
                   </a>
                 </li>
                 <li>
@@ -173,7 +182,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className={`icon icon-tabler icon-tabler-truck-delivery ${
-                        currentPage === "Order" ? "border-b" : ""
+                        currentPage === "Order" ? "fill-white" : ""
                       } `}
                       width="25"
                       height="25"
@@ -190,9 +199,17 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                       <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" />
                       <path d="M3 9l4 0" />
                     </svg>
-                    <label className={`${scrolled ? "hidden" : ""}`}>
-                      Order
-                    </label>
+                    <AnimatePresence>
+                      {!scrolled && (
+                        <motion.label
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          exit={{ scale: 0 }}
+                        >
+                          Order
+                        </motion.label>
+                      )}
+                    </AnimatePresence>
                   </a>
                 </li>
                 <li>
@@ -203,7 +220,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className={` ${
-                        currentPage === "Careers" ? "border-b" : ""
+                        currentPage === "Careers" ? "fill-white" : ""
                       } icon icon-tabler icon-tabler-users`}
                       width="25"
                       height="25"
@@ -220,9 +237,17 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                       <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                       <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
                     </svg>
-                    <label className={`${scrolled ? "hidden" : ""}`}>
-                      Careers
-                    </label>
+                    <AnimatePresence>
+                      {!scrolled && (
+                        <motion.label
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          exit={{ scale: 0 }}
+                        >
+                          Careers
+                        </motion.label>
+                      )}
+                    </AnimatePresence>
                   </a>
                 </li>
                 <li className="">
@@ -233,7 +258,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className={`icon icon-tabler icon-tabler-address-book ${
-                        currentPage === "Contact" ? "border-b" : ""
+                        currentPage === "Contact" ? "fill-white" : ""
                       } `}
                       width="25"
                       height="25"
@@ -252,12 +277,20 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                       <path d="M4 12h3" />
                       <path d="M4 16h3" />
                     </svg>
-                    <label className={`${scrolled ? "hidden" : ""}`}>
-                      Contact
-                    </label>
+                    <AnimatePresence>
+                      {!scrolled && (
+                        <motion.label
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          exit={{ scale: 0 }}
+                        >
+                          Contact
+                        </motion.label>
+                      )}
+                    </AnimatePresence>
                   </a>
                 </li>
-              </ul>{" "}
+              </motion.ul>{" "}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

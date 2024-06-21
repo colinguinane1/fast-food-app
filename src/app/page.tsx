@@ -12,14 +12,14 @@ const HomePage = () => {
   return (
     <main>
       <Navbar cartValue={0} currentPage={currentPage} />
-      <div className="flex flex-col items-center justify-center mt-[40px]">
+      <div className="flex flex-col items-center justify-center md:mt-[40px]">
         {" "}
         <div className="w-screen items-center flex justify-center  bg-white">
           <img
             src={
               "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ec545603-cf4e-48e0-936d-5376ea12fdc0/dh7y3rq-ceae25e3-109f-4f8a-90b2-47e2ec518212.png/v1/fill/w_1280,h_732/burger_king_bk_royal_crispy_chicken_png_2024_by_wcwjunkbox_dh7y3rq-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzMyIiwicGF0aCI6IlwvZlwvZWM1NDU2MDMtY2Y0ZS00OGUwLTkzNmQtNTM3NmVhMTJmZGMwXC9kaDd5M3JxLWNlYWUyNWUzLTEwOWYtNGY4YS05MGIyLTQ3ZTJlYzUxODIxMi5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.WltOdAtW8ebALMSUdVHkF5RkfVGm45p6fmu1HwOUeF8"
             }
-            className="w- pt-20 "
+            className="pt-20 "
           />
         </div>
         <div className="bg-gradient-to-b from-white via-green-200 to-green-500 flex items-center flex-col w-full">
@@ -150,21 +150,21 @@ const HomePage = () => {
 
             <h1 className="text-base">
               From 7AM-10AM enjoy:{" "}
-              <div className="  py-4 grid items-center justify-center  gap-4  ">
+              <div className="  py-4 grid  gap-4 md:scale-100  ">
                 {" "}
-                <div className="bg-green-200 rounded-full shadow-2xl  h-40 w-40 flex items-center">
-                  <h1 className="text-xl py-2 max-w-40  text-center  text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-500">
-                    <span className="text-3xl">50% off</span> breakfast meals
+                <div className="bg-green-200 w-full  p-2 rounded-lg px-8 flex items-center">
+                  <h1 className="text-xl py-2    text-center  text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-500">
+                    <span className="text-2xl">50% off</span> breakfast meals
                   </h1>
                 </div>{" "}
-                <div className="bg-amber-200 shadow-2xl rounded-full h-40 w-40 justify-center flex items-center">
-                  <h1 className="text-xl text-center flex max-w-40 flex-col items-center  text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-amber-500">
+                <div className="bg-amber-200 w-full p-2 rounded-lg px-8 flex  items-center">
+                  <h1 className="text-xl flex items-center    text-transparent bg-clip-text bg-gradient-to-r from-amber-700 to-amber-500">
                     FREE Coffee
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="icon icon-tabler icon-tabler-coffee stroke-amber-600"
-                      width="44"
-                      height="44"
+                      width="34"
+                      height="34"
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="#2c3e50"
@@ -181,9 +181,9 @@ const HomePage = () => {
                     </svg>
                   </h1>{" "}
                 </div>
-                <div className="bg-blue-200 rounded-full shadow-2xl h-40 w-40 justify-center flex items-center">
-                  <h1 className="text-xl text-center py-2 max-w-40 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-700">
-                    <span className="text-5xl">2x</span> Bonus Points
+                <div className="bg-blue-200 w-full p-2 rounded-lg px-8 flex  items-center">
+                  <h1 className="text-xl text-center py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-700">
+                    <span className="text-2xl">2x</span> Bonus Points
                   </h1>
                 </div>
               </div>
