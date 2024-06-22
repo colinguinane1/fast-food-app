@@ -37,7 +37,7 @@ const Page = () => {
       <Navbar cartValue={0} currentPage={currentPage} cartCount={0} />
       <motion.div className="no_transition z-[0]">
         <div className="flex items-center h-fit dark:bg-transparent">
-          <div className="container mx-auto my-auto mt-24">
+          <div className="container mx-auto my-auto mt-14">
             <div className="mx-auto pb-[40%] rounded-md shadow-sm">
               <div className="text-center">
                 <h1 className="my-3 text-3xl font-semibold text-white ">
@@ -121,9 +121,11 @@ const Page = () => {
                     ></textarea>
                   </div>
                   <div className="mb-6">
-                    <button
+                    <motion.button
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
                       type="submit"
-                      className="flex items-center justify-center text-center bg-white p-2 rounded-lg shadow-2xl border w-full"
+                      className="flex items-center no_transition shadow-2xl  justify-center bg-gradient-to-r min-w-fit text-white from-green-500 from-10%  via-30% to-emerald-400 border to-90% font-bold px-8 py-2  rounded-md w-full"
                     >
                       Send Message{" "}
                       {isSubmitting &&
@@ -160,7 +162,7 @@ const Page = () => {
                           <path d="M5 12l5 5l10 -10" />
                         </svg>
                       )}
-                    </button>
+                    </motion.button>
                   </div>
                 </form>
               </div>

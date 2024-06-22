@@ -10,8 +10,8 @@ const HomePage = () => {
   const largeScreen = useMediaQuery("min-width: 768px");
   const currentPage = "Home";
   return (
-    <body className="bg-white">
-      <main>
+    <body className="bg-green-500">
+      <main className="bg-white">
         <Navbar cartValue={0} currentPage={currentPage} cartCount={0} />
         <div className="flex flex-col items-center justify-center md:mt-[40px]">
           {" "}
@@ -85,7 +85,7 @@ const HomePage = () => {
             </div>
             <div className="flex flex-col w-[95vw]  items-center justify-center">
               <div className="w-full">
-                <div className="bg-white bg-opacity-75 bg-gradient-to-b from-white to-green-200 shadow-2xl   h-full rounded-lg font-extrabold text-2xl p-4">
+                <div className="bg-white bg-opacity-75 border from-white to-green-200 shadow-2xl   h-full rounded-lg font-extrabold text-2xl p-4">
                   Earn FREE{" "}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-green-500 ">
                     Burger Blitz
@@ -143,7 +143,7 @@ const HomePage = () => {
             ></img>
           </div>
           <div className="grid md:grid-cols-2 max-w-[90vw] min-w-[90vw]  grid-cols-1 gap-10 pb-20">
-            <div className="bg-white w-full   shadow-2xl max-w-[90vw]    rounded-lg font-extrabold text-3xl p-4">
+            <div className="bg-white w-full   shadow-2xl max-w-[90vw] border    rounded-lg font-extrabold text-3xl p-4">
               <h1 className="text-center text-yellow-500">BLITZ MONDAYS</h1>
               <p className="text-sm py-2 font-normal ">
                 We hate Mondays. You hate Mondays. How can we make Mondays
@@ -205,7 +205,7 @@ const HomePage = () => {
                 </div>
               </h1>
             </div>{" "}
-            <div className="bg-white bg-gradient-to-t from-green-200 to-transparent max-h-fit shadow-2xl  max-w-[90vw]  rounded-lg font-extrabold text-3xl p-4">
+            <div className="bg-white  border from-green-200 to-transparent max-h-fit shadow-2xl  max-w-[90vw]  rounded-lg font-extrabold text-3xl p-4">
               <h1>Try our new Shakes!</h1>
               <div className="flex items-center justify-center">
                 <img
