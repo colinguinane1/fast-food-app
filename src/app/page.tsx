@@ -11,7 +11,7 @@ const HomePage = () => {
   const currentPage = "Home";
   return (
     <main>
-      <Navbar cartValue={0} currentPage={currentPage} />
+      <Navbar cartValue={0} currentPage={currentPage} cartCount={0} />
       <div className="flex flex-col items-center justify-center md:mt-[40px]">
         {" "}
         <div className="w-screen items-center flex justify-center  bg-white">
@@ -35,7 +35,7 @@ const HomePage = () => {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="flex no_transition items-center shadow-2xl border justify-center w-full mb-4 text-white bg-gradient-to-r from-green-500 from-10%  via-30% to-emerald-500 to-90% font-bold px-8 py-2 text-2xl rounded-full "
+                className="flex no_transition items-center shadow-2xl   justify-center w-full mb-4 text-white bg-gradient-to-r from-green-500 from-10%  via-30% to-emerald-500 to-90% font-bold px-8 py-2 text-2xl rounded-md "
               >
                 Order Pickup
                 <svg
@@ -60,7 +60,7 @@ const HomePage = () => {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="flex items-center no_transition shadow-2xl border justify-center bg-gradient-to-r min-w-fit text-white from-green-500 from-10%  via-30% to-emerald-500 to-90% font-bold px-8 py-2 text-2xl rounded-full"
+                className="flex items-center no_transition shadow-2xl  justify-center bg-gradient-to-r min-w-fit text-white from-green-500 from-10%  via-30% to-emerald-500 to-90% font-bold px-8 py-2 text-2xl rounded-md"
               >
                 Order Delivery{" "}
                 <svg
@@ -82,7 +82,7 @@ const HomePage = () => {
               </motion.button>
             </a>
           </div>
-          <div className="flex flex-col w-[90vw] items-center justify-center">
+          <div className="flex flex-col w-[95vw]  items-center justify-center">
             <div className="w-full">
               <div className="bg-white bg-opacity-75 bg-gradient-to-b from-white to-green-200 shadow-2xl   h-full rounded-lg font-extrabold text-2xl p-4">
                 Earn FREE{" "}
@@ -142,7 +142,7 @@ const HomePage = () => {
           ></img>
         </div>
         <div className="grid md:grid-cols-2 max-w-[90vw] min-w-[90vw]  grid-cols-1 gap-10 pb-20">
-          <div className="bg-white bg-gradient-to-br w-full from-green-100 to-white  shadow-2xl max-w-[90vw]    rounded-lg font-extrabold text-3xl p-4">
+          <div className="bg-white w-full   shadow-2xl max-w-[90vw]    rounded-lg font-extrabold text-3xl p-4">
             <h1 className="text-center text-yellow-500">BLITZ MONDAYS</h1>
             <p className="text-sm py-2 font-normal ">
               We hate Mondays. You hate Mondays. How can we make Mondays better?

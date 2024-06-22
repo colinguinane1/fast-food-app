@@ -63,6 +63,7 @@ interface ItemData {
 
 const IndexPage: React.FC = () => {
   const currentPage = "Order";
+  const [cartCount, setCartCount] = useState<number>(0);
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedItems, setSelectedItems] = useState<DocumentData[]>([]);
   const [isModalOpen, setModalOpen] = useState(false);
@@ -145,7 +146,11 @@ const IndexPage: React.FC = () => {
 
   return (
     <main className="md:flex mt-[20px] md:mt-[57px]">
-      <Navbar cartValue={cartValue} currentPage={currentPage} />
+      <Navbar
+        cartValue={cartValue}
+        currentPage={currentPage}
+        cartCount={cartCount}
+      />
       {loading && <LoadingSpinner />}
       {!loading && (
         <>
@@ -281,6 +286,8 @@ const IndexPage: React.FC = () => {
                   itemData={selectedItemData}
                   toggleModal={toggleModal}
                   cartValue={cartValue}
+                  setCartCount={setCartCount}
+                  cartCount={cartCount}
                   setCartValue={setCartValue}
                   currentCurrency={currentCurrency}
                 />

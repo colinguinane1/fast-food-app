@@ -6,9 +6,14 @@ import { AnimatePresence, motion } from "framer-motion";
 interface NavbarProps {
   cartValue: number;
   currentPage: string;
+  cartCount: number;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
+const Navbar: React.FC<NavbarProps> = ({
+  cartValue,
+  currentPage,
+  cartCount,
+}) => {
   const [navMenu, setNavMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentCurrency, setCurrentCurrency] = useState("CAD");
@@ -39,7 +44,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
     <main>
       <motion.div
         layout
-        className={`top-0 fixed bg-green-500 z-[10000] text-white w-screen ${
+        className={`top-0 fixed  z-[10000] text-white bg-green-500 w-screen h-fit ${
           scrolled ? "text-white shadow-2xl" : ""
         }`}
       >
@@ -124,17 +129,17 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
           <>
             <motion.div
               className={`mt-4 fixed bottom-0 block transition-all duration-700 md:hidden z-[10000] w-full ${
-                scrolled ? "bottom-6 px-4 rounded-lg" : ""
+                scrolled ? "bottom-6 px-4 " : ""
               }`}
               transition={{ type: "tween", duration: 0.2 }}
               layout
             >
               <motion.ul
                 layout
-                className={`flex text-xs transition-all duration-700 font-extrabold justify-between h-fit py-2 -mt-4  px-6 items-center ${
+                className={`flex  text-xs transition-all duration-700 font-extrabold justify-between h-fit py-2 -mt-4  px-6 items-center ${
                   scrolled
-                    ? "rounded-lg py-4 bg-black bg-opacity-50"
-                    : " bg-green-600"
+                    ? "bg-black bg-opacity-50 rounded-lg py-4 "
+                    : " bg-green-600 "
                 }`}
               >
                 <li>
@@ -164,6 +169,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                     <AnimatePresence>
                       {!scrolled && (
                         <motion.label
+                          layout
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           exit={{ scale: 0 }}
@@ -202,6 +208,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                     <AnimatePresence>
                       {!scrolled && (
                         <motion.label
+                          layout
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           exit={{ scale: 0 }}
@@ -240,6 +247,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                     <AnimatePresence>
                       {!scrolled && (
                         <motion.label
+                          layout
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           exit={{ scale: 0 }}
@@ -280,6 +288,7 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                     <AnimatePresence>
                       {!scrolled && (
                         <motion.label
+                          layout
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           exit={{ scale: 0 }}
@@ -290,6 +299,50 @@ const Navbar: React.FC<NavbarProps> = ({ cartValue, currentPage }) => {
                     </AnimatePresence>
                   </a>
                 </li>
+                {cartValue != 0 ? (
+                  <li>
+                    <a
+                      href="./cart"
+                      className="flex items-center justify-center flex-col"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
+                        width="25"
+                        height="25"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="#000000"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 17h-11v-14h-2" />
+                        <path d="M6 5l14 1l-1 7h-13" />
+                      </svg>
+                      <h1 className="absolute bg-white text-green-500 h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
+                        {cartCount}
+                      </h1>
+                      <AnimatePresence>
+                        {!scrolled && (
+                          <motion.label
+                            layout
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            exit={{ scale: 0 }}
+                          >
+                            Cart
+                          </motion.label>
+                        )}
+                      </AnimatePresence>
+                    </a>
+                  </li>
+                ) : (
+                  ""
+                )}
               </motion.ul>{" "}
               <motion.div
                 initial={{ opacity: 0 }}

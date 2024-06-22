@@ -56,8 +56,10 @@ interface ModalProps {
   itemData: ItemData;
   toggleModal: () => void;
   cartValue: number;
-  setCartValue: any;
+  setCartValue: (value: number) => void;
   currentCurrency: string;
+  cartCount: number;
+  setCartCount: (count: number) => void;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -66,8 +68,11 @@ const Modal: React.FC<ModalProps> = ({
   setCartValue,
   cartValue,
   currentCurrency,
+  cartCount,
+  setCartCount,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+
   const [customize, setCustomize] = useState<boolean>(true);
   const largeScreen = useMediaQuery("min-width: 768px");
   const [totalPrice, setTotalPrice] = useState<number>(
@@ -82,6 +87,7 @@ const Modal: React.FC<ModalProps> = ({
 
   const addToCart = () => {
     setCartValue(cartValue + totalPrice);
+    setCartCount(cartCount + 1);
     toggleModal();
   };
 
