@@ -132,7 +132,7 @@ const HomePage = () => {
               </div>
             </div>{" "}
           </div>{" "}
-          <div className="py-10 items-center flex flex-col -mt-16">
+          <div className="py-10 items-center flex flex-col -mt-[25.6rem]">
             <img
               className=""
               src="https://freeiconshop.com/wp-content/uploads/edd/app-store-badge.png"

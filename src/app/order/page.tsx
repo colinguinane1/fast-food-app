@@ -145,8 +145,8 @@ const IndexPage: React.FC = () => {
   };
 
   return (
-    <body className="bg-green-500">
-      <main className="md:flex mt-[20px] md:mt-[57px]">
+    <body className="bg-green-400">
+      <main className="md:flex pt-2  md:mt-[57px]">
         <Navbar
           cartValue={cartValue}
           currentPage={currentPage}
@@ -155,8 +155,8 @@ const IndexPage: React.FC = () => {
         {loading && <LoadingSpinner />}
         {!loading && (
           <>
-            <div className="md:h-screen h-10 hide-scrollbar sc md:flex decoration shaodw-lg bg-gradient-to-b from-green-500 to-green-600 text-white flex-col justify-between">
-              <ul className="flex md:flex-col justify-between mx-2 md:gap-10 md:mt-2 overflow-x-auto">
+            <div className="md:h-screen h-10 hide-scrollbar md:flex decoration shaodw-lg bg-gradient-to-b from-green-400 to-green-500 text-white flex-col justify-between">
+              <ul className="flex md:flex-col  justify-between mx-2 md:gap-10 md:mt-2 overflow-x-auto">
                 {categories.map((category, index) => (
                   <motion.li
                     whileHover={{ scale: 1.05 }}
@@ -164,16 +164,16 @@ const IndexPage: React.FC = () => {
                     key={index}
                     className={`capitalize gap-2 items-center flex mr-1 no_transition font-extrabold px-4 py-1 cursor-pointer ${
                       selectedCategory === category.id
-                        ? " border-green-400 border bg-green-400 rounded-lg"
+                        ? "  shadow-2xl border-b-2 border-white bg-green-400 py-2"
                         : "hover:text-green-100"
                     }`}
                     onClick={() => handleCategoryClick(category.id)}
                   >
                     {category.id}
                     {category.CategoryNewProduct && (
-                      <h1 className="text-xs   bg-red-300  px-3 rounded-full border-red-500 border text-red-500 ">
-                        New
-                      </h1>
+                      <div className="text-xs    bg-red-300  px-3 rounded-full border-red-500 border text-red-500">
+                        <h1 className="animate-pulse">New</h1>
+                      </div>
                     )}
                   </motion.li>
                 ))}
@@ -181,7 +181,7 @@ const IndexPage: React.FC = () => {
             </div>
             {selectedItems.length > 0 && (
               <>
-                <div className="h-screen w-screen bg-green-600">
+                <div className="h-screen w-screen bg-green-500">
                   <ul className="z-10 grid md:grid-cols-2 gap-2 pt-2  mx-2">
                     {selectedItems.map((item, index) => (
                       <motion.button
@@ -218,7 +218,7 @@ const IndexPage: React.FC = () => {
                                       <h1 className="bg-green-500 min-w-fit flex items-center gap-1 p-1 rounded-full bg-opacity-30 border border-green-500 text-green-500">
                                         <svg
                                           xmlns="http://www.w3.org/2000/svg"
-                                          className="icon icon-tabler icon-tabler-tag stroke-green-500"
+                                          className="icon icon-tabler icon-tabler-tag stroke-green-500 animate-pulse"
                                           width="15"
                                           height="15"
                                           viewBox="0 0 24 24"
