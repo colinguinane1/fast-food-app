@@ -33,11 +33,11 @@ const Page = () => {
   }
 
   return (
-    <>
+    <body className="bg-green-500">
       <Navbar cartValue={0} currentPage={currentPage} cartCount={0} />
       <motion.div className="no_transition z-[0]">
         <div className="flex items-center h-fit dark:bg-transparent">
-          <div className="container mx-auto my-auto mt-32">
+          <div className="container mx-auto my-auto mt-24">
             <div className="mx-auto pb-[40%] rounded-md shadow-sm">
               <div className="text-center">
                 <h1 className="my-3 text-3xl font-semibold text-white ">
@@ -169,7 +169,7 @@ const Page = () => {
         </div>
       </motion.div>
       <Footer />
-    </>
+    </body>
   );
 };
 

@@ -38,7 +38,7 @@ const SizeCustomization: React.FC<ComponentProps> = ({
       {Object.entries(itemData.itemSizes).map(([sizeName, { price }]) => (
         <div
           key={sizeName}
-          className="flex flex-row py-3 items-center justify-between"
+          className="flex flex-row py-3 add_transition duration-500 items-center justify-between"
         >
           <div className="capitalize">{sizeName}</div>
           <div className="flex gap-1 items-center">
@@ -47,7 +47,7 @@ const SizeCustomization: React.FC<ComponentProps> = ({
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
               onClick={() => handleSizeSelection(sizeName)}
-              className={`no_transition px-4 rounded-lg ${
+              className={` px-4  rounded-lg ${
                 selectedSize === sizeName ? " text-white" : " text-white"
               }`}
             >

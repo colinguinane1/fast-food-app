@@ -29,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={GeistSans.className}>
-      <body className="bg-green-500">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

@@ -7,6 +7,11 @@
 .no_transition{
     transition: none;
 
+
+
+}
+.add_transition{
+    transition: all 2s ease
 }
 
 .navbar_element{
@@ -19,3 +24,4 @@
 }
 
 
+    
