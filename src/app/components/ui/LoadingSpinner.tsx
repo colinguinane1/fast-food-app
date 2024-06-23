@@ -12,7 +12,9 @@ const LoadingSpinner = () => {
         strokeWidth={5}
         strokeWidthSecondary={5}
       />
-      <h1 className="text-white font-extrabold py-4 text-2xl">Loading...</h1>
+      <h1 className="text-white font-extrabold py-4 text-2xl">
+        Loading deliciousness...
+      </h1>
     </div>
   );
 };

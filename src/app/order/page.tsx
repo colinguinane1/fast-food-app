@@ -146,7 +146,7 @@ const IndexPage: React.FC = () => {
 
   return (
     <body className="bg-green-400">
-      <main className="md:flex pt-2  md:mt-[57px]">
+      <main className="md:flex pt-2 md:pt-0  md:mt-[56px]">
         <Navbar
           cartValue={cartValue}
           currentPage={currentPage}
@@ -156,7 +156,7 @@ const IndexPage: React.FC = () => {
         {!loading && (
           <>
             <div className="md:h-screen h-10 hide-scrollbar md:flex decoration shaodw-lg bg-gradient-to-b from-green-400 to-green-500 text-white flex-col justify-between">
-              <ul className="flex md:flex-col  justify-between mx-2 md:gap-10 md:mt-2 overflow-x-auto">
+              <ul className="flex md:flex-col md:mt-2  justify-between md:mx-0 mx-2 md:gap-6  overflow-x-auto">
                 {categories.map((category, index) => (
                   <motion.li
                     whileHover={{ scale: 1.05 }}
@@ -164,14 +164,14 @@ const IndexPage: React.FC = () => {
                     key={index}
                     className={`capitalize gap-2 items-center flex mr-1 no_transition font-extrabold px-4 py-1 cursor-pointer ${
                       selectedCategory === category.id
-                        ? "  shadow-2xl border-b-2 border-white bg-green-400 py-2"
+                        ? "  shadow-2xl border-b-2  border-white bg-green-400 py-2"
                         : "hover:text-green-100"
                     }`}
                     onClick={() => handleCategoryClick(category.id)}
                   >
                     {category.id}
                     {category.CategoryNewProduct && (
-                      <div className="text-xs    bg-red-300  px-3 rounded-full border-red-500 border text-red-500">
+                      <div className="text-xs md:absolute md:mb-[45px] md:ml-1   bg-red-300  px-3 rounded-full border-red-500 border text-red-500">
                         <h1 className="animate-pulse">New</h1>
                       </div>
                     )}
@@ -298,6 +298,11 @@ const IndexPage: React.FC = () => {
           </>
         )}{" "}
       </main>
+      {!loading && (
+        <div>
+          <Footer />
+        </div>
+      )}
     </body>
   );
 };

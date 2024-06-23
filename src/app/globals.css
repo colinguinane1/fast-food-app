@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 
-
+*{
+    transition: all 0.2s ease;
+}
 .no_transition{
     transition: none;
 
@@ -24,4 +26,3 @@
 }
 
 
-    

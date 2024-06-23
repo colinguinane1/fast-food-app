@@ -75,12 +75,18 @@ const Navbar: React.FC<NavbarProps> = ({
 
           {cartValue != 0 ? (
             <li>
-              <button className="flex mr-10 bg-white text-green-500 items-center h-fit w-fit p-1 rounded-lg px-2 z-[1000] justify-center gap-1 hover:bg-green-700">
+              <motion.a
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                layout
+                href="./cart"
+                className="flex items-center justify-center flex-col"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-shopping-cart stroke-green-500"
-                  width="18"
-                  height="18"
+                  className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
+                  width="25"
+                  height="25"
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="#000000"
@@ -94,11 +100,10 @@ const Navbar: React.FC<NavbarProps> = ({
                   <path d="M17 17h-11v-14h-2" />
                   <path d="M6 5l14 1l-1 7h-13" />
                 </svg>
-                <span className="font-bold">
-                  ${cartValue.toFixed(2)}
-                  {currentCurrency}
-                </span>
-              </button>
+                <h1 className="absolute text-xs bg-white text-green-500 h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
+                  {cartCount}
+                </h1>
+              </motion.a>
             </li>
           ) : (
             ""
@@ -142,8 +147,11 @@ const Navbar: React.FC<NavbarProps> = ({
                     : " bg-green-600 "
                 }`}
               >
-                <li>
-                  <a
+                <motion.li layout>
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    layout
                     href="./home"
                     className="flex items-center justify-center flex-col"
                   >
@@ -178,10 +186,13 @@ const Navbar: React.FC<NavbarProps> = ({
                         </motion.label>
                       )}
                     </AnimatePresence>
-                  </a>
-                </li>
+                  </motion.a>
+                </motion.li>
                 <li>
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    layout
                     href="./order"
                     className="flex items-center justify-center flex-col"
                   >
@@ -217,10 +228,13 @@ const Navbar: React.FC<NavbarProps> = ({
                         </motion.label>
                       )}
                     </AnimatePresence>
-                  </a>
+                  </motion.a>
                 </li>
                 <li>
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    layout
                     href="./careers"
                     className="flex items-center justify-center flex-col"
                   >
@@ -256,10 +270,13 @@ const Navbar: React.FC<NavbarProps> = ({
                         </motion.label>
                       )}
                     </AnimatePresence>
-                  </a>
+                  </motion.a>
                 </li>
                 <li className="">
-                  <a
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    layout
                     href="./contact"
                     className="flex items-center justify-center flex-col "
                   >
@@ -297,11 +314,14 @@ const Navbar: React.FC<NavbarProps> = ({
                         </motion.label>
                       )}
                     </AnimatePresence>
-                  </a>
+                  </motion.a>
                 </li>
                 {cartValue != 0 ? (
                   <li>
-                    <a
+                    <motion.a
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      layout
                       href="./cart"
                       className="flex items-center justify-center flex-col"
                     >
@@ -338,7 +358,7 @@ const Navbar: React.FC<NavbarProps> = ({
                           </motion.label>
                         )}
                       </AnimatePresence>
-                    </a>
+                    </motion.a>
                   </li>
                 ) : (
                   ""
