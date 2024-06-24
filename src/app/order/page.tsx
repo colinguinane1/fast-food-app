@@ -77,6 +77,7 @@ const IndexPage: React.FC = () => {
   const defaultCategoryId = "burgers"; // Set your default category ID here
   const [currentCurrency, setCurrentCurrency] = useState("CAD");
   const [loading, setLoading] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
@@ -120,6 +121,19 @@ const IndexPage: React.FC = () => {
     setLoading(false);
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 50000;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleItemClick = (itemData: DocumentData) => {
     setSelectedItemData({
       itemNewProduct: itemData.itemNewProduct,
@@ -145,7 +159,7 @@ const IndexPage: React.FC = () => {
   };
 
   return (
-    <body className="bg-green-400">
+    <body className="bg-slate-200">
       <main className="md:flex pt-2 md:pt-0  md:mt-[56px]">
         <Navbar
           cartValue={cartValue}
@@ -155,7 +169,7 @@ const IndexPage: React.FC = () => {
         {loading && <LoadingSpinner />}
         {!loading && (
           <>
-            <div className="md:h-screen h-10 hide-scrollbar md:flex decoration shaodw-lg bg-gradient-to-b from-green-400 to-green-500 text-white flex-col justify-between">
+            <div className="md:h-screen h-10 hide-scrollbar md:flex decoration shaodw-lg bg-gradient-to-b from-slate-200 to-slate-100 text-black flex-col justify-between">
               <ul className="flex md:flex-col md:mt-2  justify-between md:mx-0 mx-2 md:gap-6  overflow-x-auto">
                 {categories.map((category, index) => (
                   <motion.li
@@ -164,8 +178,8 @@ const IndexPage: React.FC = () => {
                     key={index}
                     className={`capitalize gap-2 items-center flex mr-1 no_transition font-extrabold px-4 py-1 cursor-pointer ${
                       selectedCategory === category.id
-                        ? "  shadow-2xl border-b-2  border-white bg-green-400 py-2"
-                        : "hover:text-green-100"
+                        ? "  shadow-2xl border-b-2  border-black bg-slate-200 py-2"
+                        : "hover:text-green-500"
                     }`}
                     onClick={() => handleCategoryClick(category.id)}
                   >
@@ -178,10 +192,23 @@ const IndexPage: React.FC = () => {
                   </motion.li>
                 ))}
               </ul>
+              {scrolled && (
+                <AnimatePresence>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <h1 className="z-[10000] fixed top-0 capitalize bg-slate-200 w-screen py-2 px-4 font-extrabold">
+                      {selectedCategory}
+                    </h1>
+                  </motion.div>
+                </AnimatePresence>
+              )}
             </div>
             {selectedItems.length > 0 && (
               <>
-                <div className="h-screen w-screen bg-green-500">
+                <div className="h-screen w-screen bg-slate-100">
                   <ul className="z-10 grid md:grid-cols-2 gap-2 pt-2  mx-2">
                     {selectedItems.map((item, index) => (
                       <motion.button
@@ -295,14 +322,14 @@ const IndexPage: React.FC = () => {
                 </main>
               )}{" "}
             </AnimatePresence>{" "}
+            {!loading && (
+              <div>
+                <Footer />
+              </div>
+            )}{" "}
           </>
         )}{" "}
       </main>
-      {!loading && (
-        <div>
-          <Footer />
-        </div>
-      )}
     </body>
   );
 };
