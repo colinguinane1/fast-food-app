@@ -9,11 +9,11 @@ const Footer = () => {
         height={80}
         alt={"logo"}
       ></Image>
-      <h2 className=" py-2 max-w-[300px]">
+      <h2 className=" py-2 text-xs max-w-[300px]">
         Burger Blitz is not a real fast food chain. This website was created for
         the purposes of learning and improving{" "}
       </h2>
-      <div className="min-w-fit">
+      <div className="min-w-fit text-xs">
         <h3 className="flex gap-1 min-w-fit">
           Visit my{" "}
           <a
@@ -25,8 +25,8 @@ const Footer = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-arrow-up-right stroke-white"
-              width="16"
-              height="16"
+              width="15"
+              height="15"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="#2c3e50"

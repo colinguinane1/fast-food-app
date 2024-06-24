@@ -195,9 +195,9 @@ const IndexPage: React.FC = () => {
                             <div className="flex items-center gap-2">
                               <h1 className="min-w-fit flex items-center gap-4 font-extrabold">
                                 {item.itemName}{" "}
-                                <h1 className="font-extralight min-w-fit text-gray-500 text-sm">
+                                {/* <h1 className="font-extralight min-w-fit text-gray-500 text-sm">  // removed for now as i think it looks better
                                   {item.itemCalories} kcals
-                                </h1>
+                                </h1> */}
                               </h1>
                               <div>
                                 {item.itemVegetarian && (
@@ -207,7 +207,7 @@ const IndexPage: React.FC = () => {
                                 )}
                               </div>
                             </div>
-                            <p className="text-sm max-w-80 py-1 min-w-40">
+                            <p className="text-sm max-w-80 py-1 min-w-60">
                               {item.itemDescription}
                             </p>
                             <div className="flex items-center  gap-4 max-w-[450px]">
@@ -259,9 +259,9 @@ const IndexPage: React.FC = () => {
                             </div>{" "}
                           </div>
                         </div>
-                        <div className="">
+                        <div className=" ">
                           <img
-                            className="w-32 max-w-22"
+                            className="w-32 max-w-22 min-w-22"
                             src={item.itemImageURL}
                             alt={"Image of " + item.itemName}
                           />

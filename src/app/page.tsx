@@ -21,7 +21,8 @@ const HomePage = () => {
               src={
                 "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/ec545603-cf4e-48e0-936d-5376ea12fdc0/dh7y3rq-ceae25e3-109f-4f8a-90b2-47e2ec518212.png/v1/fill/w_1280,h_732/burger_king_bk_royal_crispy_chicken_png_2024_by_wcwjunkbox_dh7y3rq-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzMyIiwicGF0aCI6IlwvZlwvZWM1NDU2MDMtY2Y0ZS00OGUwLTkzNmQtNTM3NmVhMTJmZGMwXC9kaDd5M3JxLWNlYWUyNWUzLTEwOWYtNGY4YS05MGIyLTQ3ZTJlYzUxODIxMi5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.WltOdAtW8ebALMSUdVHkF5RkfVGm45p6fmu1HwOUeF8"
               }
-              className="pt-20 max-w-[600px] "
+              className="pt-20 max-w-screen md:max-w-[700px]  "
+              alt="hero burger"
             />
           </div>
           <div className="bg-gradient-to-b from-green-500 via-green-100 to-white flex h-full items-center flex-col  w-full">
@@ -132,7 +133,7 @@ const HomePage = () => {
                 </div>
               </div>
             </div>{" "}
-            <div className="grid md:grid-cols-2 w-full  max-w-[900px] grid-cols-1 gap-4 pb-10">
+            <div className="grid md:grid-cols-2 w-full  max-w-[900px] grid-cols-1 gap-10 pb-10">
               <div className="bg-white mx-4   shadow-2xl  border    rounded-lg font-extrabold text-3xl p-4">
                 <h1 className="text-center text-yellow-500">BLITZ MONDAYS</h1>
                 <p className="text-sm py-2 font-normal ">
