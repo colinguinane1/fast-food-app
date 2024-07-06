@@ -15,15 +15,6 @@ const CareersPage = () => {
   return (
     <body className="bg-green-500">
       <main>
-        <Navbar
-          cartValue={0}
-          currentPage={currentPage}
-          cartCount={0}
-          // @ts-ignore
-          cartContents={cartContents}
-          // @ts-ignore
-          setCartContents={() => {}}
-        />
         <div className="flex flex-col h-screen items-center md:mt-[70px]">
           <h2 className="text-white py-10">Current Available Positions:</h2>
           <div className="flex flex-col gap-10">

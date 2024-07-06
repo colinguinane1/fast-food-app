@@ -1,13 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
 import { collection, getDocs, DocumentData } from "firebase/firestore";
 import { db } from "../firebase/firebase";
 import Backdrop from "../components/Backdrop";
 import Modal from "../components/Modal";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMediaQuery } from "@react-hook/media-query";
-import { Oval } from "react-loader-spinner"; // Import the spinner
 import Footer from "../components/Footer";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
 
