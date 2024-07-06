@@ -3,19 +3,29 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Checkout from "./Checkout";
+import { useCart } from "../context/CartContext";
+
+interface CartItem {
+  name: string;
+  price: number;
+  sizeCustomizations: [];
+  dipCustomizations: [];
+  itemCustomizations: [];
+  extraAdditions: [];
+  image: string;
+}
 
 interface NavbarProps {
   cartValue: number;
   currentPage: string;
   cartCount: number;
-  cartContents: string[];
-  setCartContents: any;
+  cartContents: CartItem[];
+  setCartContents: (contents: CartItem[]) => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({
-  cartValue,
   currentPage,
-  cartCount,
+
   cartContents,
   setCartContents,
 }) => {
@@ -23,10 +33,7 @@ const Navbar: React.FC<NavbarProps> = ({
   const [scrolled, setScrolled] = useState(false);
   const [currentCurrency, setCurrentCurrency] = useState("CAD");
   const [cartVisible, setCartVisible] = useState(false);
-
-  if (cartValue == null) {
-    cartValue = 0;
-  }
+  const { cartValue, cartCount } = useCart();
 
   const toggleCartVisible = () => {
     setCartVisible(!cartVisible);
@@ -384,7 +391,7 @@ const Navbar: React.FC<NavbarProps> = ({
           </>
         </AnimatePresence>
       </motion.div>
-      {cartVisible && <Checkout cartContents={cartContents} />}
+      {cartVisible && <Checkout />}
     </main>
   );
 };

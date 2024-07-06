@@ -16,6 +16,16 @@ interface Category {
   CategoryNewProduct: boolean;
 }
 
+interface CartItem {
+  name: string;
+  price: number;
+  sizeCustomizations: [];
+  dipCustomizations: [];
+  itemCustomizations: [];
+  extraAdditions: [];
+  image: string;
+}
+
 interface ItemData {
   itemNewProduct: boolean;
   itemImageURL: string;
@@ -60,6 +70,10 @@ interface ItemData {
     };
   };
 }
+interface CartItem {
+  name: string;
+  price: number;
+}
 
 const IndexPage: React.FC = () => {
   const currentPage = "Order";
@@ -78,7 +92,7 @@ const IndexPage: React.FC = () => {
   const [currentCurrency, setCurrentCurrency] = useState("CAD");
   const [loading, setLoading] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [cartContents, setCartContents] = useState<string[]>([]);
+  const [cartContents, setCartContents] = useState<CartItem[]>([]);
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
@@ -322,7 +336,9 @@ const IndexPage: React.FC = () => {
                     cartCount={cartCount}
                     setCartValue={setCartValue}
                     currentCurrency={currentCurrency}
+                    // @ts-ignore
                     cartContents={cartContents}
+                    // @ts-ignore
                     setCartContents={setCartContents}
                   />
                 </main>

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useCart } from "../context/CartContext"; // Ensure this path is correct
 
 interface CartItem {
   name: string;
@@ -10,11 +11,9 @@ interface CartItem {
   extraAdditions: [];
 }
 
-interface CheckoutProps {
-  cartContents: CartItem[];
-}
+const Checkout: React.FC = () => {
+  const { cartContents } = useCart(); // Get cart items from the context
 
-const Checkout: React.FC<CheckoutProps> = ({ cartContents }) => {
   // Calculate the total price
   const totalPrice = cartContents.reduce((acc, item) => acc + item.price, 0);
   const [taxes, setTaxes] = useState(false);
@@ -47,10 +46,10 @@ const Checkout: React.FC<CheckoutProps> = ({ cartContents }) => {
           ))}
         </ul>
 
-        <input type="radio"></input>
-        <label>Delivery</label>
-        <input type="radio"></input>
-        <label>Pick-up</label>
+        <input type="radio" name="delivery-option" id="delivery" />
+        <label htmlFor="delivery">Delivery</label>
+        <input type="radio" name="delivery-option" id="pickup" />
+        <label htmlFor="pickup">Pick-up</label>
         <h2>Subtotal: ${totalPrice.toFixed(2)}</h2>
         <h2>
           Tax: +$<span>{(totalPrice * taxRate).toFixed(2)} </span>

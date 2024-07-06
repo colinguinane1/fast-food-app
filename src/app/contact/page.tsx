@@ -34,7 +34,15 @@ const Page = () => {
 
   return (
     <body className="bg-green-500">
-      <Navbar cartValue={0} currentPage={currentPage} cartCount={0} />
+      <Navbar
+        cartValue={0}
+        currentPage={currentPage}
+        cartCount={0}
+        // @ts-ignore
+        cartContents={cartContents}
+        // @ts-ignore
+        setCartContents={() => {}}
+      />
       <motion.div className="no_transition z-[0]">
         <div className="flex items-center h-fit dark:bg-transparent">
           <div className="container mx-auto my-auto mt-14">

@@ -6,6 +6,7 @@ import MainIngredients from "./customizations/MainIngredients";
 import DipIngredients from "./customizations/DipIngredients";
 import SizeCustomization from "./customizations/SizeCustomization";
 import Navbar from "./Navbar";
+import { useCart } from "../context/CartContext";
 
 interface ItemData {
   itemNewProduct: boolean;
@@ -126,23 +127,22 @@ const Modal: React.FC<ModalProps> = ({
     }
   };
 
-  const addToCart = () => {
-    setCartValue(cartValue + totalPrice);
-    setCartCount(cartCount + 1);
-    setCartContents([
-      ...cartContents,
-      {
-        name: itemData.itemName,
-        price: totalPrice,
-        image: itemData.itemImageURL,
-        sizeCustomizations: itemData.itemSizes,
-        dipCustomizations: itemData.itemDip,
-        itemCustomizations: itemData.itemIngredients,
-        extraAdditions: itemData.itemExtraIngredients,
-      },
-    ]);
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    const newItem = {
+      name: itemData.itemName,
+      price: totalPrice,
+      image: itemData.itemImageURL,
+      sizeCustomizations: itemData.itemSizes,
+      dipCustomizations: itemData.itemDip,
+      itemCustomizations: itemData.itemIngredients,
+      extraAdditions: itemData.itemExtraIngredients,
+    };
+    addToCart(newItem); // Add item to cart using the context function
     toggleModal();
   };
+
   const toggleCustomize = () => {
     setCustomize(!customize);
   };
@@ -292,7 +292,7 @@ const Modal: React.FC<ModalProps> = ({
             <motion.button
               whileHover={{ scale: 1.0 }}
               whileTap={{ scale: 0.9 }}
-              onClick={addToCart}
+              onClick={handleAddToCart}
               className={`bg-green-500 ${
                 largeScreen ? "fixed" : ""
               } no_transition flex items-center justify-center w-full mt-3 mb-20 md:mb-0 hover:bg-green-700 z-[1000] rounded-lg py-3 text-white`}
