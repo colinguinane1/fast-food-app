@@ -132,6 +132,9 @@ const Modal: React.FC<ModalProps> = ({
   const handleAddToCart = () => {
     const newItem = {
       name: itemData.itemName,
+      basePrice: itemData.itemBasePrice,
+      saleActive: itemData.itemSale,
+      salePrice: itemData.itemSalePrice,
       price: totalPrice,
       image: itemData.itemImageURL,
       sizeCustomizations: itemData.itemSizes,

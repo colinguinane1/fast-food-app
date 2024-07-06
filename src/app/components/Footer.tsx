@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <div className="w-screen h-fit p-4 md:py-4 pb-24  text-white  bg-green-400  flex gap-4 items-center justify-center">
+    <div className="w-screen h-fit  z-[0] md:mt-0 mt-20 p-4 md:py-4 pb-24  text-white  bg-green-400  flex gap-4 items-center justify-center">
       <Image
         src={"/burgerb-2-2.png"}
         width={80}

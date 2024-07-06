@@ -60,7 +60,6 @@ const CareersPage = () => {
             </div>
           </div>
         </div>
-        <Footer />
       </main>
     </body>
   );

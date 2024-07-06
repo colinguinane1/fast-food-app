@@ -8,8 +8,11 @@ import React, {
 } from "react";
 
 interface CartItem {
+  saleActive: boolean;
+  salePrice: number;
   name: string;
   price: number;
+  basePrice: number;
   image: string;
   sizeCustomizations: {
     [key: string]: {

@@ -1,7 +1,7 @@
 import { Oval } from "react-loader-spinner";
 const LoadingSpinner = () => {
   return (
-    <div className="w-screen bg-transparent h-screen absolute top-0 flex flex-col items-center justify-center">
+    <div className="w-screen fixed bg-transparent h-screen top-0 flex flex-col items-center justify-center">
       <Oval
         height={120}
         width={120}
