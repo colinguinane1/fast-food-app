@@ -15,20 +15,7 @@ interface CartItem {
   image: string;
 }
 
-interface NavbarProps {
-  cartValue: number;
-  currentPage: string;
-  cartCount: number;
-  cartContents: CartItem[];
-  setCartContents: (contents: CartItem[]) => void;
-}
-
-const Navbar: React.FC<NavbarProps> = ({
-  currentPage,
-
-  cartContents,
-  setCartContents,
-}) => {
+const Navbar = ({}) => {
   const [navMenu, setNavMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentCurrency, setCurrentCurrency] = useState("CAD");
@@ -173,9 +160,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={` ${
-                        currentPage === "Home" ? "fill-white" : ""
-                      } icon icon-tabler icon-tabler-home-2`}
+                      className={` icon icon-tabler icon-tabler-home-2`}
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
@@ -214,9 +199,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={`icon icon-tabler icon-tabler-truck-delivery ${
-                        currentPage === "Order" ? "fill-white" : ""
-                      } `}
+                      className={`icon icon-tabler icon-tabler-truck-delivery `}
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
@@ -256,9 +239,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={` ${
-                        currentPage === "Careers" ? "fill-white" : ""
-                      } icon icon-tabler icon-tabler-users`}
+                      className={` icon icon-tabler icon-tabler-users`}
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"
@@ -298,9 +279,7 @@ const Navbar: React.FC<NavbarProps> = ({
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
-                      className={`icon icon-tabler icon-tabler-address-book ${
-                        currentPage === "Contact" ? "fill-white" : ""
-                      } `}
+                      className={`icon icon-tabler icon-tabler-address-book  `}
                       width="25"
                       height="25"
                       viewBox="0 0 24 24"

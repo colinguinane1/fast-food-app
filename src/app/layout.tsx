@@ -30,6 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <CartProvider>
+      <Navbar />
       <html lang="en" className={raleway.className}>
         <body>{children}</body>
       </html>

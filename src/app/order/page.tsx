@@ -176,13 +176,6 @@ const IndexPage: React.FC = () => {
   return (
     <body className="bg-slate-200">
       <main className="md:flex pt-2 md:pt-0  md:mt-[56px]">
-        <Navbar
-          cartValue={cartValue}
-          currentPage={currentPage}
-          cartCount={cartCount}
-          cartContents={cartContents}
-          setCartContents={setCartContents}
-        />
         {loading && <LoadingSpinner />}
         {!loading && (
           <>
