@@ -51,6 +51,44 @@ interface ItemData {
     };
   };
 }
+interface CartItem {
+  name: string;
+  price: number;
+  image: string;
+  sizeCustomizations: {
+    [key: string]: {
+      price: number;
+    };
+  };
+  dipCustomizations: {
+    maxDips: number;
+    availableDips: {
+      [key: string]: {
+        count: number;
+        max: number;
+        min: number;
+      };
+    };
+  };
+  itemCustomizations: {
+    [key: string]: {
+      count: number;
+      price: number;
+      comesWith: number;
+      max: number;
+      min: number;
+    };
+  };
+  extraAdditions: {
+    [key: string]: {
+      count: number;
+      price: number;
+      comesWith: number;
+      max: number;
+      min: number;
+    };
+  };
+}
 
 interface ModalProps {
   itemData: ItemData;
@@ -60,6 +98,8 @@ interface ModalProps {
   currentCurrency: string;
   cartCount: number;
   setCartCount: (count: number) => void;
+  cartContents: CartItem[];
+  setCartContents: (contents: CartItem[]) => void;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -69,6 +109,8 @@ const Modal: React.FC<ModalProps> = ({
   cartValue,
   currentCurrency,
   cartCount,
+  cartContents,
+  setCartContents,
   setCartCount,
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -78,7 +120,6 @@ const Modal: React.FC<ModalProps> = ({
   const [totalPrice, setTotalPrice] = useState<number>(
     itemData.itemSale ? itemData.itemSalePrice : itemData.itemBasePrice
   );
-
   const handleClickOutside = (event: MouseEvent) => {
     if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
       toggleModal();
@@ -88,9 +129,20 @@ const Modal: React.FC<ModalProps> = ({
   const addToCart = () => {
     setCartValue(cartValue + totalPrice);
     setCartCount(cartCount + 1);
+    setCartContents([
+      ...cartContents,
+      {
+        name: itemData.itemName,
+        price: totalPrice,
+        image: itemData.itemImageURL,
+        sizeCustomizations: itemData.itemSizes,
+        dipCustomizations: itemData.itemDip,
+        itemCustomizations: itemData.itemIngredients,
+        extraAdditions: itemData.itemExtraIngredients,
+      },
+    ]);
     toggleModal();
   };
-
   const toggleCustomize = () => {
     setCustomize(!customize);
   };
@@ -113,7 +165,7 @@ const Modal: React.FC<ModalProps> = ({
       <div className="fixed flex h-screen items-center justify-center overflow-hidden">
         <div
           ref={modalRef}
-          className="bg-white md:w-[85vw] w-screen md:m-h-fit md:pb-4 pb-20 md:h-fit md:max-h-[80vh] md:rounded-lg h-full p-4 overflow-y-auto overflow-hidden"
+          className=" bg-gradient-to-b from-slate-200 to-white md:w-[85vw] w-screen md:m-h-fit md:pb-4 pb-20 md:h-fit md:max-h-[80vh] md:rounded-lg h-full p-4 overflow-y-auto overflow-hidden"
         >
           <div className=" py-3 border-b mb-3">
             <div className="flex flex-col items-center">

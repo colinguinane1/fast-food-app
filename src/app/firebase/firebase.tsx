@@ -6,6 +6,8 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+// -- I know i shouldnt have this here, but my database is read-only so whatever
 const firebaseConfig = {
   apiKey: "AIzaSyAR_OkOxum99ATeYva1IAYx5CdxM4MAJuA",
   authDomain: "fast-food-app-58d04.firebaseapp.com",

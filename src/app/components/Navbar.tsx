@@ -2,25 +2,35 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Checkout from "./Checkout";
 
 interface NavbarProps {
   cartValue: number;
   currentPage: string;
   cartCount: number;
+  cartContents: string[];
+  setCartContents: any;
 }
 
 const Navbar: React.FC<NavbarProps> = ({
   cartValue,
   currentPage,
   cartCount,
+  cartContents,
+  setCartContents,
 }) => {
   const [navMenu, setNavMenu] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentCurrency, setCurrentCurrency] = useState("CAD");
+  const [cartVisible, setCartVisible] = useState(false);
 
   if (cartValue == null) {
     cartValue = 0;
   }
+
+  const toggleCartVisible = () => {
+    setCartVisible(!cartVisible);
+  };
 
   const toggleMenu = () => {
     setNavMenu(!navMenu);
@@ -74,12 +84,11 @@ const Navbar: React.FC<NavbarProps> = ({
           </li>
 
           {cartValue != 0 ? (
-            <li>
+            <li onClick={toggleCartVisible}>
               <motion.a
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
                 layout
-                href="./cart"
                 className="flex items-center justify-center flex-col"
               >
                 <svg
@@ -317,12 +326,11 @@ const Navbar: React.FC<NavbarProps> = ({
                   </motion.a>
                 </li>
                 {cartValue != 0 ? (
-                  <li>
+                  <li onClick={toggleCartVisible}>
                     <motion.a
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       layout
-                      href="./cart"
                       className="flex items-center justify-center flex-col"
                     >
                       <svg
@@ -376,6 +384,7 @@ const Navbar: React.FC<NavbarProps> = ({
           </>
         </AnimatePresence>
       </motion.div>
+      {cartVisible && <Checkout cartContents={cartContents} />}
     </main>
   );
 };

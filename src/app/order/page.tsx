@@ -78,6 +78,7 @@ const IndexPage: React.FC = () => {
   const [currentCurrency, setCurrentCurrency] = useState("CAD");
   const [loading, setLoading] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [cartContents, setCartContents] = useState<string[]>([]);
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
@@ -123,7 +124,7 @@ const IndexPage: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 50000;
+      const isScrolled = window.scrollY > 0;
       setScrolled(isScrolled);
     };
 
@@ -165,6 +166,8 @@ const IndexPage: React.FC = () => {
           cartValue={cartValue}
           currentPage={currentPage}
           cartCount={cartCount}
+          cartContents={cartContents}
+          setCartContents={setCartContents}
         />
         {loading && <LoadingSpinner />}
         {!loading && (
@@ -198,8 +201,9 @@ const IndexPage: React.FC = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
+                    transition={{ delay: 0.3 }}
                   >
-                    <h1 className="z-[10000] fixed top-0 capitalize bg-slate-200 w-screen py-2 px-4 font-extrabold">
+                    <h1 className="z-[10000] no_transition transition-none fixed top-0 capitalize bg-slate-200 w-screen py-2 px-4 font-extrabold">
                       {selectedCategory}
                     </h1>
                   </motion.div>
@@ -318,18 +322,20 @@ const IndexPage: React.FC = () => {
                     cartCount={cartCount}
                     setCartValue={setCartValue}
                     currentCurrency={currentCurrency}
+                    cartContents={cartContents}
+                    setCartContents={setCartContents}
                   />
                 </main>
               )}{" "}
             </AnimatePresence>{" "}
-            {!loading && (
-              <div>
-                <Footer />
-              </div>
-            )}{" "}
           </>
         )}{" "}
-      </main>
+      </main>{" "}
+      {!loading && (
+        <div>
+          <Footer />
+        </div>
+      )}
     </body>
   );
 };
