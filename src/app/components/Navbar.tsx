@@ -77,40 +77,37 @@ const Navbar = ({}) => {
             <a href="./contact">Contact</a>
           </li>
 
-          {cartValue != 0 ? (
-            <li onClick={toggleCartVisible}>
-              <motion.a
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                layout
-                className="flex items-center justify-center flex-col"
+          <li onClick={toggleCartVisible}>
+            <motion.a
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              layout
+              className="flex items-center justify-center flex-col"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
+                width="25"
+                height="25"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#000000"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
-                  width="25"
-                  height="25"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="#000000"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                  <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                  <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                  <path d="M17 17h-11v-14h-2" />
-                  <path d="M6 5l14 1l-1 7h-13" />
-                </svg>
-                <h1 className="absolute text-xs bg-white text-green-500 h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
-                  {cartCount}
-                </h1>
-              </motion.a>
-            </li>
-          ) : (
-            ""
-          )}
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                <path d="M17 17h-11v-14h-2" />
+                <path d="M6 5l14 1l-1 7h-13" />
+              </svg>
+              <h1 className="absolute text-xs bg-white text-green-500 h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
+                {cartCount}
+              </h1>
+            </motion.a>
+          </li>
+
           <li>
             <motion.button onClick={toggleMenu}>
               <svg
@@ -311,52 +308,49 @@ const Navbar = ({}) => {
                     </AnimatePresence>
                   </motion.a>
                 </li>
-                {cartValue != 0 ? (
-                  <li onClick={toggleCartVisible}>
-                    <motion.a
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      layout
-                      className="flex items-center justify-center flex-col"
+
+                <li onClick={toggleCartVisible}>
+                  <motion.a
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    layout
+                    className="flex items-center justify-center flex-col"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
+                      width="25"
+                      height="25"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="#000000"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
-                        width="25"
-                        height="25"
-                        viewBox="0 0 24 24"
-                        strokeWidth="1.5"
-                        stroke="#000000"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                        <path d="M17 17h-11v-14h-2" />
-                        <path d="M6 5l14 1l-1 7h-13" />
-                      </svg>
-                      <h1 className="absolute bg-white text-green-500 h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
-                        {cartCount}
-                      </h1>
-                      <AnimatePresence>
-                        {!scrolled && (
-                          <motion.label
-                            layout
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0 }}
-                          >
-                            Cart
-                          </motion.label>
-                        )}
-                      </AnimatePresence>
-                    </motion.a>
-                  </li>
-                ) : (
-                  ""
-                )}
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                      <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                      <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                      <path d="M17 17h-11v-14h-2" />
+                      <path d="M6 5l14 1l-1 7h-13" />
+                    </svg>
+                    <h1 className="absolute bg-white text-green-500 h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
+                      {cartCount}
+                    </h1>
+                    <AnimatePresence>
+                      {!scrolled && (
+                        <motion.label
+                          layout
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          exit={{ scale: 0 }}
+                        >
+                          Cart
+                        </motion.label>
+                      )}
+                    </AnimatePresence>
+                  </motion.a>
+                </li>
               </motion.ul>{" "}
               <motion.div
                 initial={{ opacity: 0 }}
@@ -370,7 +364,19 @@ const Navbar = ({}) => {
           </>
         </AnimatePresence>
       </motion.div>
-      {cartVisible && <Checkout />}
+      <AnimatePresence>
+        {cartVisible && (
+          <motion.div
+            initial={{ y: 10000 }}
+            animate={{ y: 0 }}
+            exit={{ y: 10000 }}
+            transition={{ type: "tween", duration: 0.2 }}
+            className="no_transition"
+          >
+            <Checkout toggleCartVisible={toggleCartVisible} />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 };

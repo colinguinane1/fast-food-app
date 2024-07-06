@@ -29,11 +29,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <CartProvider>
-      <Navbar />
-      <html lang="en" className={raleway.className}>
-        <body>{children}</body>
-      </html>
-    </CartProvider>
+    <html lang="en" className={raleway.className}>
+      <body>
+        <CartProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </CartProvider>
+      </body>
+    </html>
   );
 }

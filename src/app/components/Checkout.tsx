@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext"; // Ensure this path is correct
+import { AnimatePresence, motion } from "framer-motion";
 
 interface CartItem {
   name: string;
@@ -11,7 +12,11 @@ interface CartItem {
   extraAdditions: [];
 }
 
-const Checkout: React.FC = () => {
+interface CheckoutProps {
+  toggleCartVisible: () => void; // Define the type of toggleCartVisible prop
+}
+
+const Checkout: React.FC<CheckoutProps> = ({ toggleCartVisible }) => {
   const { cartContents } = useCart(); // Get cart items from the context
 
   // Calculate the total price
@@ -22,17 +27,42 @@ const Checkout: React.FC = () => {
 
   return (
     <main className="md:mt-14 z-10 fixed bg-gradient-to-b from-slate-200 to-white w-screen h-screen inset-0">
+      <div className="flex flex-col items-center">
+        <button
+          className="block  md:-mt-6 py-4 px-2"
+          onClick={toggleCartVisible}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="icon icon-tabler icon-tabler-arrow-bar-down"
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M12 20l0 -10" />
+            <path d="M12 20l4 -4" />
+            <path d="M12 20l-4 -4" />
+            <path d="M4 4l16 0" />
+          </svg>
+        </button>
+      </div>
       <div className="p-4">
-        <h1 className="font-extrabold text-4xl">Checkout</h1>
+        <h1 className="font-extrabold text-4xl py-4">Checkout</h1>
 
-        <ul>
+        <ul className="py-4 flex flex-col gap-6">
           {cartContents.map((item, index) => (
             <li
               key={index}
-              className="flex rounded-lg justify-between hover:bg-gray-100 px-4 w-full items-center transition-all min-h-40 text-left shadow-lg hover:border-green-500 hover:shadow-xl hover:border-2 bg-white p-2"
+              className="flex rounded-lg   justify-between hover:bg-gray-100 px-4 w-full items-center transition-all min-h-40 text-left shadow-lg hover:border-green-500 hover:shadow-xl hover:border-2 bg-white p-2"
             >
               <div className="flex flex-col">
-                <span>{item.name}</span>
+                <span className="font-extrabold">{item.name}</span>
                 <span>${item.price.toFixed(2)}</span>
               </div>
               <div className=" ">
@@ -50,19 +80,21 @@ const Checkout: React.FC = () => {
         <label htmlFor="delivery">Delivery</label>
         <input type="radio" name="delivery-option" id="pickup" />
         <label htmlFor="pickup">Pick-up</label>
-        <h2>Subtotal: ${totalPrice.toFixed(2)}</h2>
-        <h2>
-          Tax: +$<span>{(totalPrice * taxRate).toFixed(2)} </span>
-        </h2>
-        <h2>
-          Delivery Fee: +$<span>{deliveryFee.toFixed(2)} </span>
-        </h2>
-        <h2>
-          Total: $
-          <span>
-            {(totalPrice + totalPrice * taxRate + deliveryFee).toFixed(2)}{" "}
-          </span>
-        </h2>
+        <div className="text-right">
+          <h2>Subtotal: ${totalPrice.toFixed(2)}</h2>
+          <h2>
+            Tax: +$<span>{(totalPrice * taxRate).toFixed(2)} </span>
+          </h2>
+          <h2>
+            Delivery Fee: +$<span>{deliveryFee.toFixed(2)} </span>
+          </h2>
+          <h2>
+            Total: $
+            <span>
+              {(totalPrice + totalPrice * taxRate + deliveryFee).toFixed(2)}{" "}
+            </span>
+          </h2>
+        </div>
       </div>
       <div className="mx-4">
         <button className="w-full h-10 rounded-full bg-green-500 px-4 text-white font-extrabold">

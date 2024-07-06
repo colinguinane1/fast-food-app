@@ -338,11 +338,6 @@ const IndexPage: React.FC = () => {
           </>
         )}{" "}
       </main>{" "}
-      {!loading && (
-        <div>
-          <Footer />
-        </div>
-      )}
     </body>
   );
 };
