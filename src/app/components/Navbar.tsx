@@ -143,7 +143,7 @@ const Navbar = ({}) => {
                 layout
                 className={`flex  text-xs transition-all duration-700 font-extrabold justify-between h-fit py-2 -mt-4  px-6 items-center ${
                   scrolled
-                    ? "bg-black bg-opacity-50 rounded-lg py-4 "
+                    ? "bg-black border bg-opacity-50 rounded-lg "
                     : " bg-green-600 "
                 }`}
               >
@@ -172,18 +172,15 @@ const Navbar = ({}) => {
                       <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
                       <path d="M10 12h4v4h-4z" />
                     </svg>
-                    <AnimatePresence>
-                      {!scrolled && (
-                        <motion.label
-                          layout
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          exit={{ scale: 0 }}
-                        >
-                          Home
-                        </motion.label>
-                      )}
-                    </AnimatePresence>
+
+                    <motion.label
+                      layout
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                    >
+                      Home
+                    </motion.label>
                   </motion.a>
                 </motion.li>
                 <li>
@@ -212,18 +209,15 @@ const Navbar = ({}) => {
                       <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" />
                       <path d="M3 9l4 0" />
                     </svg>
-                    <AnimatePresence>
-                      {!scrolled && (
-                        <motion.label
-                          layout
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          exit={{ scale: 0 }}
-                        >
-                          Order
-                        </motion.label>
-                      )}
-                    </AnimatePresence>
+
+                    <motion.label
+                      layout
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                    >
+                      Order
+                    </motion.label>
                   </motion.a>
                 </li>
                 <li>
@@ -252,18 +246,15 @@ const Navbar = ({}) => {
                       <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                       <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
                     </svg>
-                    <AnimatePresence>
-                      {!scrolled && (
-                        <motion.label
-                          layout
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          exit={{ scale: 0 }}
-                        >
-                          Careers
-                        </motion.label>
-                      )}
-                    </AnimatePresence>
+
+                    <motion.label
+                      layout
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                    >
+                      Careers
+                    </motion.label>
                   </motion.a>
                 </li>
 
@@ -295,18 +286,15 @@ const Navbar = ({}) => {
                     <h1 className="absolute bg-white text-green-500 h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
                       {cartCount}
                     </h1>
-                    <AnimatePresence>
-                      {!scrolled && (
-                        <motion.label
-                          layout
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          exit={{ scale: 0 }}
-                        >
-                          Cart
-                        </motion.label>
-                      )}
-                    </AnimatePresence>
+
+                    <motion.label
+                      layout
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      exit={{ scale: 0 }}
+                    >
+                      Cart
+                    </motion.label>
                   </motion.a>
                 </li>
               </motion.ul>{" "}
@@ -325,13 +313,21 @@ const Navbar = ({}) => {
       <AnimatePresence>
         {cartVisible && (
           <motion.div
-            initial={{ y: 10000 }}
-            animate={{ y: 0 }}
-            exit={{ y: 10000 }}
-            transition={{ type: "tween", duration: 0.2 }}
-            className="no_transition"
+            key="checkout"
+            className="fixed inset-0 no_transition justify-center z-[11000] bg-black bg-opacity-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <Checkout toggleCartVisible={toggleCartVisible} />
+            <motion.div
+              initial={{ y: 1000, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 1000, opacity: 0 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="bg-white no_transition rounded-lg p-8 shadow-lg"
+            >
+              <Checkout toggleCartVisible={toggleCartVisible} />
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
