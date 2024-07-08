@@ -153,7 +153,7 @@ const Navbar = ({}) => {
                     whileTap={{ scale: 0.9 }}
                     layout
                     href="./home"
-                    className="flex items-center justify-center flex-col"
+                    className="hover:bg-green-300 flex items-center justify-center flex-col"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -173,14 +173,7 @@ const Navbar = ({}) => {
                       <path d="M10 12h4v4h-4z" />
                     </svg>
 
-                    <motion.label
-                      layout
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      exit={{ scale: 0 }}
-                    >
-                      Home
-                    </motion.label>
+                    <motion.label>Home</motion.label>
                   </motion.a>
                 </motion.li>
                 <li>
@@ -210,14 +203,7 @@ const Navbar = ({}) => {
                       <path d="M3 9l4 0" />
                     </svg>
 
-                    <motion.label
-                      layout
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      exit={{ scale: 0 }}
-                    >
-                      Order
-                    </motion.label>
+                    <motion.label>Order</motion.label>
                   </motion.a>
                 </li>
                 <li>
@@ -247,14 +233,7 @@ const Navbar = ({}) => {
                       <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
                     </svg>
 
-                    <motion.label
-                      layout
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      exit={{ scale: 0 }}
-                    >
-                      Careers
-                    </motion.label>
+                    <motion.label>Careers</motion.label>
                   </motion.a>
                 </li>
 
@@ -287,14 +266,7 @@ const Navbar = ({}) => {
                       {cartCount}
                     </h1>
 
-                    <motion.label
-                      layout
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      exit={{ scale: 0 }}
-                    >
-                      Cart
-                    </motion.label>
+                    <motion.label>Cart</motion.label>
                   </motion.a>
                 </li>
               </motion.ul>{" "}

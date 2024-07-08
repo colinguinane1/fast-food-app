@@ -217,7 +217,7 @@ const IndexPage: React.FC = () => {
             </div>
             {selectedItems.length > 0 && (
               <>
-                <div className="h-screen w-screen bg-slate-100">
+                <div className="pb-10 w-screen bg-slate-100">
                   <ul className="z-10 grid md:grid-cols-2 gap-2 pt-2  mx-2">
                     {selectedItems.map((item, index) => (
                       <motion.button
