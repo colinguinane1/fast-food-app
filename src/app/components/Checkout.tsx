@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext"; // Ensure this path is correct
 import { AnimatePresence, motion } from "framer-motion";
+import RemoveFromCartDialog from "./ui/RemoveFromCartDialog";
+import EmptyCart from "./ui/EmptyCart";
 
 interface CartItem {
   name: string;
@@ -127,10 +129,11 @@ const Checkout: React.FC<CheckoutProps> = ({ toggleCartVisible }) => {
 
               <ul className="py-4 flex flex-col gap-6">
                 {cartContents.map((item, index) => (
-                  <li
+                  <motion.li
+                    whileTap={{ scale: 0.98 }}
                     key={index}
                     onClick={() => toggleCartRemove(item)}
-                    className="flex rounded-lg justify-between hover:cursor-pointer hover:bg-gray-100 px-4 w-full items-center transition-all min-h-40 text-left shadow-lg hover:border-red-500 hover:shadow-xl hover:border-2 bg-white p-2"
+                    className="flex rounded-lg justify-between hover:cursor-pointer hover:bg-gray-100 px-4 w-full items-center transition-all min-h-40 text-left shadow-lg hover:bg-red-100 hover:border-red-500 hover:shadow-xl hover:border-2 bg-white p-2"
                   >
                     <div className="flex flex-col">
                       <span className="font-extrabold">{item.name}</span>
@@ -174,7 +177,7 @@ const Checkout: React.FC<CheckoutProps> = ({ toggleCartVisible }) => {
                         alt={"Image of " + item.image}
                       />
                     </div>
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
               <div className="border-b w-full py-4">
@@ -270,6 +273,24 @@ const Checkout: React.FC<CheckoutProps> = ({ toggleCartVisible }) => {
       ) : (
         <div>
           <div className="flex justify-between p-4">
+            {" "}
+            <button className="block" onClick={toggleCartVisible}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="icon icon-tabler icon-tabler-chevron-down"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#2c3e50"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M6 9l6 6l6 -6" />
+              </svg>
+            </button>
             <h1 className=" flex  items-center   gap-2 font-extrabold text-4xl py-4">
               Checkout{" "}
               <svg
@@ -291,87 +312,18 @@ const Checkout: React.FC<CheckoutProps> = ({ toggleCartVisible }) => {
                 <path d="M6 5l14 1l-1 7h-13" />
               </svg>
             </h1>
-            <button className="block" onClick={toggleCartVisible}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-chevron-down"
-                width="44"
-                height="44"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#2c3e50"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M6 9l6 6l6 -6" />
-              </svg>
-            </button>
           </div>
-          <div className="flex flex-col items-center gap-10 py-10 text-3xl">
-            Your cart is empty! 😢
-            <a href="./order">
-              <button
-                onClick={toggleCartVisible}
-                className="bg-green-500 text-white p-2 px-4 rounded-full text-lg font-extrabold "
-              >
-                Order Now
-              </button>
-            </a>
-          </div>
+          <EmptyCart toggleCartVisible={toggleCartVisible} />
         </div>
       )}
       <AnimatePresence>
         {cartRemove && selectedItem && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed no_transition top-0 h-screen w-screen bg-black bg-opacity-40"
-          >
-            {" "}
-            <div className="flex items-center justify-center">
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0 }}
-                transition={{ delay: 0.2 }}
-                className="flex no_transition flex-col text-left  w-60 mt-[50%] p-2 px-4 bg-white rounded-lg"
-              >
-                <div>
-                  {" "}
-                  <h1 className="font-semibold text-xl py-3">
-                    Remove from Cart?
-                  </h1>
-                  <p>{selectedItem.name}</p>
-                </div>
-
-                <div className="flex py-3 justify-between gap-4">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={toggleCancelCartRemove}
-                    className="no_transition bg-slate-200 font-semibold p-2 rounded-lg w-full"
-                  >
-                    Cancel
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                      removeFromCart(selectedItem);
-                      toggleCartRemove();
-                    }}
-                    className="bg-red-500 no_transition text-white font-semibold p-2 rounded-lg w-full"
-                  >
-                    Remove
-                  </motion.button>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
+          <RemoveFromCartDialog
+            selectedItem={selectedItem}
+            removeFromCart={removeFromCart}
+            toggleCartRemove={toggleCartRemove}
+            toggleCancelCartRemove={toggleCancelCartRemove}
+          />
         )}
       </AnimatePresence>
     </main>

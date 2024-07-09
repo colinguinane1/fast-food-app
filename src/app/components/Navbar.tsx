@@ -77,36 +77,36 @@ const Navbar = ({}) => {
             <a href="./contact">Contact</a>
           </li>
 
-          <li onClick={toggleCartVisible}>
-            <motion.a
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              layout
-              className="flex items-center justify-center flex-col"
+          <motion.li
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            onClick={toggleCartVisible}
+            className="flex flex-col no_transition cursor-pointer items-center justify-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
+              width="25"
+              height="25"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="#000000"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
-                width="25"
-                height="25"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="#000000"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                <path d="M17 17h-11v-14h-2" />
-                <path d="M6 5l14 1l-1 7h-13" />
-              </svg>
-              <h1 className="absolute text-xs bg-white text-green-500 h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+              <path d="M17 17h-11v-14h-2" />
+              <path d="M6 5l14 1l-1 7h-13" />
+            </svg>
+            {cartCount > 0 && (
+              <h1 className="absolute text-xs bg-red-500 text-white h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
                 {cartCount}
               </h1>
-            </motion.a>
-          </li>
+            )}
+          </motion.li>
 
           <li>
             <motion.button onClick={toggleMenu}>
@@ -147,13 +147,13 @@ const Navbar = ({}) => {
                     : " bg-green-600 "
                 }`}
               >
-                <motion.li layout>
+                <motion.li className="cursor-pointer" layout>
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     layout
                     href="./home"
-                    className="hover:bg-green-300 flex items-center justify-center flex-col"
+                    className="hover:bg-green-500 px-2 rounded-md no_transition flex items-center justify-center flex-col"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -176,13 +176,13 @@ const Navbar = ({}) => {
                     <motion.label>Home</motion.label>
                   </motion.a>
                 </motion.li>
-                <li>
+                <li className="cursor-pointer">
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     layout
                     href="./order"
-                    className="flex items-center justify-center flex-col"
+                    className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -206,13 +206,13 @@ const Navbar = ({}) => {
                     <motion.label>Order</motion.label>
                   </motion.a>
                 </li>
-                <li>
+                <li className="cursor-pointer">
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     layout
                     href="./careers"
-                    className="flex items-center justify-center flex-col"
+                    className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -237,12 +237,12 @@ const Navbar = ({}) => {
                   </motion.a>
                 </li>
 
-                <li onClick={toggleCartVisible}>
+                <li className="cursor-pointer" onClick={toggleCartVisible}>
                   <motion.a
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.9 }}
                     layout
-                    className="flex items-center justify-center flex-col"
+                    className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -262,9 +262,11 @@ const Navbar = ({}) => {
                       <path d="M17 17h-11v-14h-2" />
                       <path d="M6 5l14 1l-1 7h-13" />
                     </svg>
-                    <h1 className="absolute bg-white text-green-500 h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
-                      {cartCount}
-                    </h1>
+                    {cartCount > 0 && (
+                      <h1 className="absolute bg-white text-green-500 h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
+                        {cartCount}
+                      </h1>
+                    )}
 
                     <motion.label>Cart</motion.label>
                   </motion.a>

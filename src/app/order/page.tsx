@@ -88,7 +88,7 @@ const IndexPage: React.FC = () => {
 
   const defaultCategoryId = "burgers"; // Set your default category ID here
   const [currentCurrency, setCurrentCurrency] = useState("CAD");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [cartContents, setCartContents] = useState<CartItem[]>([]);
 
@@ -107,7 +107,6 @@ const IndexPage: React.FC = () => {
       });
       setCategories(data);
       setLoading(false);
-
       // Check if the default category exists and fetch its items
       const defaultCategory = data.find(
         (category) => category.id === defaultCategoryId
@@ -131,7 +130,6 @@ const IndexPage: React.FC = () => {
     console.log("Selected Items:", items);
     setSelectedItems(items);
     setSelectedCategory(categoryId); // Set the selected category
-    setLoading(false);
   };
 
   useEffect(() => {
@@ -200,20 +198,21 @@ const IndexPage: React.FC = () => {
                   </motion.li>
                 ))}
               </ul>
-              {scrolled && (
-                <AnimatePresence>
+              <AnimatePresence>
+                {scrolled && (
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ delay: 0.3 }}
+                    initial={{ y: -100 }}
+                    animate={{ y: 0 }}
+                    exit={{ y: -100 }}
+                    transition={{ type: "just" }}
+                    className="no_transition md:hidden fixed top-0"
                   >
-                    <h1 className="z-[10000] no_transition transition-none fixed top-0 capitalize bg-slate-200 w-screen py-2 px-4 font-extrabold">
+                    <h1 className="z-[10000] no_transition transition-none fixed  capitalize bg-slate-200 w-screen py-2 px-4 font-extrabold">
                       {selectedCategory}
                     </h1>
                   </motion.div>
-                </AnimatePresence>
-              )}
+                )}
+              </AnimatePresence>
             </div>
             {selectedItems.length > 0 && (
               <>
@@ -221,9 +220,12 @@ const IndexPage: React.FC = () => {
                   <ul className="z-10 grid md:grid-cols-2 gap-2 pt-2  mx-2">
                     {selectedItems.map((item, index) => (
                       <motion.button
+                        initial={{ y: 1000, scale: 0.5, opacity: 0.5 }}
+                        animate={{ y: 0, scale: 1, opacity: 1 }}
                         whileTap={{ scale: 0.9 }}
+                        transition={{ delay: 0.1 * index, type: "just" }}
                         key={index}
-                        className="flex rounded-lg justify-between hover:bg-gray-100 px-4 w-full items-center transition-all min-h-40 text-left shadow-lg hover:border-green-500 hover:shadow-xl hover:border-2 bg-white p-2"
+                        className="flex no_transition  rounded-lg justify-between hover:bg-gray-100 px-4 w-full items-center min-h-40 text-left shadow-lg hover:border-green-500 hover:shadow-xl hover:border-2 bg-white p-2"
                         onClick={() => handleItemClick(item)}
                       >
                         <div className="flex flex-col justify-between w-full">
