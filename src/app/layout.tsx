@@ -8,6 +8,7 @@ import { Roboto } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { GeistSans } from "geist/font/sans";
 import Footer from "./components/Footer";
+import { PageContextProvider } from "./context/PageContext";
 
 import Navbar from "./components/Navbar";
 import { CartProvider } from "./context/CartContext";
@@ -31,11 +32,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={raleway.className}>
       <body>
-        <CartProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </CartProvider>
+        <PageContextProvider>
+          <CartProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </CartProvider>
+        </PageContextProvider>
       </body>
     </html>
   );

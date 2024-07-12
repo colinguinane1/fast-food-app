@@ -4,6 +4,13 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Checkout from "./Checkout";
 import { useCart } from "../context/CartContext";
+import { usePageContext } from "../context/PageContext";
+import { LuShoppingCart } from "react-icons/lu";
+import { GoChevronDown } from "react-icons/go";
+import { IoHomeOutline } from "react-icons/io5";
+import { FaBurger } from "react-icons/fa6";
+import { PiHamburger } from "react-icons/pi";
+import { GoPersonAdd } from "react-icons/go";
 
 interface CartItem {
   name: string;
@@ -21,6 +28,7 @@ const Navbar = ({}) => {
   const [currentCurrency, setCurrentCurrency] = useState("CAD");
   const [cartVisible, setCartVisible] = useState(false);
   const { cartValue, cartCount } = useCart();
+  const { currentPage, setCurrentPage } = usePageContext();
 
   const toggleCartVisible = () => {
     setCartVisible(!cartVisible);
@@ -83,52 +91,13 @@ const Navbar = ({}) => {
             onClick={toggleCartVisible}
             className="flex flex-col no_transition cursor-pointer items-center justify-center"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
-              width="25"
-              height="25"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="#000000"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-              <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-              <path d="M17 17h-11v-14h-2" />
-              <path d="M6 5l14 1l-1 7h-13" />
-            </svg>
+            <LuShoppingCart size={20} />
             {cartCount > 0 && (
               <h1 className="absolute text-xs bg-red-500 text-white h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
                 {cartCount}
               </h1>
             )}
           </motion.li>
-
-          <li>
-            <motion.button onClick={toggleMenu}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className={`icon icon-tabler transition-all duration-500  icon-tabler-chevron-down block md:hidden ${
-                  navMenu ? "rotate-180" : ""
-                }`}
-                width="25"
-                height="25"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#ffffff"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M6 9l6 6l6 -6" />
-              </svg>
-            </motion.button>
-          </li>
         </motion.ul>
         <AnimatePresence>
           <>
@@ -152,101 +121,42 @@ const Navbar = ({}) => {
               >
                 <motion.li className="cursor-pointer" layout>
                   <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    layout
+                    onClick={() => setCurrentPage("Home")}
                     href="./home"
                     className="hover:bg-green-500 px-2 rounded-md no_transition flex items-center justify-center flex-col"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className={` icon icon-tabler icon-tabler-home-2`}
-                      width="25"
-                      height="25"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="#ffffff"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                      <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                      <path d="M10 12h4v4h-4z" />
-                    </svg>
+                    <IoHomeOutline size={20} />
 
-                    <motion.label>Home</motion.label>
+                    <motion.label
+                      className={`${currentPage === "Home" ? "underline" : ""}`}
+                    >
+                      Home
+                    </motion.label>
                   </motion.a>
                 </motion.li>
                 <li className="cursor-pointer">
                   <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    layout
                     href="./order"
                     className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className={`icon icon-tabler icon-tabler-truck-delivery `}
-                      width="25"
-                      height="25"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="#ffffff"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M7 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                      <path d="M17 17m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                      <path d="M5 17h-2v-4m-1 -8h11v12m-4 0h6m4 0h2v-6h-8m0 -5h5l3 5" />
-                      <path d="M3 9l4 0" />
-                    </svg>
+                    <PiHamburger size={20} />
 
                     <motion.label>Order</motion.label>
                   </motion.a>
                 </li>
                 <li className="cursor-pointer">
                   <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    layout
                     href="./careers"
                     className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col"
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className={` icon icon-tabler icon-tabler-users`}
-                      width="25"
-                      height="25"
-                      viewBox="0 0 24 24"
-                      stroke-width="1.5"
-                      stroke="#ffffff"
-                      fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
-                      <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                      <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" />
-                    </svg>
+                    <GoPersonAdd size={20} />
 
                     <motion.label>Careers</motion.label>
                   </motion.a>
                 </li>
 
                 <li className="cursor-pointer" onClick={toggleCartVisible}>
-                  <motion.a
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.9 }}
-                    layout
-                    className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col"
-                  >
+                  <motion.a className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
