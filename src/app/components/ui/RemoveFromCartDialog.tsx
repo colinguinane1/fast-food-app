@@ -18,7 +18,7 @@ const RemoveFromCartDialog: React.FC<RemoveFromCartDialogProps> = ({
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
-      className="fixed no_transition top-0 h-screen w-screen bg-black bg-opacity-40"
+      className="fixed no_transition top-0 h-screen w-screen bg-black bg-opacity-40 backdrop-blur-sm"
     >
       {" "}
       <div className="flex items-center justify-center">
@@ -27,7 +27,7 @@ const RemoveFromCartDialog: React.FC<RemoveFromCartDialogProps> = ({
           animate={{ scale: 1 }}
           exit={{ scale: 0 }}
           transition={{ delay: 0.2 }}
-          className="flex no_transition flex-col text-left  w-60 mt-[50%] p-2 px-4 bg-white rounded-lg"
+          className="flex no_transition flex-col text-left  w-60 mt-[60%] p-2 px-4 bg-white rounded-lg"
         >
           <div>
             {" "}

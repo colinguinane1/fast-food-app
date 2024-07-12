@@ -205,9 +205,9 @@ const IndexPage: React.FC = () => {
                     animate={{ y: 0 }}
                     exit={{ y: -100 }}
                     transition={{ type: "just" }}
-                    className="no_transition capitalize md:hidden fixed top-0"
+                    className="capitalize md:hidden fixed top-0 w-full z-[1000]"
                   >
-                    <h1 className="z-[10000] no_transition  fixed bg-slate-200 w-screen capitalize py-2 px-4 border-black border-b font-extrabold">
+                    <h1 className="no_transition fixed bg-slate-200 w-screen capitalize py-2 px-4 border-black border-b font-extrabold">
                       {selectedCategory}
                     </h1>
                   </motion.div>

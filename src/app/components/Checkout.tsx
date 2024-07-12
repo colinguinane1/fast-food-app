@@ -3,6 +3,9 @@ import { useCart } from "../context/CartContext"; // Ensure this path is correct
 import { AnimatePresence, motion } from "framer-motion";
 import RemoveFromCartDialog from "./ui/RemoveFromCartDialog";
 import EmptyCart from "./ui/EmptyCart";
+import { GoChevronDown } from "react-icons/go";
+import { LuShoppingCart } from "react-icons/lu";
+import { GoTag } from "react-icons/go";
 
 interface CartItem {
   name: string;
@@ -88,42 +91,10 @@ const Checkout: React.FC<CheckoutProps> = ({ toggleCartVisible }) => {
             <div className="max-w-[40rem] w-full">
               <div className="flex justify-between">
                 <button className="block" onClick={toggleCartVisible}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-chevron-down"
-                    width="44"
-                    height="44"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="#2c3e50"
-                    fill="none"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M6 9l6 6l6 -6" />
-                  </svg>
+                  <GoChevronDown size={50} />
                 </button>{" "}
                 <h1 className=" flex  items-center   gap-2 font-extrabold text-4xl py-4">
-                  Checkout{" "}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="icon icon-tabler icon-tabler-shopping-cart stroke-black"
-                    width="30"
-                    height="30"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="#000000"
-                    fill="none"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                    <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                    <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                    <path d="M17 17h-11v-14h-2" />
-                    <path d="M6 5l14 1l-1 7h-13" />
-                  </svg>
+                  Checkout <LuShoppingCart size={30} />
                 </h1>
               </div>
 
@@ -133,7 +104,7 @@ const Checkout: React.FC<CheckoutProps> = ({ toggleCartVisible }) => {
                     whileTap={{ scale: 0.98 }}
                     key={index}
                     onClick={() => toggleCartRemove(item)}
-                    className="flex rounded-lg justify-between hover:cursor-pointer hover:bg-gray-100 px-4 w-full items-center transition-all min-h-40 text-left shadow-lg hover:bg-red-100 hover:border-red-500 hover:shadow-xl hover:border-2 bg-white p-2"
+                    className="flex rounded-lg justify-between hover:cursor-pointer  px-4 w-full items-center transition-all min-h-40 text-left shadow-lg hover:bg-red-100 hover:border-red-500 hover:shadow-xl hover:border-2 bg-white p-2"
                   >
                     <div className="flex flex-col">
                       <span className="font-extrabold">{item.name}</span>
@@ -148,22 +119,7 @@ const Checkout: React.FC<CheckoutProps> = ({ toggleCartVisible }) => {
                       </h1>
                       {item.saleActive ? (
                         <div className="flex items-center gap-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="icon icon-tabler icon-tabler-tag stroke-green-500"
-                            width="15"
-                            height="15"
-                            viewBox="0 0 24 24"
-                            strokeWidth="1.5"
-                            stroke="#2c3e50"
-                            fill="none"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M7.5 7.5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
-                            <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3z" />
-                          </svg>
+                          <GoTag color="rgb(34 197 94)" />
                           <h1 className="text-green-500">${item.price}</h1>
                         </div>
                       ) : (
@@ -258,8 +214,8 @@ const Checkout: React.FC<CheckoutProps> = ({ toggleCartVisible }) => {
                 </h2>
               </div>
             </div>
-            <div className="mx-4">
-              <button className="w-full h-10 rounded-full bg-green-500 px-4 text-white font-extrabold">
+            <div className="px-10 w-full">
+              <button className="w-full  h-10 rounded-lg bg-green-500 px-4 text-white font-semiabold">
                 Pay $
                 {(
                   totalPrice +
@@ -275,42 +231,10 @@ const Checkout: React.FC<CheckoutProps> = ({ toggleCartVisible }) => {
           <div className="flex justify-between p-4">
             {" "}
             <button className="block" onClick={toggleCartVisible}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-chevron-down"
-                width="44"
-                height="44"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="#2c3e50"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M6 9l6 6l6 -6" />
-              </svg>
+              <GoChevronDown size={50} />
             </button>
             <h1 className=" flex  items-center   gap-2 font-extrabold text-4xl py-4">
-              Checkout{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon icon-tabler icon-tabler-shopping-cart stroke-black"
-                width="30"
-                height="30"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="#000000"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                <path d="M17 17h-11v-14h-2" />
-                <path d="M6 5l14 1l-1 7h-13" />
-              </svg>
+              Checkout <LuShoppingCart size={30} />
             </h1>
           </div>
           <EmptyCart toggleCartVisible={toggleCartVisible} />
