@@ -134,17 +134,20 @@ const Navbar = ({}) => {
           <>
             <motion.div
               className={`mt-4 fixed bottom-0 block transition-all duration-700 md:hidden z-[10000] w-full ${
-                scrolled ? "bottom-6 px-4 " : ""
+                scrolled
+                  ? // "bottom-6 px-4 "
+                    ""
+                  : ""
               }`}
               transition={{ type: "tween", duration: 0.2 }}
               layout
             >
               <motion.ul
                 layout
-                className={`flex  text-xs transition-all duration-700 font-extrabold justify-between h-fit py-2 -mt-4  px-6 items-center ${
-                  scrolled
-                    ? "bg-black border bg-opacity-50 rounded-lg "
-                    : " bg-green-600 "
+                className={`flex  text-xs transition-all duration-700 font-extrabold justify-between h-fit py-2 -mt-4  px-6 items-center
+               
+                     bg-black backdrop-blur-3xl bg-opacity-50  "
+                 
                 }`}
               >
                 <motion.li className="cursor-pointer" layout>

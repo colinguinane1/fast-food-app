@@ -220,10 +220,18 @@ const IndexPage: React.FC = () => {
                   <ul className="z-10 grid md:grid-cols-2 gap-2 pt-2  mx-2">
                     {selectedItems.map((item, index) => (
                       <motion.button
-                        initial={{ y: 1000, scale: 0.5, opacity: 0.5 }}
+                        initial={{
+                          y: 700,
+                          scale: 0.5,
+                          opacity: 0.5,
+                        }}
                         animate={{ y: 0, scale: 1, opacity: 1 }}
                         whileTap={{ scale: 0.9 }}
-                        transition={{ delay: 0.1 * index, type: "just" }}
+                        transition={{
+                          delay: 0.1 * index,
+                          type: "tween",
+                          duration: 0.3,
+                        }}
                         key={index}
                         className="flex no_transition  rounded-lg justify-between hover:bg-gray-100 px-4 w-full items-center min-h-40 text-left shadow-lg hover:border-green-500 hover:shadow-xl hover:border-2 bg-white p-2"
                         onClick={() => handleItemClick(item)}
