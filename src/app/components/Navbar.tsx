@@ -117,7 +117,7 @@ const Navbar = ({}) => {
                 layout
                 className={`flex  text-xs transition-all duration-700 font-extrabold justify-between h-fit py-2 -mt-4  px-6 items-center
                
-                     bg-white border-t backdrop-blur-2xl bg-opacity-30  "
+                     bg-white border-t backdrop-blur-2xl bg-opacity-80  "
                  
                 }`}
               >
