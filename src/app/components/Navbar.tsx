@@ -6,11 +6,9 @@ import Checkout from "./Checkout";
 import { useCart } from "../context/CartContext";
 import { usePageContext } from "../context/PageContext";
 import { LuShoppingCart } from "react-icons/lu";
-import { GoChevronDown } from "react-icons/go";
-import { IoHomeOutline } from "react-icons/io5";
-import { FaBurger } from "react-icons/fa6";
-import { PiHamburger } from "react-icons/pi";
-import { GoPersonAdd } from "react-icons/go";
+import Link from "next/link";
+import { NavbarData } from "../../../public/data/NavbarData";
+import { IconBase, IconContext } from "react-icons";
 
 interface CartItem {
   name: string;
@@ -104,7 +102,7 @@ const Navbar = ({}) => {
         <AnimatePresence>
           <>
             <motion.div
-              className={`mt-4 fixed bottom-0 block transition-all duration-700 md:hidden z-[10000] w-full ${
+              className={`mt-4 fixed bottom-0 block  md:hidden z-[10000] w-full ${
                 scrolled
                   ? // "bottom-6 px-4 "
                     ""
@@ -121,62 +119,16 @@ const Navbar = ({}) => {
                  
                 }`}
               >
-                <motion.li className="cursor-pointer" layout>
-                  <motion.a
-                    onClick={() => setCurrentPage("Home")}
-                    href="./home"
-                    className="hover:bg-green-500 px-2 rounded-md no_transition flex items-center justify-center flex-col group"
-                  >
-                    <IoHomeOutline
-                      size={20}
-                      color={navbarIconsColor}
-                      className="group-hover:stroke-white no_transition"
-                    />
-
-                    <motion.label
-                      className={`text-${navbarIconsColor} group-hover:text-white`}
-                    >
-                      Home
-                    </motion.label>
-                  </motion.a>
-                </motion.li>
-                <li className="cursor-pointer">
-                  <motion.a
-                    href="./order"
-                    className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col group"
-                  >
-                    <PiHamburger
-                      size={20}
-                      className="group-hover:fill-white no_transition"
-                      color={navbarIconsColor}
-                    />
-
-                    <motion.label
-                      className={`text-${navbarIconsColor} group-hover:text-white`}
-                    >
-                      Order
-                    </motion.label>
-                  </motion.a>
-                </li>
-                <li className="cursor-pointer">
-                  <motion.a
-                    href="./careers"
-                    className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col group"
-                  >
-                    <GoPersonAdd
-                      size={20}
-                      color={navbarIconsColor}
-                      className="group-hover:fill-white no_transition"
-                    />
-
-                    <motion.label
-                      className={`text-${navbarIconsColor} group-hover:text-white`}
-                    >
-                      Careers
-                    </motion.label>
-                  </motion.a>
-                </li>
-
+                {NavbarData.map((navbar, index) => (
+                  <li className="text-black" key={index}>
+                    <Link href={navbar.href}>
+                      <div className="flex flex-col items-center hover:text-green-500 no_transition">
+                        {navbar.icon}
+                        <p>{navbar.pageName}</p>
+                      </div>
+                    </Link>
+                  </li>
+                ))}
                 <li className="cursor-pointer" onClick={toggleCartVisible}>
                   <motion.a className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col group">
                     <LuShoppingCart
