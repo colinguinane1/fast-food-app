@@ -34,6 +34,8 @@ const Navbar = ({}) => {
     setCartVisible(!cartVisible);
   };
 
+  const navbarIconsColor = "black";
+
   const toggleMenu = () => {
     setNavMenu(!navMenu);
     console.log(navMenu);
@@ -115,7 +117,7 @@ const Navbar = ({}) => {
                 layout
                 className={`flex  text-xs transition-all duration-700 font-extrabold justify-between h-fit py-2 -mt-4  px-6 items-center
                
-                     bg-black backdrop-blur-lg bg-opacity-30  "
+                     bg-white border-t backdrop-blur-2xl bg-opacity-30  "
                  
                 }`}
               >
@@ -123,12 +125,16 @@ const Navbar = ({}) => {
                   <motion.a
                     onClick={() => setCurrentPage("Home")}
                     href="./home"
-                    className="hover:bg-green-500 px-2 rounded-md no_transition flex items-center justify-center flex-col"
+                    className="hover:bg-green-500 px-2 rounded-md no_transition flex items-center justify-center flex-col group"
                   >
-                    <IoHomeOutline size={20} />
+                    <IoHomeOutline
+                      size={20}
+                      color={navbarIconsColor}
+                      className="group-hover:stroke-white no_transition"
+                    />
 
                     <motion.label
-                      className={`${currentPage === "Home" ? "underline" : ""}`}
+                      className={`text-${navbarIconsColor} group-hover:text-white`}
                     >
                       Home
                     </motion.label>
@@ -137,51 +143,58 @@ const Navbar = ({}) => {
                 <li className="cursor-pointer">
                   <motion.a
                     href="./order"
-                    className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col"
+                    className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col group"
                   >
-                    <PiHamburger size={20} />
+                    <PiHamburger
+                      size={20}
+                      className="group-hover:fill-white no_transition"
+                      color={navbarIconsColor}
+                    />
 
-                    <motion.label>Order</motion.label>
+                    <motion.label
+                      className={`text-${navbarIconsColor} group-hover:text-white`}
+                    >
+                      Order
+                    </motion.label>
                   </motion.a>
                 </li>
                 <li className="cursor-pointer">
                   <motion.a
                     href="./careers"
-                    className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col"
+                    className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col group"
                   >
-                    <GoPersonAdd size={20} />
+                    <GoPersonAdd
+                      size={20}
+                      color={navbarIconsColor}
+                      className="group-hover:fill-white no_transition"
+                    />
 
-                    <motion.label>Careers</motion.label>
+                    <motion.label
+                      className={`text-${navbarIconsColor} group-hover:text-white`}
+                    >
+                      Careers
+                    </motion.label>
                   </motion.a>
                 </li>
 
                 <li className="cursor-pointer" onClick={toggleCartVisible}>
-                  <motion.a className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="icon icon-tabler icon-tabler-shopping-cart stroke-white"
-                      width="25"
-                      height="25"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="#000000"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                      <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                      <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                      <path d="M17 17h-11v-14h-2" />
-                      <path d="M6 5l14 1l-1 7h-13" />
-                    </svg>
+                  <motion.a className="flex hover:bg-green-500 px-2 rounded-md items-center no_transition justify-center flex-col group">
+                    <LuShoppingCart
+                      size={20}
+                      color={navbarIconsColor}
+                      className="group-hover:stroke-white no_transition"
+                    />
                     {cartCount > 0 && (
                       <h1 className="absolute bg-white text-green-500 h-4 w-4 rounded-full items-center text-center ml-5 mb-1">
                         {cartCount}
                       </h1>
                     )}
 
-                    <motion.label>Cart</motion.label>
+                    <motion.label
+                      className={`text-${navbarIconsColor} group-hover:text-white`}
+                    >
+                      Cart
+                    </motion.label>
                   </motion.a>
                 </li>
               </motion.ul>{" "}
